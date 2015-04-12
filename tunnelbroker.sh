@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script for setting CeroWrt to create an IPv6 tunnel 
+# Script for setting OpenWrt to create an IPv6 tunnel 
 # to Hurricane Electric at http://www.tunnelbroker.net/
 # There are two steps:
 # 1) Go to the Tunnelbroker.net site to set up your free account

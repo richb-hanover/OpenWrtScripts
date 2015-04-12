@@ -1,28 +1,17 @@
-CeroWrtScripts
+OpenWrtScripts
 ==============
 
-The CeroWrt router firmware project has largely eliminated the problem of *bufferbloat* on Ethernet for home routers. 
-This firmware makes a huge difference for wireless, too, although there's still more work to be done.
-The symptoms of bufferbloat give people cause to complain, "the Internet feels slow today." 
-The techniques that the CeroWrt team have proved out are being widely adopted across 
-the Internet to make everyone's network performance better.
+This is a set of scripts (sometimes also called "Openscripts") that configure and measure (and improve) latency in home routers (and everywhere else!) These scripts include:
 
-This is a set of scripts (sometimes also called "Ceroscripts") that we use to measure (and improve) latency in home routers (and everywhere else!) 
-[http://bufferbloat.net/projects/cerowrt](http://bufferbloat.net/projects/cerowrt)
-These scripts include:
+* Script to configure the OpenWrt router consistently after flashing factory firmware.
 
 * Scripts that measure the performance of your router or offer load to the network for testing.
 
-* Script to configure the CeroWrt router consistently after flashing factory firmware.
-
 * Script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net.
 
-* Script to collect troubleshooting information that helps us diagnose problems in the CeroWrt distribution.
+* Script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
 
-These scripts are bundled into CeroWrt 3.10.44-3 and newer as the 'cerowrtscripts' package, saved in the `/usr/lib/CeroWrtScripts` directory.
-To get the newest versions, you can use `opkg update; opkg upgrade`
-
-If the scripts are not built into your version of CeroWrt, it is safe to put them in that CeroWrtScripts directory.
+These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. They were cloned from the similar CeroWrtScripts at https://github.com/richb-hanover/CeroWrtScripts
  
 ---
 ## betterspeedtest.sh
@@ -53,7 +42,7 @@ On the right is a test using SQM: the latency goes up a little (less than 23 mse
 
     Example with NO SQM - BAD                                     Example using SQM - GOOD
     
-    root@cerowrt:/usr/lib/CeroWrtScripts# sh betterspeedtest.sh   root@cerowrt:/usr/lib/CeroWrtScripts# sh betterspeedtest.sh
+    root@openwrt:/usr/lib/OpenWrtScripts# sh betterspeedtest.sh   root@openwrt:/usr/lib/OpenWrtScripts# sh betterspeedtest.sh
     [date/time] Testing against netperf.bufferbloat.net (ipv4)    [date/time] Testing against netperf.bufferbloat.net (ipv4)
        with 5 simultaneous sessions while pinging gstatic.com        with 5 simultaneous sessions while pinging gstatic.com
        (60 seconds in each direction)                                (60 seconds in each direction)
@@ -103,7 +92,7 @@ and netperf-eu (Denmark)
 
 The output of the script looks like this:
 
-    root@cerowrt:/usr/lib/CeroWrtScripts# sh netperfrunner.sh
+    root@openwrt:/usr/lib/OpenWrtScripts# sh netperfrunner.sh
     [date/time] Testing netperf.bufferbloat.net (ipv4) with 4 streams down and up 
         while pinging gstatic.com. Takes about 60 seconds.
     Download:  5.02 Mbps
@@ -124,9 +113,9 @@ The output of the script looks like this:
 This script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
  
 ---
-## config-cerowrt.sh
+## config-openwrt.sh
 
-This script updates the factory settings of CeroWrt to a known-good configuration.
+This script updates the factory settings of OpenWrt to a known-good configuration.
 If you frequently update your firmware, you can use this script to reconfigure
 the router to a consistent state.
 You should make a copy of this script, customize it to your needs,
@@ -136,13 +125,13 @@ This script is designed to configure the settings after an initial "factory" fir
 There are sections below to configure many aspects of your router.
 All the sections are commented out. There are sections for:
 
-- Set up the ge00/WAN interface to connect to your provider
+- Set up the WAN interface to connect to your provider
 - Update the software packages
 - Update the root password
 - Set the time zone
 - Enable SNMP for traffic monitoring and measurements
 - Enable NetFlow export for traffic analysis
-- Enable mDNS/ZeroConf on the ge00 (WAN) interface 
+- Enable mDNS/ZeroConf on the WAN interface 
 - Change default IP addresses and subnets for interfaces
 - Change default DNS names
 - Set the SQM (Smart Queue Management) parameters
@@ -163,19 +152,19 @@ may reset the wireless network.
     sh config.sh
     Presto! (You should reboot the router when this completes.)
 
-**Note:** If you use a secondary CeroWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
+**Note:** If you use a secondary OpenWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
 
 ---
 ## tunnelbroker.sh
 
-This script configures CeroWrt to create an IPv6 tunnel. 
+This script configures OpenWrt to create an IPv6 tunnel. 
 It's an easy way to become familiar with IPv6 if your ISP doesn't offer native IPv6 capabilities. There are three steps:
 
 1. Go to the Hurricane Electric [TunnelBroker.net](http://www.tunnelbroker.net/)  site to set up your free account. There are detailed instructions for setting up an account and an IPv6 tunnel at the
-   [CeroWrt IPv6 Tunnel page.](http://www.bufferbloat.net/projects/cerowrt/wiki/IPv6_Tunnel) 
+   [IPv6 Tunnel page.](http://www.bufferbloat.net/projects/cerowrt/wiki/IPv6_Tunnel) 
 2. Edit the tunnelbroker.sh script, using the parameters supplied by Tunnelbroker.net. They're on the site's "Tunnel Details" page. Click on the "Example
 Configurations" tab and select "OpenWRT Backfire 10.03.1". Use the info to fill in the corresponding lines of the script. 
-3. ssh into the CeroWrt router and execute this script with these steps.
+3. ssh into the OpenWrt router and execute this script with these steps.
     
         ssh root@172.30.42.1
         cd /tmp
@@ -187,8 +176,8 @@ Configurations" tab and select "OpenWRT Backfire 10.03.1". Use the info to fill 
 Presto! Your tunnel is up! Your computer should get a global IPv6 address, and should be able to communicate directly with IPv6 devices on the Internet. To test it, try: `ping6 ivp6.google.com`
 
 ---
-## cerostats.sh
+## openwrtstats.sh
 
-This script collects a number of useful configuration settings and dynamic values for aid in diagnosing problems with CeroWrt. If you report a problem, it would be helpful to include the output of this script.
+This script collects a number of useful configuration settings and dynamic values for aid in diagnosing problems with OpenWrt. If you report a problem, it would be helpful to include the output of this script.
 
-By default, it collects information about the first 2.4GHz radio/interface, and writes the collected data to `/tmp/cerostats_output.txt`
+By default, it collects information about the first 2.4GHz radio/interface, and writes the collected data to `/tmp/openstats_output.txt`

@@ -8,11 +8,11 @@
 #
 # - phy0 - 2.4GHz radio
 # - sw00 - First 2.4GHz wireless interface
-# - /tmp/cerostats_output.txt - output file for stats
+# - /tmp/openwrtstats_output.txt - output file for stats
 
 radio=phy0
 wlan_if=sw00
-out_fqn=/tmp/cerostats_output.txt
+out_fqn=/tmp/openwrtstats_output.txt
 
 echo -e "[date]" > ${out_fqn}
 date >> ${out_fqn}

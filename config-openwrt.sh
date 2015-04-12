@@ -1,5 +1,5 @@
 #!/bin/sh
-# Update the factory settings of CeroWrt to a known-good configuration.
+# Update the factory settings of OpenWrt to a known-good configuration.
 # You should make a copy of this script, customize it to your needs,
 # then use the "To run this script" procedure (below).
 #
@@ -56,7 +56,7 @@
 # updating/installing them a second time.
 # opkg update                # retrieve updated packages
 # opkg install snmpd fprobe  # install snmpd & fprobe
-# opkg install qos-scripts   # install the qos-scripts
+# opkg install luci-app-sqm sqm-scripts # install the SQM modules to get fq_codel &c
 # opkg install ppp-mod-pppoe # install PPPoE module
 
 # === Update root password =====================
@@ -64,7 +64,7 @@
 # uncomment six lines.
 # 
 # echo 'Updating root password'
-# NEWPASSWD=Beatthebloat
+# NEWPASSWD=enter-your-new-password
 # passwd <<EOF
 # $NEWPASSWD
 # $NEWPASSWD
@@ -125,9 +125,9 @@
 # connected directly to the Internet, as it will leak private information. 
 # To enable mDNS, uncomment two lines, and reboot the router afterwards
 ###
-### IF THIS IS YOUR PRIMARY ROUTER, DO NOT DO THIS!   ###
-### IT COULD LEAK YOUR mDNS NAMES INTO THE INTERNET!  ###
-### (It's useful if this is your secondary router.)   ###
+### IF THIS IS YOUR PRIMARY ROUTER, DO NOT DO THIS!       ###
+### IT COULD LEAK YOUR mDNS NAMES INTO THE INTERNET!      ###
+### (But it's useful if this is your secondary router.)   ###
 ###
 # echo 'Enabling mDNS'
 # sed -i s/deny-interfaces=ge00/#deny-interfaces=ge00/g /etc/avahi/avahi-daemon.conf

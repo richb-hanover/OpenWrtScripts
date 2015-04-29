@@ -9,55 +9,66 @@
 # There are sections below to configure many aspects of your router.
 # All the sections are commented out. There are sections for:
 # 
-# - Set up the ge00/WAN interface to connect to your provider
-# - Update the software packages
 # - Update the root password
+# - Set up the eth0/WAN interface to connect to your provider
+# - Update the software packages
 # - Set the time zone
 # - Enable SNMP for traffic monitoring and measurements
-# - Enable NetFlow export for traffic analysis
-# - Enable mDNS/ZeroConf on the ge00 (WAN) interface 
-# - Change default IP addresses and subnets for interfaces
-# - Change default DNS names
+# - Enable mDNS/ZeroConf on the br-lan (LAN) interface 
 # - Set the SQM (Smart Queue Management) parameters
-# - Set the radio channels
-# - Set wireless SSID names
-# - Set the wireless security credentials
 #
 # To run this script
 #
-# Flash the router with factory firmware. Then ssh in and execute these statements. 
+# Flash the router with factory firmware. Then *telnet* in and execute these statements. 
 # You should do this over a wired connection because some of these changes
 # will reset the wireless network.
 # 
-# ssh root@172.30.42.1
+# telnet 192.168.1.1
 # cd /tmp
 # cat > config.sh 
 # [paste in the contents of this file, then hit ^D]
 # sh config.sh
 # Presto! (You should reboot the router when this completes.)
 
-# === Set up the WAN (ge00) interface ==================
+# === Update root password =====================
+# Update the root password. Supply new password for NEWPASSWD and
+# uncomment six lines.
+# 
+echo 'Updating root password'
+NEWPASSWD=conT7528
+passwd <<EOF
+$NEWPASSWD
+$NEWPASSWD
+EOF
+
+# === Set up the WAN (eth0) interface ==================
 # Default is DHCP, this sets it to PPPoE (typical for DSL/ADSL) 
 # From http://wiki.openwrt.org/doc/howto/internet.connection
 # Supply values for DSLUSERNAME and DSLPASSWORD 
-# and uncomment seven lines
+# and uncomment ten lines
 #
+# echo 'Configuring WAN link for PPPoE'
 # DSLUSERNAME=YOUR-DSL-USERNAME
 # DSLPASSWORD=YOUR-DSL-PASSWORD
-# uci set network.ge00.proto=pppoe
-# uci set network.ge00.username=$DSLUSERNAME
-# uci set network.ge00.password=$DSLPASSWORD
+# uci set network.wan.proto=pppoe
+# uci set network.wan.username=$DSLUSERNAME
+# uci set network.wan.password=$DSLPASSWORD
 # uci commit network
-# ifup ge00
+# ifup wan
+# echo 'Waiting for link to initialize'
+# sleep 20
 
 # === Update the software packages =============
 # Download and update all the interesting packages
 # Some of these are pre-installed, but there is no harm in
 # updating/installing them a second time.
+# echo 'Updating software packages'
 # opkg update                # retrieve updated packages
 # opkg install snmpd fprobe  # install snmpd & fprobe
-# opkg install luci-app-sqm sqm-scripts # install the SQM modules to get fq_codel &c
+# opkg install luci-app-sqm  # install the SQM modules to get fq_codel etc
 # opkg install ppp-mod-pppoe # install PPPoE module
+# opkg install avahi-daemon  # install the mDNS daemon
+# opkg install netperf		 # install the netperf module for speed testing
 
 # === Update root password =====================
 # Update the root password. Supply new password for NEWPASSWD and
@@ -86,8 +97,6 @@
 # uci commit system
 
 # === Enable SNMP daemon =======================
-# SNMP - See this page for more details
-# http://www.bufferbloat.net/projects/cerowrt/wiki/Monitoring_CeroWrt
 # Enables responses on IPv4 & IPv6 with same read-only community string
 # Supply values for COMMUNITYSTRING and uncomment eleven lines.
 # COMMUNITYSTRING=public
@@ -101,6 +110,62 @@
 # uci commit snmpd
 # /etc/init.d/snmpd restart   # default snmpd config uses 'public' 
 # /etc/init.d/snmpd enable  	# community string for SNMPv1 & SNMPv2c
+
+# === Enable mDNS/ZeroConf =====================
+# mDNS allows devices to look each other up by name
+# This enables mDNS lookups on the LAN (br-lan) interface
+# Uncomment seven lines
+# echo 'Enabling mDNS on LAN interface'
+# sed -i '/use-iff/ a \
+# allow-interfaces=br-lan \
+# enable-dbus=no ' /etc/avahi/avahi-daemon.conf
+# sed -i s/enable-reflector=no/enable-reflector=yes/ /etc/avahi/avahi-daemon.conf
+# /etc/init.d/avahi-daemon start
+# /etc/init.d/avahi-daemon enable
+
+# ==============================
+# Set Smart Queue Management (SQM) values for your own network
+#
+# Use a speed test (http://dslreports.com/speedtest) to determine the speed
+# for your own network, then set the values below accordingly
+# Speeds below are in kbits per second (3000 = 3 megabits/sec)
+# For all the details about setting the SQM for your router, see:
+# http://wiki.openwrt.org/doc/howto/sqm
+# Set DOWNLOADSPEED, UPLOADSPEED, WANIF and then uncomment 18 lines
+#
+# DOWNLOADSPEED=20000
+# UPLOADSPEED=2000
+# WANIF=eth0
+# echo 'Setting SQM on '$WANIF ' to ' $DOWNLOADSPEED/$UPLOADSPEED 'kbps down/up'
+# uci set sqm.@queue[0].interface=$WANIF
+# uci set sqm.@queue[0].enabled=1
+# uci set sqm.@queue[0].download=$DOWNLOADSPEED
+# uci set sqm.@queue[0].upload=$UPLOADSPEED
+# uci set sqm.@queue[0].script='simple.qos' # Already the default
+# uci set sqm.@queue[0].qdisc='fq_codel'
+# uci set sqm.@queue[0].itarget='auto'
+# uci set sqm.@queue[0].etarget='auto'
+# uci set sqm.@queue[0].linklayer='atm'
+# uci set sqm.@queue[0].overhead='44'
+# uci commit sqm
+# /etc/init.d/sqm restart
+# /etc/init.d/sqm enable
+
+
+echo 'You should restart the router now for these changes to take effect...'
+# --- end of script ---
+
+# ================ 
+# 
+# The following sections have not been completed, and should not be uncommented:
+#
+# - Enable NetFlow export for traffic analysis
+# - Enable mDNS/ZeroConf on the ge00 (WAN) interface 
+# - Change default IP addresses and subnets for interfaces
+# - Change default DNS names
+# - Set the radio channels
+# - Set wireless SSID names
+# - Set the wireless security credentials
 
 # === Enable NetFlow export ====================
 # NetFlow export
@@ -154,25 +219,6 @@
 # NEWDNS=home.lan
 # echo 'Changing local domain to' $NEWDNS
 # sed -i s#home.lan#$NEWDNS#g /etc/config/*  
-
-# ==============================
-# Set Smart Queue Management (SQM) values for your own network
-#
-# Use a speed test (http://speedtest.net) to determine the speed
-# for your own network, then set the values below accordingly
-# Speeds below are in kbits per second (3000 = 3 megabits/sec)
-# For all the details about setting the SQM for your router, see:
-# http://www.bufferbloat.net/projects/cerowrt/wiki/Setting_up_SQM_for_CeroWrt_310
-#
-# DOWNLOADSPEED=7000
-# UPLOADSPEED=830
-# echo 'Setting SQM to' $DOWNLOADSPEED/$UPLOADSPEED 'kbps down/up'
-# uci set sqm.ge00.enabled=1
-# uci set sqm.ge00.download=$DOWNLOADSPEED
-# uci set sqm.ge00.upload=$UPLOADSPEED
-# uci set sqm.ge00.script='simple.qos'
-# uci set sqm.ge00.qdisc='fq_codel'
-# uci commit sqm
 
 # === Update WiFi info for the access point ================
 # a) Assign the radio channels
@@ -229,6 +275,3 @@
 # uci set wireless.@wifi-iface[4].encryption=$ENCRMODE
 
 # uci commit wireless
-
-echo 'You should restart the router now for these changes to take effect...'
-# --- end of script ---

@@ -5,14 +5,63 @@ This is a set of scripts (sometimes also called "Openscripts") that configure an
 
 * Script to configure the OpenWrt router consistently after flashing factory firmware.
 
+* Script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
+
 * Scripts that measure the performance of your router or offer load to the network for testing.
 
 * Script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net.
 
-* Script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
-
-These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. They were cloned from the similar CeroWrtScripts at https://github.com/richb-hanover/CeroWrtScripts
+These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory.
  
+---
+## config-openwrt.sh
+
+This script updates the factory settings of OpenWrt to a known-good configuration.
+If you frequently update your firmware, you can use this script to reconfigure
+the router to a consistent state.
+You should make a copy of this script, customize it to your needs,
+then use the "To run this script" procedure (below).
+
+This script is designed to configure the settings after an initial "factory" firmware flash. 
+There are sections below to configure many aspects of your router.
+All the sections are commented out. There are sections for:
+
+- Set up the WAN interface to connect to your provider
+- Update the software packages
+- Update the root password
+- Set the time zone
+- Enable SNMP for traffic monitoring and measurements
+- Enable NetFlow export for traffic analysis
+- Enable mDNS/ZeroConf on the WAN interface 
+- Change default IP addresses and subnets for interfaces
+- Change default DNS names
+- Set the SQM (Smart Queue Management) parameters
+- Set the radio channels
+- Set wireless SSID names
+- Set the wireless security credentials
+
+**To run this script**
+
+Flash the router with factory firmware. Then ssh in and execute these statements. 
+You should do this over a wired connection because some of these changes
+may reset the wireless network.
+
+    ssh root@172.30.42.1
+    cd /tmp
+    cat > config.sh 
+    [paste in the contents of this file, then hit ^D]
+    sh config.sh
+    Presto! (You should reboot the router when this completes.)
+
+**Note:** If you use a secondary OpenWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
+
+---
+## openwrtstats.sh
+
+This script collects a number of useful configuration settings and dynamic values for aid in diagnosing problems with OpenWrt. If you report a problem, it would be helpful to include the output of this script.
+
+By default, it collects information about the first 2.4GHz radio/interface, and writes the collected data to `/tmp/openwrtstats_output.txt`
+
 ---
 ## betterspeedtest.sh
 
@@ -112,47 +161,6 @@ The output of the script looks like this:
 
 This script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
  
----
-## config-openwrt.sh
-
-This script updates the factory settings of OpenWrt to a known-good configuration.
-If you frequently update your firmware, you can use this script to reconfigure
-the router to a consistent state.
-You should make a copy of this script, customize it to your needs,
-then use the "To run this script" procedure (below).
-
-This script is designed to configure the settings after an initial "factory" firmware flash. 
-There are sections below to configure many aspects of your router.
-All the sections are commented out. There are sections for:
-
-- Set up the WAN interface to connect to your provider
-- Update the software packages
-- Update the root password
-- Set the time zone
-- Enable SNMP for traffic monitoring and measurements
-- Enable NetFlow export for traffic analysis
-- Enable mDNS/ZeroConf on the WAN interface 
-- Change default IP addresses and subnets for interfaces
-- Change default DNS names
-- Set the SQM (Smart Queue Management) parameters
-- Set the radio channels
-- Set wireless SSID names
-- Set the wireless security credentials
-
-**To run this script**
-
-Flash the router with factory firmware. Then ssh in and execute these statements. 
-You should do this over a wired connection because some of these changes
-may reset the wireless network.
-
-    ssh root@172.30.42.1
-    cd /tmp
-    cat > config.sh 
-    [paste in the contents of this file, then hit ^D]
-    sh config.sh
-    Presto! (You should reboot the router when this completes.)
-
-**Note:** If you use a secondary OpenWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
 
 ---
 ## tunnelbroker.sh
@@ -175,9 +183,3 @@ Configurations" tab and select "OpenWRT Backfire 10.03.1". Use the info to fill 
   
 Presto! Your tunnel is up! Your computer should get a global IPv6 address, and should be able to communicate directly with IPv6 devices on the Internet. To test it, try: `ping6 ivp6.google.com`
 
----
-## openwrtstats.sh
-
-This script collects a number of useful configuration settings and dynamic values for aid in diagnosing problems with OpenWrt. If you report a problem, it would be helpful to include the output of this script.
-
-By default, it collects information about the first 2.4GHz radio/interface, and writes the collected data to `/tmp/openstats_output.txt`

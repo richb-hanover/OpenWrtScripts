@@ -10,18 +10,18 @@
 # All the sections are commented out. There are sections for:
 # 
 # - Update the root password
-# - Set up the eth0/WAN interface to connect to your provider
+# - Set up the eth0/WAN interface to connect to via PPPoE
 # - Update the software packages
 # - Set the time zone
 # - Enable SNMP for traffic monitoring and measurements
 # - Enable mDNS/ZeroConf on the br-lan (LAN) interface 
 # - Set the SQM (Smart Queue Management) parameters
 #
-# To run this script
+# ***** To run this script *****
 #
 # Flash the router with factory firmware. Then *telnet* in and execute these statements. 
 # You should do this over a wired connection because some of these changes
-# will reset the wireless network.
+# can reset the wireless network.
 # 
 # telnet 192.168.1.1
 # cd /tmp
@@ -34,12 +34,12 @@
 # Update the root password. Supply new password for NEWPASSWD and
 # uncomment six lines.
 # 
-echo 'Updating root password'
-NEWPASSWD=conT7528
-passwd <<EOF
-$NEWPASSWD
-$NEWPASSWD
-EOF
+# echo 'Updating root password'
+# NEWPASSWD=your-new-root-password
+# passwd <<EOF
+# $NEWPASSWD
+# $NEWPASSWD
+# EOF
 
 # === Set up the WAN (eth0) interface ==================
 # Default is DHCP, this sets it to PPPoE (typical for DSL/ADSL) 
@@ -69,17 +69,6 @@ EOF
 # opkg install ppp-mod-pppoe # install PPPoE module
 # opkg install avahi-daemon  # install the mDNS daemon
 # opkg install netperf		 # install the netperf module for speed testing
-
-# === Update root password =====================
-# Update the root password. Supply new password for NEWPASSWD and
-# uncomment six lines.
-# 
-# echo 'Updating root password'
-# NEWPASSWD=enter-your-new-password
-# passwd <<EOF
-# $NEWPASSWD
-# $NEWPASSWD
-# EOF
 
 # === Set the Time Zone ========================
 # Set the time zone to non-default (other than UTC)
@@ -115,6 +104,7 @@ EOF
 # mDNS allows devices to look each other up by name
 # This enables mDNS lookups on the LAN (br-lan) interface
 # Uncomment seven lines
+#
 # echo 'Enabling mDNS on LAN interface'
 # sed -i '/use-iff/ a \
 # allow-interfaces=br-lan \
@@ -126,10 +116,10 @@ EOF
 # ==============================
 # Set Smart Queue Management (SQM) values for your own network
 #
-# Use a speed test (http://dslreports.com/speedtest) to determine the speed
-# for your own network, then set the values below accordingly
+# Use a speed test (http://dslreports.com/speedtest) to determine 
+# the speed of your own network, then set the speeds  accordingly.
 # Speeds below are in kbits per second (3000 = 3 megabits/sec)
-# For all the details about setting the SQM for your router, see:
+# For details about setting the SQM for your router, see:
 # http://wiki.openwrt.org/doc/howto/sqm
 # Set DOWNLOADSPEED, UPLOADSPEED, WANIF and then uncomment 18 lines
 #
@@ -160,7 +150,7 @@ echo 'You should restart the router now for these changes to take effect...'
 # The following sections have not been completed, and should not be uncommented:
 #
 # - Enable NetFlow export for traffic analysis
-# - Enable mDNS/ZeroConf on the ge00 (WAN) interface 
+# - Enable mDNS/ZeroConf on eth0 for internal routers *only* 
 # - Change default IP addresses and subnets for interfaces
 # - Change default DNS names
 # - Set the radio channels

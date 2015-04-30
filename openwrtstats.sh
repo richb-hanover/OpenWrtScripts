@@ -42,29 +42,29 @@ echo -e "[iw dev ${wlan_if} station dump]" >> ${out_fqn}
 iw dev ${wlan_if} station dump >> ${out_fqn}
 echo -e "\n" >> ${out_fqn}
 
-echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/ani]" >> ${out_fqn}
-cat /sys/kernel/debug/ieee80211/${radio}/ath9k/ani >> ${out_fqn}
-echo -e "" >> ${out_fqn}
+# echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/ani]" >> ${out_fqn}
+# cat /sys/kernel/debug/ieee80211/${radio}/ath9k/ani >> ${out_fqn}
+# echo -e "" >> ${out_fqn}
 
-echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/interrupt]" >> ${out_fqn}
-cat /sys/kernel/debug/ieee80211/${radio}/ath9k/interrupt >> ${out_fqn}
-echo -e "" >> ${out_fqn}
+# echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/interrupt]" >> ${out_fqn}
+# cat /sys/kernel/debug/ieee80211/${radio}/ath9k/interrupt >> ${out_fqn}
+# echo -e "" >> ${out_fqn}
 
-echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/queues]" >> ${out_fqn}
-cat /sys/kernel/debug/ieee80211/${radio}/ath9k/queues >> ${out_fqn}
-echo -e "" >> ${out_fqn}
+# echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/queues]" >> ${out_fqn}
+# cat /sys/kernel/debug/ieee80211/${radio}/ath9k/queues >> ${out_fqn}
+# echo -e "" >> ${out_fqn}
 
-echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/xmit]" >> ${out_fqn}
-cat /sys/kernel/debug/ieee80211/${radio}/ath9k/xmit >> ${out_fqn}
-echo -e "" >> ${out_fqn}
+# echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/xmit]" >> ${out_fqn}
+# cat /sys/kernel/debug/ieee80211/${radio}/ath9k/xmit >> ${out_fqn}
+# echo -e "" >> ${out_fqn}
 
-echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/recv]" >> ${out_fqn}
-cat /sys/kernel/debug/ieee80211/${radio}/ath9k/recv >> ${out_fqn}
-echo -e "" >> ${out_fqn}
+# echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/recv]" >> ${out_fqn}
+# cat /sys/kernel/debug/ieee80211/${radio}/ath9k/recv >> ${out_fqn}
+# echo -e "" >> ${out_fqn}
 
-echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/reset]" >> ${out_fqn}
-cat /sys/kernel/debug/ieee80211/${radio}/ath9k/reset >> ${out_fqn}
-echo -e "" >> ${out_fqn}
+# echo -e "[cat /sys/kernel/debug/ieee80211/${radio}/ath9k/reset]" >> ${out_fqn}
+# cat /sys/kernel/debug/ieee80211/${radio}/ath9k/reset >> ${out_fqn}
+# echo -e "" >> ${out_fqn}
 
 echo -e "[logread]" >> ${out_fqn}
 logread >> ${out_fqn}

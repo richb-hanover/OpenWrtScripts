@@ -11,8 +11,16 @@ This is a set of scripts (sometimes also called "Openscripts") that configure an
 
 * Script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net.
 
-These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory.
- 
+These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. The easiest way to do this is to use ssh into the router and enter these commands:
+
+```
+opkg update
+opkg install git
+cd /usr/lib
+git clone git://github.com/richb-hanover/OpenWrtScripts.git
+```
+
+
 ---
 ## config-openwrt.sh
 
@@ -31,22 +39,24 @@ All the sections are commented out. There are sections for:
 - Update the root password
 - Set the time zone
 - Enable SNMP for traffic monitoring and measurements
-- Enable NetFlow export for traffic analysis
 - Enable mDNS/ZeroConf on the WAN interface 
+- Set the SQM (Smart Queue Management) parameters
+
+_[Note: the remaining items have not been converted to work on OpenWrt yet
+- Enable NetFlow export for traffic analysis
 - Change default IP addresses and subnets for interfaces
 - Change default DNS names
-- Set the SQM (Smart Queue Management) parameters
 - Set the radio channels
 - Set wireless SSID names
-- Set the wireless security credentials
+- Set the wireless security credentials]_
 
 **To run this script**
 
-Flash the router with factory firmware. Then ssh in and execute these statements. 
+Flash the router with factory firmware. Then telnet in and execute these statements. 
 You should do this over a wired connection because some of these changes
 may reset the wireless network.
 
-    ssh root@172.30.42.1
+    telnet 192.168.1.1
     cd /tmp
     cat > config.sh 
     [paste in the contents of this file, then hit ^D]
@@ -58,9 +68,13 @@ may reset the wireless network.
 ---
 ## openwrtstats.sh
 
+_[This script has been partially converted]_
+
 This script collects a number of useful configuration settings and dynamic values for aid in diagnosing problems with OpenWrt. If you report a problem, it would be helpful to include the output of this script.
 
-By default, it collects information about the first 2.4GHz radio/interface, and writes the collected data to `/tmp/openwrtstats_output.txt`
+The script issues the date, uname -a, uptime, ifconfig, top, tc, iw, logread and dmesg commands, and writes the collected output to `/tmp/openwrtstats_output.txt`
+
+_Note:_ What other statistics should this script collect?
 
 ---
 ## betterspeedtest.sh
@@ -96,7 +110,7 @@ On the right is a test using SQM: the latency goes up a little (less than 23 mse
        with 5 simultaneous sessions while pinging gstatic.com        with 5 simultaneous sessions while pinging gstatic.com
        (60 seconds in each direction)                                (60 seconds in each direction)
     
-     Download:  6.19 Mbps                                         Download:  4.75 Mbps
+     Download:  6.65 Mbps                                         Download:  6.62 Mbps
       Latency: (in msec, 58 pings, 0.00% packet loss)              Latency: (in msec, 61 pings, 0.00% packet loss)
           Min: 43.399                                                  Min: 43.092
         10pct: 156.092                                               10pct: 43.916
@@ -105,7 +119,7 @@ On the right is a test using SQM: the latency goes up a little (less than 23 mse
         90pct: 354.738                                               90pct: 48.514
           Max: 385.507                                                 Max: 56.150
     
-       Upload:  0.72 Mbps                                           Upload:  0.61 Mbps
+       Upload:  0.72 Mbps                                           Upload:  0.70 Mbps
       Latency: (in msec, 59 pings, 0.00% packet loss)              Latency: (in msec, 53 pings, 0.00% packet loss)
           Min: 43.699                                                  Min: 43.394
         10pct: 352.521                                               10pct: 44.202
@@ -159,13 +173,16 @@ The output of the script looks like this:
 ---
 ## networkhammer.sh
 
+
 This script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
  
 
 ---
 ## tunnelbroker.sh
 
-This script configures OpenWrt to create an IPv6 tunnel. 
+_[This script has not been converted yet]_
+
+This script configures OpenWrt to create an IPv6 tunnel via Hurricane Electric. 
 It's an easy way to become familiar with IPv6 if your ISP doesn't offer native IPv6 capabilities. There are three steps:
 
 1. Go to the Hurricane Electric [TunnelBroker.net](http://www.tunnelbroker.net/)  site to set up your free account. There are detailed instructions for setting up an account and an IPv6 tunnel at the

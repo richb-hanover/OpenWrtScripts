@@ -64,6 +64,7 @@
 # updating/installing them a second time.
 # echo 'Updating software packages'
 # opkg update                # retrieve updated packages
+# opkg install luci          # install the web GUI
 # opkg install snmpd fprobe  # install snmpd & fprobe
 # opkg install luci-app-sqm  # install the SQM modules to get fq_codel etc
 # opkg install ppp-mod-pppoe # install PPPoE module

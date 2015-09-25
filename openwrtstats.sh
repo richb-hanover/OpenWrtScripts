@@ -11,7 +11,7 @@
 # - /tmp/openwrtstats_output.txt - output file for stats
 
 radio=phy0
-wlan_if=sw00
+wlan_if=wan
 out_fqn=/tmp/openwrtstats_output.txt
 
 echo -e "[date]" > ${out_fqn}

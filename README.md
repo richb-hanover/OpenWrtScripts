@@ -20,7 +20,6 @@ cd /usr/lib
 git clone git://github.com/richb-hanover/OpenWrtScripts.git
 ```
 
-
 ---
 ## config-openwrt.sh
 

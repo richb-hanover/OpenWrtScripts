@@ -3,13 +3,13 @@ OpenWrtScripts
 
 This is a set of scripts (sometimes also called "Openscripts") that configure and measure (and improve) latency in home routers (and everywhere else!) These scripts include:
 
-* getstats.sh - a script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
+* [getstats.sh](getstatssh) - a script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
 
-* config-openwrt.sh - a script to configure the OpenWrt router consistently after flashing factory firmware.
+* [config-openwrt.sh](config-openwrtsh) - a script to configure the OpenWrt router consistently after flashing factory firmware.
 
-* betterspeedtest.sh & netperfrunner.sh & networkhammer.sh - scripts that measure the performance of your router or offer load to the network for testing.
+* [betterspeedtest.sh](betterspeedtestsh) & [netperfrunner.sh](netperfrunnersh) & [networkhammer.sh](networkhammesh) - scripts that measure the performance of your router or offer load to the network for testing.
 
-* tunnelbroker.sh - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. *This script has not been converted for OpenWrt*
+* [tunnelbroker.sh](tunnelbrokersh) - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. *This script has not been converted for OpenWrt*
 
 These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. The easiest way to do this is to use ssh into the router and enter these commands:
 

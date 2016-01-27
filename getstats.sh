@@ -22,8 +22,15 @@
 
 out_fqn=/tmp/openwrtstats.txt
 
-echo -e "[date]"                 > ${out_fqn}
+cat /etc/banner                  > ${out_fqn}
+echo -e "\n"                    >> ${out_fqn}
+
+echo -e "[date]"                >> ${out_fqn}
 date                            >> ${out_fqn}
+echo -e "\n"                    >> ${out_fqn}
+
+echo -e "[/etc/openwrt_release]">> ${out_fqn}
+cat /etc/openwrt_release        >> ${out_fqn}
 echo -e "\n"                    >> ${out_fqn}
 
 echo -e "[uname -a]"            >> ${out_fqn}
@@ -64,7 +71,7 @@ SQM_DEBUG=1 SQM_VERBOSITY=8     2>> ${out_fqn}
 /etc/init.d/sqm stop            2>> ${out_fqn}
 echo -e "\n"                    1>> ${out_fqn}
 
-echo -e "[SQM   start]"         1>> ${out_fqn}
+echo -e "[SQM start]"           1>> ${out_fqn}
 SQM_DEBUG=1 SQM_VERBOSITY=8     2>> ${out_fqn}
 /etc/init.d/sqm start           2>> ${out_fqn}
 SQM_DEBUG=0                     2>> ${out_fqn}

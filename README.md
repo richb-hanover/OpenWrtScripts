@@ -28,7 +28,9 @@ If you report a problem, it is always helpful to include the output of this scri
 
 The script collects a number of useful configuration settings and dynamic values and writes the collected output to `/tmp/openwrtstats.txt`
 
-**To run this script,** read the top of the `getstats.sh` file. 
+**To run this script:** Read the top of the `getstats.sh` file. 
+
+**Sample output file:** See a sample output file - [openwrtstats.txt](./sample_output/openwrtstats.txt)
 
 ---
 

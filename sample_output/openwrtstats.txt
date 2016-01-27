@@ -1,0 +1,1024 @@
+  _______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ CHAOS CALMER (Chaos Calmer, r48430)
+ -----------------------------------------------------
+  * 1 1/2 oz Gin            Shake with a glassful
+  * 1/4 oz Triple Sec       of broken ice and pour
+  * 3/4 oz Lime Juice       unstrained into a goblet.
+  * 1 1/2 oz Orange Juice
+  * 1 tsp. Grenadine Syrup
+ -----------------------------------------------------
+
+
+[date]
+Wed Jan 27 16:52:25 EST 2016
+
+
+[/etc/openwrt_release]
+DISTRIB_ID='OpenWrt'
+DISTRIB_RELEASE='Chaos Calmer'
+DISTRIB_REVISION='r48430'
+DISTRIB_CODENAME='chaos_calmer'
+DISTRIB_TARGET='ramips/mt7621'
+DISTRIB_DESCRIPTION='OpenWrt Chaos Calmer 15.05'
+DISTRIB_TAINTS='no-all'
+
+
+[uname -a]
+Linux Witi 3.18.26 #2 SMP Tue Jan 26 11:58:11 EET 2016 mips GNU/Linux
+
+
+[uptime]
+16:52:25 up 36 min, load average: 0.00, 0.01, 0.04
+
+
+[ifconfig]
+br-lan    Link encap:Ethernet  HWaddr 00:0C:43:28:80:5B
+          inet addr:192.168.200.1  Bcast:192.168.200.255  Mask:255.255.255.0
+          inet6 addr: fd11:1504:432a:4::1/62 Scope:Global
+          inet6 addr: fe80::20c:43ff:fe28:805b/64 Scope:Link
+          inet6 addr: fd1d:722f:20e::1/60 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:44409 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:52251 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:12424244 (11.8 MiB)  TX bytes:47043343 (44.8 MiB)
+
+eth0      Link encap:Ethernet  HWaddr EE:B8:43:A9:60:C7
+          inet6 addr: fe80::ecb8:43ff:fea9:60c7/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:91224 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:91178 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:57871283 (55.1 MiB)  TX bytes:58600498 (55.8 MiB)
+          Interrupt:11
+
+eth0.1    Link encap:Ethernet  HWaddr EE:B8:43:A9:60:C7
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:44891 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:49050 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:12482062 (11.9 MiB)  TX bytes:45467977 (43.3 MiB)
+
+eth0.2    Link encap:Ethernet  HWaddr 00:0C:43:28:80:5C
+          inet addr:192.168.253.146  Bcast:192.168.253.255  Mask:255.255.255.0
+          inet6 addr: fd11:1504:432a:0:20c:43ff:fe28:805c/64 Scope:Global
+          inet6 addr: fe80::20c:43ff:fe28:805c/64 Scope:Link
+          inet6 addr: fd11:1504:432a::dbe/128 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:46316 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:41924 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:43746377 (41.7 MiB)  TX bytes:12382100 (11.8 MiB)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:109 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:109 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:8390 (8.1 KiB)  TX bytes:8390 (8.1 KiB)
+
+
+
+[top]
+Mem: 49880K used, 206128K free, 740K shrd, 5324K buff, 16804K cached
+CPU:   0% usr   2% sys   0% nic  97% idle   0% io   0% irq   0% sirq
+Load average: 0.00 0.01 0.05 1/86 5661
+  PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND
+ 5660  5653 root     R     1488   1%   2% top -b
+ 2127     1 root     S     3188   1%   0% /usr/sbin/nmbd -F
+ 2126     1 root     S     3092   1%   0% /usr/sbin/smbd -F
+ 2094     1 root     S     2260   1%   0% /usr/sbin/uhttpd -f -h /www -r Witi -x /cgi-bin -u /ubus -t 60 -T 30 -k 20 -A 1 -n 3 -N 100 -p 0.0.0.0:80 -p [::]:80 -C /etc/uhttpd.crt -K /etc/uhttpd.key -s 0.0.0.0:443 -s [::]:443
+ 1301     1 root     S     1644   1%   0% /sbin/netifd
+ 2178     1 root     S     1620   1%   0% /usr/sbin/rpc.mountd -p 32780 -F
+ 1258     1 root     S     1572   1%   0% /sbin/rpcd
+ 5282  5281 root     S     1500   1%   0% -ash
+ 1357     1 root     S     1488   1%   0% /usr/sbin/crond -f -c /etc/crontabs -l 8
+ 2151     1 root     S     1484   1%   0% /usr/sbin/ntpd -n -S /usr/sbin/ntpd-hotplug -p 0.openwrt.pool.ntp.org -p 1.openwrt.pool.ntp.org -p 2.openwrt.pool.ntp.org -p 3.openwrt.pool.ntp.org
+ 1479  1301 root     S     1484   1%   0% udhcpc -p /var/run/udhcpc-eth0.2.pid -s /lib/netifd/dhcp.script -f -t 0 -i eth0.2 -C
+ 5653  5282 root     S     1484   1%   0% sh getstats.sh
+ 5661  5653 root     S     1476   1%   0% head -n 20
+    1     0 root     S     1440   1%   0% /sbin/procd
+ 5281  1378 root     S     1220   0%   0% /usr/sbin/dropbear -F -P /var/run/dropbear.1.pid -p 22 -K 300
+ 1337     1 root     S     1196   0%   0% /usr/sbin/odhcpd
+
+
+[tc -s qdisc]
+qdisc fq_codel 0: dev eth0 root refcnt 2 limit 1024p flows 1024 quantum 300 target 5.0ms interval 100.0ms ecn
+ Sent 57864814 bytes 91178 pkt (dropped 0, overlimits 0 requeues 0)
+ backlog 0b 0p requeues 0
+  maxpacket 3012 drop_overlimit 0 new_flow_count 257 ecn_mark 0
+  new_flows_len 0 old_flows_len 0
+
+
+[ip: path & version]
+/usr/sbin/ip
+ip utility, iproute2-ss4.0.0-1-openwrt
+
+
+[Installed Modules]
+/lib/modules/3.18.26:
+drwxr-xr-x    2 root     root          3577 Jan 26 04:57 .
+drwxr-xr-x    3 root     root            30 Jan 26 04:57 ..
+-rw-r--r--    1 root     root          5520 Jan 26 04:56 act_ipt.ko
+-rw-r--r--    1 root     root          5320 Jan 26 04:56 act_mirred.ko
+-rw-r--r--    1 root     root          5676 Jan 26 04:56 act_police.ko
+-rw-r--r--    1 root     root          3660 Jan 26 04:56 act_skbedit.ko
+-rw-r--r--    1 root     root          8164 Jan 26 04:56 aead.ko
+-rw-r--r--    1 root     root         16912 Jan 26 04:56 ahci.ko
+-rw-r--r--    1 root     root          2848 Jan 26 04:56 arc4.ko
+-rw-r--r--    1 root     root       1003196 Jan 26 04:56 btrfs.ko
+-rw-r--r--    1 root     root         14008 Jan 26 04:56 cdc-wdm.ko
+-rw-r--r--    1 root     root        280464 Jan 26 04:57 cfg80211.ko
+-rw-r--r--    1 root     root        268808 Jan 26 04:56 cifs.ko
+-rw-r--r--    1 root     root          6128 Jan 26 04:56 cls_basic.ko
+-rw-r--r--    1 root     root          9124 Jan 26 04:56 cls_flow.ko
+-rw-r--r--    1 root     root          6428 Jan 26 04:56 cls_fw.ko
+-rw-r--r--    1 root     root          7948 Jan 26 04:56 cls_route.ko
+-rw-r--r--    1 root     root          7380 Jan 26 04:56 cls_tcindex.ko
+-rw-r--r--    1 root     root         10568 Jan 26 04:56 cls_u32.ko
+-rw-r--r--    1 root     root          3560 Jan 26 04:57 compat.ko
+-rw-r--r--    1 root     root         30972 Jan 26 04:56 configfs.ko
+-rw-r--r--    1 root     root          2196 Jan 26 04:56 crc-ccitt.ko
+-rw-r--r--    1 root     root          2196 Jan 26 04:56 crc-itu-t.ko
+-rw-r--r--    1 root     root          2164 Jan 26 04:56 crc16.ko
+-rw-r--r--    1 root     root          2416 Jan 26 04:56 crc32c_generic.ko
+-rw-r--r--    1 root     root         16996 Jan 26 04:56 crypto_blkcipher.ko
+-rw-r--r--    1 root     root         15844 Jan 26 04:56 crypto_hash.ko
+-rw-r--r--    1 root     root         20880 Jan 26 04:56 des_generic.ko
+-rw-r--r--    1 root     root          3340 Jan 26 04:56 ecb.ko
+-rw-r--r--    1 root     root          2096 Jan 26 04:56 em_cmp.ko
+-rw-r--r--    1 root     root          7380 Jan 26 04:56 em_meta.ko
+-rw-r--r--    1 root     root          2080 Jan 26 04:56 em_nbyte.ko
+-rw-r--r--    1 root     root          3100 Jan 26 04:56 em_text.ko
+-rw-r--r--    1 root     root          1788 Jan 26 04:56 em_u32.ko
+-rw-r--r--    1 root     root         14868 Jan 26 04:56 evdev.ko
+-rw-r--r--    1 root     root         98012 Jan 26 04:57 exfat.ko
+-rw-r--r--    1 root     root          5548 Jan 26 04:56 exportfs.ko
+-rw-r--r--    1 root     root        422164 Jan 26 04:56 ext4.ko
+-rw-r--r--    1 root     root        172640 Jan 26 04:56 f2fs.ko
+-rw-r--r--    1 root     root         69200 Jan 26 04:56 fat.ko
+-rw-r--r--    1 root     root         96828 Jan 26 04:56 fuse.ko
+-rw-r--r--    1 root     root         11440 Jan 26 04:57 gpio-button-hotplug.ko
+-rw-r--r--    1 root     root          3040 Jan 26 04:56 grace.ko
+-rw-r--r--    1 root     root          2004 Jan 26 04:56 hid-generic.ko
+-rw-r--r--    1 root     root        110952 Jan 26 04:56 hid.ko
+-rw-r--r--    1 root     root          4548 Jan 26 04:56 hmac.ko
+-rw-r--r--    1 root     root         29164 Jan 26 04:56 i2c-core.ko
+-rw-r--r--    1 root     root          8680 Jan 26 04:56 i2c-dev.ko
+-rw-r--r--    1 root     root          4604 Jan 26 04:56 i2c-mt7621.ko
+-rw-r--r--    1 root     root          6244 Jan 26 04:56 ifb.ko
+-rw-r--r--    1 root     root         40168 Jan 26 04:56 input-core.ko
+-rw-r--r--    1 root     root         15880 Jan 26 04:56 ip6_tables.ko
+-rw-r--r--    1 root     root          3276 Jan 26 04:56 ip6t_REJECT.ko
+-rw-r--r--    1 root     root          3108 Jan 26 04:56 ip6table_filter.ko
+-rw-r--r--    1 root     root          3436 Jan 26 04:56 ip6table_mangle.ko
+-rw-r--r--    1 root     root          2848 Jan 26 04:56 ip6table_raw.ko
+-rw-r--r--    1 root     root         16140 Jan 26 04:56 ip_tables.ko
+-rw-r--r--    1 root     root          3168 Jan 26 04:56 ipt_ECN.ko
+-rw-r--r--    1 root     root          2316 Jan 26 04:56 ipt_MASQUERADE.ko
+-rw-r--r--    1 root     root          2804 Jan 26 04:56 ipt_REJECT.ko
+-rw-r--r--    1 root     root          3176 Jan 26 04:56 iptable_filter.ko
+-rw-r--r--    1 root     root          3280 Jan 26 04:56 iptable_mangle.ko
+-rw-r--r--    1 root     root          3300 Jan 26 04:56 iptable_nat.ko
+-rw-r--r--    1 root     root          2916 Jan 26 04:56 iptable_raw.ko
+-rw-r--r--    1 root     root        373804 Jan 26 04:56 ipv6.ko
+-rw-r--r--    1 root     root         75772 Jan 26 04:56 jbd2.ko
+-rw-r--r--    1 root     root          5756 Jan 26 04:56 leds-gpio.ko
+-rw-r--r--    1 root     root          4892 Jan 26 04:56 ledtrig-usbdev.ko
+-rw-r--r--    1 root     root         29848 Jan 26 04:56 libahci.ko
+-rw-r--r--    1 root     root        184024 Jan 26 04:56 libata.ko
+-rw-r--r--    1 root     root          2208 Jan 26 04:56 libcrc32c.ko
+-rw-r--r--    1 root     root          6328 Jan 26 04:56 linear.ko
+-rw-r--r--    1 root     root         72792 Jan 26 04:56 lockd.ko
+-rw-r--r--    1 root     root          3276 Jan 26 04:56 lzo_compress.ko
+-rw-r--r--    1 root     root          2528 Jan 26 04:56 lzo_decompress.ko
+-rw-r--r--    1 root     root        509352 Jan 26 04:57 mac80211.ko
+-rw-r--r--    1 root     root         11776 Jan 26 04:56 mbcache.ko
+-rw-r--r--    1 root     root        139360 Jan 26 04:56 md-mod.ko
+-rw-r--r--    1 root     root          4276 Jan 26 04:56 md4.ko
+-rw-r--r--    1 root     root          2848 Jan 26 04:56 md5.ko
+-rw-r--r--    1 root     root         33384 Jan 26 04:56 mmc_block.ko
+-rw-r--r--    1 root     root        106992 Jan 26 04:56 mmc_core.ko
+-rw-r--r--    1 root     root          9872 Jan 26 04:56 msdos.ko
+-rw-r--r--    1 root     root         57328 Jan 26 04:57 mt76pci.ko
+-rw-r--r--    1 root     root         23016 Jan 26 04:56 mtk_sd.ko
+-rw-r--r--    1 root     root         79872 Jan 26 04:56 nf_conntrack.ko
+-rw-r--r--    1 root     root          9392 Jan 26 04:56 nf_conntrack_ftp.ko
+-rw-r--r--    1 root     root         10436 Jan 26 04:56 nf_conntrack_ipv4.ko
+-rw-r--r--    1 root     root         10868 Jan 26 04:56 nf_conntrack_ipv6.ko
+-rw-r--r--    1 root     root          5756 Jan 26 04:56 nf_conntrack_rtcache.ko
+-rw-r--r--    1 root     root          2484 Jan 26 04:56 nf_defrag_ipv4.ko
+-rw-r--r--    1 root     root          9356 Jan 26 04:56 nf_defrag_ipv6.ko
+-rw-r--r--    1 root     root          5392 Jan 26 04:56 nf_log_common.ko
+-rw-r--r--    1 root     root          7332 Jan 26 04:56 nf_log_ipv4.ko
+-rw-r--r--    1 root     root          7480 Jan 26 04:56 nf_log_ipv6.ko
+-rw-r--r--    1 root     root         15868 Jan 26 04:56 nf_nat.ko
+-rw-r--r--    1 root     root          3504 Jan 26 04:56 nf_nat_ftp.ko
+-rw-r--r--    1 root     root          6744 Jan 26 04:56 nf_nat_ipv4.ko
+-rw-r--r--    1 root     root          3296 Jan 26 04:56 nf_nat_masquerade_ipv4.ko
+-rw-r--r--    1 root     root          3464 Jan 26 04:56 nf_reject_ipv4.ko
+-rw-r--r--    1 root     root          3908 Jan 26 04:56 nf_reject_ipv6.ko
+-rw-r--r--    1 root     root        157316 Jan 26 04:56 nfs.ko
+-rw-r--r--    1 root     root        103220 Jan 26 04:56 nfsd.ko
+-rw-r--r--    1 root     root         22988 Jan 26 04:56 nfsv3.ko
+-rw-r--r--    1 root     root          7712 Jan 26 04:56 nls_base.ko
+-rw-r--r--    1 root     root          2132 Jan 26 04:56 nls_utf8.ko
+-rw-r--r--    1 root     root        126436 Jan 26 04:56 ntfs.ko
+-rw-r--r--    1 root     root         11372 Jan 26 04:56 ppp_async.ko
+-rw-r--r--    1 root     root         33848 Jan 26 04:56 ppp_generic.ko
+-rw-r--r--    1 root     root         15292 Jan 26 04:56 pppoe.ko
+-rw-r--r--    1 root     root          3816 Jan 26 04:56 pppox.ko
+-rw-r--r--    1 root     root         83072 Jan 26 04:56 raid6_pq.ko
+-rw-r--r--    1 root     root          6804 Jan 26 04:56 sch_codel.ko
+-rw-r--r--    1 root     root          6732 Jan 26 04:56 sch_dsmark.ko
+-rw-r--r--    1 root     root         10032 Jan 26 04:56 sch_fq.ko
+-rw-r--r--    1 root     root          9820 Jan 26 04:56 sch_gred.ko
+-rw-r--r--    1 root     root         19416 Jan 26 04:56 sch_hfsc.ko
+-rw-r--r--    1 root     root         19096 Jan 26 04:56 sch_htb.ko
+-rw-r--r--    1 root     root          2664 Jan 26 04:56 sch_ingress.ko
+-rw-r--r--    1 root     root          6792 Jan 26 04:56 sch_pie.ko
+-rw-r--r--    1 root     root          6276 Jan 26 04:56 sch_prio.ko
+-rw-r--r--    1 root     root          7908 Jan 26 04:56 sch_red.ko
+-rw-r--r--    1 root     root         12012 Jan 26 04:56 sch_sfq.ko
+-rw-r--r--    1 root     root          8920 Jan 26 04:56 sch_tbf.ko
+-rw-r--r--    1 root     root          7396 Jan 26 04:56 sch_teql.ko
+-rw-r--r--    1 root     root        138236 Jan 26 04:56 scsi_mod.ko
+-rw-r--r--    1 root     root         43396 Jan 26 04:56 sd_mod.ko
+-rw-r--r--    1 root     root          6592 Jan 26 04:56 sdhci-pltfm.ko
+-rw-r--r--    1 root     root         27224 Jan 26 04:56 sdhci.ko
+-rw-r--r--    1 root     root         11196 Jan 26 04:56 sha256_generic.ko
+-rw-r--r--    1 root     root          6656 Jan 26 04:56 slhc.ko
+-rw-r--r--    1 root     root        203572 Jan 26 04:56 sunrpc.ko
+-rw-r--r--    1 root     root         99884 Jan 26 04:56 udf.ko
+-rw-r--r--    1 root     root         11500 Jan 26 04:56 ums-alauda.ko
+-rw-r--r--    1 root     root          4480 Jan 26 04:56 ums-cypress.ko
+-rw-r--r--    1 root     root          7948 Jan 26 04:56 ums-datafab.ko
+-rw-r--r--    1 root     root          4176 Jan 26 04:56 ums-freecom.ko
+-rw-r--r--    1 root     root          7476 Jan 26 04:56 ums-isd200.ko
+-rw-r--r--    1 root     root          6564 Jan 26 04:56 ums-jumpshot.ko
+-rw-r--r--    1 root     root          3952 Jan 26 04:56 ums-karma.ko
+-rw-r--r--    1 root     root         13424 Jan 26 04:56 ums-sddr09.ko
+-rw-r--r--    1 root     root          7948 Jan 26 04:56 ums-sddr55.ko
+-rw-r--r--    1 root     root         10996 Jan 26 04:56 ums-usbat.ko
+-rw-r--r--    1 root     root          3864 Jan 26 04:56 usb-common.ko
+-rw-r--r--    1 root     root         55812 Jan 26 04:56 usb-storage.ko
+-rw-r--r--    1 root     root        174928 Jan 26 04:56 usbcore.ko
+-rw-r--r--    1 root     root         12584 Jan 26 04:56 vfat.ko
+-rw-r--r--    1 root     root         20048 Jan 26 04:56 x_tables.ko
+-rw-r--r--    1 root     root        618332 Jan 26 04:56 xfs.ko
+-rw-r--r--    1 root     root        123332 Jan 26 04:56 xhci-hcd.ko
+-rw-r--r--    1 root     root          5984 Jan 26 04:56 xhci-plat-hcd.ko
+-rw-r--r--    1 root     root          8180 Jan 26 04:56 xor.ko
+-rw-r--r--    1 root     root          1888 Jan 26 04:56 xt_CLASSIFY.ko
+-rw-r--r--    1 root     root          5064 Jan 26 04:56 xt_CT.ko
+-rw-r--r--    1 root     root          3216 Jan 26 04:56 xt_DSCP.ko
+-rw-r--r--    1 root     root          3024 Jan 26 04:56 xt_HL.ko
+-rw-r--r--    1 root     root          2432 Jan 26 04:56 xt_LOG.ko
+-rw-r--r--    1 root     root          2652 Jan 26 04:56 xt_REDIRECT.ko
+-rw-r--r--    1 root     root          5036 Jan 26 04:56 xt_TCPMSS.ko
+-rw-r--r--    1 root     root          1788 Jan 26 04:56 xt_comment.ko
+-rw-r--r--    1 root     root          3460 Jan 26 04:56 xt_connbytes.ko
+-rw-r--r--    1 root     root          7800 Jan 26 04:56 xt_connlimit.ko
+-rw-r--r--    1 root     root          2936 Jan 26 04:56 xt_connmark.ko
+-rw-r--r--    1 root     root          3980 Jan 26 04:56 xt_conntrack.ko
+-rw-r--r--    1 root     root          2564 Jan 26 04:56 xt_dscp.ko
+-rw-r--r--    1 root     root          2916 Jan 26 04:56 xt_ecn.ko
+-rw-r--r--    1 root     root          2560 Jan 26 04:56 xt_helper.ko
+-rw-r--r--    1 root     root          2112 Jan 26 04:56 xt_hl.ko
+-rw-r--r--    1 root     root          1788 Jan 26 04:56 xt_id.ko
+-rw-r--r--    1 root     root          2016 Jan 26 04:56 xt_length.ko
+-rw-r--r--    1 root     root          2868 Jan 26 04:56 xt_limit.ko
+-rw-r--r--    1 root     root          1932 Jan 26 04:56 xt_mac.ko
+-rw-r--r--    1 root     root          2196 Jan 26 04:56 xt_mark.ko
+-rw-r--r--    1 root     root          2672 Jan 26 04:56 xt_multiport.ko
+-rw-r--r--    1 root     root          2736 Jan 26 04:56 xt_nat.ko
+-rw-r--r--    1 root     root         12128 Jan 26 04:56 xt_recent.ko
+-rw-r--r--    1 root     root          2328 Jan 26 04:56 xt_state.ko
+-rw-r--r--    1 root     root          2344 Jan 26 04:56 xt_statistic.ko
+-rw-r--r--    1 root     root          2448 Jan 26 04:56 xt_tcpmss.ko
+-rw-r--r--    1 root     root          3352 Jan 26 04:56 xt_tcpudp.ko
+-rw-r--r--    1 root     root          3688 Jan 26 04:56 xt_time.ko
+-rw-r--r--    1 root     root         19752 Jan 26 04:56 zlib_deflate.ko
+-rw-r--r--    1 root     root         16096 Jan 26 04:56 zlib_inflate.ko
+
+
+[sqm-scripts version]
+sqm-scripts - 1.0.6-1
+
+
+[SQM stop]
+
+
+[SQM   start]
+
+
+[SQM debug directory]
+/var/run/sqm:
+drwxr-xr-x    3 root     root            60 Jan 27 16:23 .
+drwxrwxrwx    5 root     root           400 Jan 27 16:24 ..
+drwxr-xr-x    2 root     root           120 Jan 26 21:57 available_qdiscs
+
+/var/run/sqm/available_qdiscs:
+drwxr-xr-x    2 root     root           120 Jan 26 21:57 .
+drwxr-xr-x    3 root     root            60 Jan 27 16:23 ..
+-rw-r--r--    1 root     root             0 Jan 26 21:57 codel
+-rw-r--r--    1 root     root             0 Jan 26 21:57 fq_codel
+-rw-r--r--    1 root     root             0 Jan 26 21:57 pie
+-rw-r--r--    1 root     root             0 Jan 26 21:57 sfq
+
+
+[SQM debug log files]
+
+
+[logread]
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.620000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.630000] mt76pci 0000:01:00.0: ASIC revision: 76120044
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.730000] ROM patch build: 20141115060606a
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.750000] Firmware Version: 0.0.00
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.750000] Build: 1
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.760000] Build Time: 201410061140____
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.800000] Firmware running!
+Tue Jan 26 21:57:54 2016 kern.debug kernel: [   46.800000] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.800000] mt76pci 0000:02:00.0: ASIC revision: 76020044
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.840000] ROM patch already applied
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.850000] Firmware Version: 0.0.00
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.850000] Build: 1
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.860000] Build Time: 201410061140____
+Tue Jan 26 21:57:54 2016 kern.warn kernel: [   46.890000] Firmware running!
+Tue Jan 26 21:57:54 2016 kern.debug kernel: [   46.890000] ieee80211 phy1: Selected rate control algorithm 'minstrel_ht'
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.900000] i2c /dev entries driver
+Tue Jan 26 21:57:54 2016 kern.debug kernel: [   46.910000] pinctrl core: add 1 pinmux maps
+Tue Jan 26 21:57:54 2016 kern.debug kernel: [   46.910000] rt2880-pinmux pinctrl: found group selector 1 for i2c
+Tue Jan 26 21:57:54 2016 kern.debug kernel: [   46.910000] rt2880-pinmux pinctrl: request pin 3 (io3) for 1e000900.i2c
+Tue Jan 26 21:57:54 2016 kern.debug kernel: [   46.910000] rt2880-pinmux pinctrl: request pin 4 (io4) for 1e000900.i2c
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.910000] i2c-mt7621 1e000900.i2c: loaded
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.940000] hidraw: raw HID events driver (C) Jiri Kosina
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.950000] u32 classifier
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.960000]     input device check on
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.970000]     Actions configured
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   46.980000] Mirror/redirect action on
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.010000] fuse init (API version 7.23)
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.020000] usbcore: registered new interface driver cdc_wdm
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.040000] ip_tables: (C) 2000-2006 Netfilter Core Team
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.060000] nf_conntrack version 0.5.0 (4000 buckets, 16000 max)
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.160000] usbcore: registered new interface driver ums-alauda
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.170000] usbcore: registered new interface driver ums-cypress
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.190000] usbcore: registered new interface driver ums-datafab
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.200000] usbcore: registered new interface driver ums-freecom
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.220000] usbcore: registered new interface driver ums-isd200
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.230000] usbcore: registered new interface driver ums-jumpshot
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.240000] usbcore: registered new interface driver ums-karma
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.260000] usbcore: registered new interface driver ums-sddr09
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.270000] usbcore: registered new interface driver ums-sddr55
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.280000] usbcore: registered new interface driver ums-usbat
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.320000] xt_time: kernel timezone is -0000
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.340000] PPP generic driver version 2.4.2
+Tue Jan 26 21:57:54 2016 kern.info kernel: [   47.350000] NET: Registered protocol family 24
+Tue Jan 26 21:57:54 2016 daemon.warn portmap[1280]: user 'rpc' not found, reverting to default uid
+Tue Jan 26 21:57:55 2016 user.emerg syslog: mt7602e(mt7602e): Interface type not supported
+Tue Jan 26 21:57:55 2016 user.emerg syslog: mt7612e(mt7612e): Interface type not supported
+Tue Jan 26 21:57:55 2016 user.emerg syslog: 'radio0' is disabled
+Tue Jan 26 21:57:55 2016 user.emerg syslog: 'radio1' is disabled
+Tue Jan 26 21:57:55 2016 user.emerg syslog: mt7602e(mt7602e): Interface type not supported
+Tue Jan 26 21:57:55 2016 user.emerg syslog: mt7612e(mt7612e): Interface type not supported
+Tue Jan 26 21:57:55 2016 user.emerg syslog: 'radio0' is disabled
+Tue Jan 26 21:57:55 2016 user.emerg syslog: 'radio1' is disabled
+Tue Jan 26 21:57:55 2016 cron.info crond[1357]: crond (busybox 1.23.2) started, log level 8
+Tue Jan 26 21:57:55 2016 authpriv.info dropbear[1378]: Not backgrounding
+Tue Jan 26 21:57:56 2016 kern.info kernel: [   52.550000] device eth0.1 entered promiscuous mode
+Tue Jan 26 21:57:56 2016 kern.info kernel: [   52.560000] device eth0 entered promiscuous mode
+Tue Jan 26 21:57:56 2016 kern.info kernel: [   52.570000] br-lan: port 1(eth0.1) entered forwarding state
+Tue Jan 26 21:57:56 2016 kern.info kernel: [   52.590000] br-lan: port 1(eth0.1) entered forwarding state
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'lan' is enabled
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'lan' is setting up now
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'lan' is now up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'loopback' is enabled
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'loopback' is setting up now
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'loopback' is now up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'wan' is enabled
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Bridge 'br-lan' link is up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'lan' has link connectivity
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Network device 'eth0' link is up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: VLAN 'eth0.1' link is up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Network device 'lo' link is up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'loopback' has link connectivity
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: VLAN 'eth0.2' link is up
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'wan' has link connectivity
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: Interface 'wan' is setting up now
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: wan (1479): udhcpc (v1.23.2) started
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: wan (1479): Sending discover...
+Tue Jan 26 21:57:56 2016 user.notice firewall: Reloading firewall due to ifup of lan (br-lan)
+Tue Jan 26 21:57:56 2016 daemon.notice netifd: wan (1479): Sending select for 192.168.253.146...
+Tue Jan 26 21:57:57 2016 daemon.notice netifd: wan (1479): Lease of 192.168.253.146 obtained, lease time 43200
+Tue Jan 26 21:57:57 2016 daemon.notice netifd: Interface 'wan6' is enabled
+Tue Jan 26 21:57:57 2016 daemon.notice netifd: Network alias 'eth0.2' link is up
+Tue Jan 26 21:57:57 2016 daemon.notice netifd: Interface 'wan6' has link connectivity
+Tue Jan 26 21:57:57 2016 daemon.notice netifd: Interface 'wan6' is setting up now
+Tue Jan 26 21:57:57 2016 daemon.notice netifd: Interface 'wan' is now up
+Tue Jan 26 21:57:57 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 3000 Kbps, out: 500 Kbps
+Tue Jan 26 21:57:57 2016 user.emerg syslog: SQM: Starting SQM script: simple.qos on eth0.2, in: 3000 Kbps, out: 500 Kbps
+Tue Jan 26 21:57:57 2016 user.notice root: starting ntpclient
+Wed Jan 27 16:17:04 2016 kern.info kernel: [   54.590000] br-lan: port 1(eth0.1) entered forwarding state
+Wed Jan 27 16:17:05 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:17:05 2016 user.emerg syslog: SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:17:05 2016 daemon.notice netifd: Interface 'wan6' is now up
+Wed Jan 27 16:17:06 2016 daemon.warn odhcpd[1337]: A default route is present but there is no public prefix on br-lan thus we don't announce a default route!
+Wed Jan 27 16:17:06 2016 user.emerg syslog: exportfs: /etc/exports [1]: Neither 'subtree_check' or 'no_subtree_check' specified for export "*:/mnt".
+Wed Jan 27 16:17:06 2016 user.emerg syslog:   Assuming default behaviour ('no_subtree_check').
+Wed Jan 27 16:17:06 2016 user.emerg syslog:   NOTE: this default has changed since nfs-utils version 1.0.x
+Wed Jan 27 16:17:06 2016 user.emerg syslog:
+Wed Jan 27 16:17:06 2016 user.emerg syslog: exportfs: /mnt does not support NFS export
+Wed Jan 27 16:17:06 2016 cron.err crond[1357]: time disparity of 1099 minutes detected
+Wed Jan 27 16:17:06 2016 kern.warn kernel: [   56.640000] svc: failed to register lockdv1 RPC service (errno 124).
+Wed Jan 27 16:17:06 2016 daemon.notice rpc.statd[2181]: Version 1.3.2 starting
+Wed Jan 27 16:17:06 2016 daemon.warn rpc.statd[2181]: Flags: No-Daemon
+Wed Jan 27 16:17:06 2016 daemon.notice rpc.statd[2181]: Initializing NSM state
+Wed Jan 27 16:17:06 2016 daemon.warn rpc.statd[2181]: Running as root.  chown /var/lib/nfs to choose different user
+Wed Jan 27 16:17:06 2016 daemon.notice rpc.mountd[2178]: Version 1.3.2 starting
+Wed Jan 27 16:17:07 2016 daemon.info procd: - init complete -
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: started, version 2.73 cachesize 150
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: compile time options: IPv6 GNU-getopt no-DBus no-i18n no-IDN DHCP no-DHCPv6 no-Lua TFTP no-conntrack no-ipset no-auth no-DNSSEC loop-detect inotify
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq-dhcp[2220]: DHCP, IP range 192.168.200.100 -- 192.168.200.249, lease time 12h
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: using local addresses only for domain lan
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: reading /tmp/resolv.conf.auto
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: using local addresses only for domain lan
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: using nameserver 192.168.253.1#53
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: using nameserver fd11:1504:432a::1#53
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 0 addresses
+Wed Jan 27 16:17:07 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:17:08 2016 daemon.err miniupnpd[2244]: could not open lease file: /var/upnp.leases
+Wed Jan 27 16:17:08 2016 daemon.notice miniupnpd[2244]: HTTP listening on port 5000
+Wed Jan 27 16:17:08 2016 daemon.notice miniupnpd[2244]: HTTP IPv6 address given to control points : [fd11:1504:432a::dbe]
+Wed Jan 27 16:17:08 2016 daemon.notice miniupnpd[2244]: Listening for NAT-PMP/PCP traffic on port 5351
+Wed Jan 27 16:17:08 2016 user.notice SQM: Stopping SQM on eth0.2
+Wed Jan 27 16:17:09 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 3000 Kbps, out: 500 Kbps
+Wed Jan 27 16:17:10 2016 daemon.info dnsmasq-dhcp[2220]: DHCPDISCOVER(br-lan) ac:87:a3:38:00:28
+Wed Jan 27 16:17:10 2016 daemon.info dnsmasq-dhcp[2220]: DHCPOFFER(br-lan) 192.168.200.104 ac:87:a3:38:00:28
+Wed Jan 27 16:17:10 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:17:10 2016 user.notice firewall: Reloading firewall due to ifup of wan (eth0.2)
+Wed Jan 27 16:17:11 2016 daemon.info dnsmasq-dhcp[2220]: DHCPREQUEST(br-lan) 192.168.200.104 ac:87:a3:38:00:28
+Wed Jan 27 16:17:11 2016 daemon.info dnsmasq-dhcp[2220]: DHCPACK(br-lan) 192.168.200.104 ac:87:a3:38:00:28 Richs-MBP-408
+Wed Jan 27 16:17:11 2016 user.notice SQM: Stopping SQM on eth0.2
+Wed Jan 27 16:17:11 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 3000 Kbps, out: 500 Kbps
+Wed Jan 27 16:17:13 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:17:13 2016 user.notice firewall: Reloading firewall due to ifup of wan6 (eth0.2)
+Wed Jan 27 16:17:13 2016 daemon.err dnsmasq[2220]: failed to send packet: Operation not permitted
+Wed Jan 27 16:17:13 2016 daemon.err miniupnpd[2244]: PCP MAP: added mapping UDP 16402->192.168.200.104:16402 'PCP MAP fa7330fdd86233064e20f10f'
+Wed Jan 27 16:17:18 2016 daemon.info dnsmasq-dhcp[2220]: DHCPREQUEST(br-lan) 192.168.200.100 00:1c:42:4f:58:60
+Wed Jan 27 16:17:18 2016 daemon.info dnsmasq-dhcp[2220]: DHCPACK(br-lan) 192.168.200.100 00:1c:42:4f:58:60 win7-on-richb
+Wed Jan 27 16:17:19 2016 daemon.warn odhcpd[1337]: DHCPV6 CONFIRM IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: not on-link
+Wed Jan 27 16:17:20 2016 daemon.warn odhcpd[1337]: DHCPV6 CONFIRM IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: not on-link
+Wed Jan 27 16:17:20 2016 daemon.warn odhcpd[1337]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd11:1504:432a:4::3aa/128 fd1d:722f:20e::3aa/128
+Wed Jan 27 16:17:21 2016 daemon.warn odhcpd[1337]: DHCPV6 REQUEST IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd11:1504:432a:4::3aa/128 fd1d:722f:20e::3aa/128
+Wed Jan 27 16:17:21 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:17:21 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:17:21 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:17:21 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:18:09 2016 user.notice SQM: Stopping SQM on eth0.2
+Wed Jan 27 16:18:09 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 3000 Kbps, out: 500 Kbps
+Wed Jan 27 16:18:10 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:19:23 2016 user.notice SQM: Stopping SQM on eth0.2
+Wed Jan 27 16:20:00 2016 cron.info crond[1357]: USER root pid 4129 cmd killall -HUP dnsmasq
+Wed Jan 27 16:20:00 2016 cron.info crond[1357]: USER root pid 4130 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:20:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:20:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:20:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:20:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:22:03 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 8600 Kbps, out: 950 Kbps
+Wed Jan 27 16:22:04 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:22:20 2016 user.notice SQM: Stopping SQM on eth0.2
+Wed Jan 27 16:22:20 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 8600 Kbps, out: 950 Kbps
+Wed Jan 27 16:22:21 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
+Wed Jan 27 16:23:31 2016 user.notice SQM: Stopping SQM on eth0.2
+Wed Jan 27 16:25:00 2016 cron.info crond[1357]: USER root pid 5249 cmd killall -HUP dnsmasq
+Wed Jan 27 16:25:00 2016 cron.info crond[1357]: USER root pid 5250 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:25:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:25:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:25:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:25:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:30:00 2016 cron.info crond[1357]: USER root pid 5277 cmd killall -HUP dnsmasq
+Wed Jan 27 16:30:00 2016 cron.info crond[1357]: USER root pid 5278 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:30:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:30:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:30:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:30:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:31:06 2016 authpriv.info dropbear[5281]: Child connection from 192.168.200.104:51508
+Wed Jan 27 16:31:08 2016 authpriv.notice dropbear[5281]: Pubkey auth succeeded for 'root' with key md5 34:1e:19:7c:f9:48:03:98:74:46:16:58:75:d9:47:f5 from 192.168.200.104:51508
+Wed Jan 27 16:35:00 2016 cron.info crond[1357]: USER root pid 5413 cmd killall -HUP dnsmasq
+Wed Jan 27 16:35:00 2016 cron.info crond[1357]: USER root pid 5414 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:35:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:35:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:35:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:35:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:40:00 2016 cron.info crond[1357]: USER root pid 5417 cmd killall -HUP dnsmasq
+Wed Jan 27 16:40:00 2016 cron.info crond[1357]: USER root pid 5418 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:40:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:40:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:40:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:40:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:45:00 2016 cron.info crond[1357]: USER root pid 5477 cmd killall -HUP dnsmasq
+Wed Jan 27 16:45:00 2016 cron.info crond[1357]: USER root pid 5478 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:45:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:45:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:45:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:45:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+Wed Jan 27 16:50:00 2016 cron.info crond[1357]: USER root pid 5571 cmd killall -HUP dnsmasq
+Wed Jan 27 16:50:00 2016 cron.info crond[1357]: USER root pid 5572 cmd /usr/sbin/ff_olsr_watchdog
+Wed Jan 27 16:50:00 2016 daemon.info dnsmasq[2220]: read /etc/hosts - 1 addresses
+Wed Jan 27 16:50:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/dhcp - 1 addresses
+Wed Jan 27 16:50:00 2016 daemon.info dnsmasq[2220]: read /tmp/hosts/odhcpd - 2 addresses
+Wed Jan 27 16:50:00 2016 daemon.info dnsmasq-dhcp[2220]: read /etc/ethers - 0 addresses
+
+
+[dmesg]
+[    0.000000] Linux version 3.18.26 (demetris@Athlon-M5A78L) (gcc version 4.8.3 (OpenWrt/Linaro GCC 4.8-2014.04 r48430) ) #2 SMP Tue Jan 26 11:58:11 EET 2016
+[    0.000000] SoC Type: MediaTek MT7621 ver:1 eco:3
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU0 revision is: 0001992f (MIPS 1004Kc)
+[    0.000000] MIPS: machine is MQmaker WITI
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 10000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x00000000-0x0fffffff]
+[    0.000000]   HighMem  empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x00000000-0x0fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x00000000-0x0fffffff]
+[    0.000000] On node 0 totalpages: 65536
+[    0.000000] free_area_init_node: node 0, pgdat 80345b80, node_mem_map 81000000
+[    0.000000]   Normal zone: 512 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 65536 pages, LIFO batch:15
+[    0.000000] Detected 3 available secondary CPU(s)
+[    0.000000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
+[    0.000000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
+[    0.000000] PERCPU: Embedded 9 pages/cpu @8120b000 s5696 r8192 d22976 u36864
+[    0.000000] pcpu-alloc: s5696 r8192 d22976 u36864 alloc=9*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 65024
+[    0.000000] Kernel command line: console=ttyS0,57600 rootfstype=squashfs,jffs2
+[    0.000000] PID hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.000000] Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
+[    0.000000] Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
+[    0.000000] Writing ErrCtl register=0005ba00
+[    0.000000] Readback ErrCtl register=0005ba00
+[    0.000000] Memory: 255844K/262144K available (2740K kernel code, 144K rwdata, 524K rodata, 164K init, 228K bss, 6300K reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] NR_IRQS:256
+[    0.000000] gic: revision 3.0
+[    0.000000] CPU Clock: 880MHz
+[    0.060000] Calibrating delay loop... 577.53 BogoMIPS (lpj=2887680)
+[    0.060000] pid_max: default: 32768 minimum: 301
+[    0.070000] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.080000] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.090000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
+[    0.090000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
+[    0.090000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
+[    0.090000] CPU1 revision is: 0001992f (MIPS 1004Kc)
+[    0.190000] Synchronize counters for CPU 1: done.
+[    0.190000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
+[    0.190000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
+[    0.190000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
+[    0.200000] CPU2 revision is: 0001992f (MIPS 1004Kc)
+[    0.290000] Synchronize counters for CPU 2: done.
+[    0.300000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
+[    0.300000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
+[    0.300000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
+[    0.310000] CPU3 revision is: 0001992f (MIPS 1004Kc)
+[    0.400000] Synchronize counters for CPU 3: done.
+[    0.410000] Brought up 4 CPUs
+[    0.420000] pinctrl core: initialized pinctrl subsystem
+[    0.430000] NET: Registered protocol family 16
+[    0.440000] rt2880-pinmux pinctrl: try to register 61 pins ...
+[    0.440000] pinctrl core: registered pin 0 (io0) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 1 (io1) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 2 (io2) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 3 (io3) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 4 (io4) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 5 (io5) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 6 (io6) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 7 (io7) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 8 (io8) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 9 (io9) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 10 (io10) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 11 (io11) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 12 (io12) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 13 (io13) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 14 (io14) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 15 (io15) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 16 (io16) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 17 (io17) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 18 (io18) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 19 (io19) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 20 (io20) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 21 (io21) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 22 (io22) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 23 (io23) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 24 (io24) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 25 (io25) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 26 (io26) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 27 (io27) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 28 (io28) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 29 (io29) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 30 (io30) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 31 (io31) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 32 (io32) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 33 (io33) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 34 (io34) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 35 (io35) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 36 (io36) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 37 (io37) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 38 (io38) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 39 (io39) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 40 (io40) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 41 (io41) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 42 (io42) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 43 (io43) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 44 (io44) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 45 (io45) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 46 (io46) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 47 (io47) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 48 (io48) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 49 (io49) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 50 (io50) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 51 (io51) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 52 (io52) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 53 (io53) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 54 (io54) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 55 (io55) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 56 (io56) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 57 (io57) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 58 (io58) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 59 (io59) on rt2880-pinmux
+[    0.440000] pinctrl core: registered pin 60 (io60) on rt2880-pinmux
+[    0.440000] pinctrl core: add 4 pinmux maps
+[    0.440000] rt2880-pinmux pinctrl: found group selector 5 for wdt
+[    0.440000] rt2880-pinmux pinctrl: found group selector 8 for rgmii2
+[    0.440000] rt2880-pinmux pinctrl: found group selector 4 for jtag
+[    0.440000] rt2880-pinmux pinctrl: found group selector 7 for mdio
+[    0.440000] rt2880-pinmux pinctrl: request pin 18 (io18) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 22 (io22) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 23 (io23) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 24 (io24) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 25 (io25) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 26 (io26) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 27 (io27) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 28 (io28) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 29 (io29) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 30 (io30) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 31 (io31) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 32 (io32) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 33 (io33) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 13 (io13) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 14 (io14) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 15 (io15) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 16 (io16) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 17 (io17) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 20 (io20) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: request pin 21 (io21) for pinctrl
+[    0.440000] rt2880-pinmux pinctrl: failed to lookup the sleep state
+[    0.440000] FPU Affinity set after 11720 emulations
+[    0.440000] pinctrl core: add 1 pinmux maps
+[    0.440000] rt2880-pinmux pinctrl: found group selector 6 for pcie
+[    0.440000] rt2880-pinmux pinctrl: request pin 19 (io19) for 1e140000.pcie
+[    0.440000] pull PCIe RST: RALINK_RSTCTRL = 4000000
+[    0.740000] release PCIe RST: RALINK_RSTCTRL = 7000000
+[    0.750000] ***** Xtal 40MHz *****
+[    0.750000] release PCIe RST: RALINK_RSTCTRL = 7000000
+[    0.760000] Port 0 N_FTS = 1b105000
+[    0.760000] Port 1 N_FTS = 1b105000
+[    0.770000] Port 2 N_FTS = 1b105000
+[    1.900000]  -> 21007f2
+[    1.910000] PCIE0 enabled
+[    1.910000] PCIE1 enabled
+[    1.920000] PCIE2 enabled
+[    1.920000] PCI host bridge /pcie@1e140000 ranges:
+[    1.930000]  MEM 0x0000000060000000..0x000000006fffffff
+[    1.940000]   IO 0x000000001e160000..0x000000001e16ffff
+[    1.980000] mt7621_gpio 1e000600.gpio: registering 32 gpios
+[    1.990000] mt7621_gpio 1e000600.gpio: registering 32 gpios
+[    2.000000] mt7621_gpio 1e000600.gpio: registering 32 gpios
+[    2.010000] PCI host bridge to bus 0000:00
+[    2.020000] pci_bus 0000:00: root bus resource [mem 0x60000000-0x6fffffff]
+[    2.030000] pci_bus 0000:00: root bus resource [io  0xffffffff]
+[    2.040000] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    2.060000] pci 0000:00:00.0: [0e8d:0801] type 01 class 0x060400
+[    2.060000] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x7fffffff]
+[    2.060000] pci 0000:00:00.0: reg 0x14: [mem 0x60600000-0x6060ffff]
+[    2.060000] pci 0000:00:00.0: supports D1
+[    2.060000] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
+[    2.060000] pci 0000:00:01.0: [0e8d:0801] type 01 class 0x060400
+[    2.060000] pci 0000:00:01.0: reg 0x10: [mem 0x00000000-0x7fffffff]
+[    2.060000] pci 0000:00:01.0: reg 0x14: [mem 0x60610000-0x6061ffff]
+[    2.060000] pci 0000:00:01.0: supports D1
+[    2.060000] pci 0000:00:01.0: PME# supported from D0 D1 D3hot
+[    2.060000] pci 0000:00:02.0: [0e8d:0801] type 01 class 0x060400
+[    2.060000] pci 0000:00:02.0: reg 0x10: [mem 0x00000000-0x7fffffff]
+[    2.060000] pci 0000:00:02.0: reg 0x14: [mem 0x60620000-0x6062ffff]
+[    2.060000] pci 0000:00:02.0: supports D1
+[    2.060000] pci 0000:00:02.0: PME# supported from D0 D1 D3hot
+[    2.060000] pci 0000:01:00.0: [14c3:7662] type 00 class 0x028000
+[    2.060000] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x000fffff 64bit]
+[    2.060000] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    2.060000] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
+[    2.060000] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    2.060000] pci 0000:02:00.0: [14c3:7662] type 00 class 0x028000
+[    2.060000] pci 0000:02:00.0: reg 0x10: [mem 0x00000000-0x000fffff 64bit]
+[    2.060000] pci 0000:02:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    2.060000] pci 0000:02:00.0: PME# supported from D0 D3hot D3cold
+[    2.060000] pci_bus 0000:02: busn_res: [bus 02-ff] end is updated to 02
+[    2.060000] pci 0000:03:00.0: [1b21:0612] type 00 class 0x010601
+[    2.060000] pci 0000:03:00.0: reg 0x10: [io  0x0000-0x0007]
+[    2.060000] pci 0000:03:00.0: reg 0x14: [io  0x0000-0x0003]
+[    2.060000] pci 0000:03:00.0: reg 0x18: [io  0x0000-0x0007]
+[    2.060000] pci 0000:03:00.0: reg 0x1c: [io  0x0000-0x0003]
+[    2.060000] pci 0000:03:00.0: reg 0x20: [io  0x0000-0x001f]
+[    2.060000] pci 0000:03:00.0: reg 0x24: [mem 0x00000000-0x000001ff]
+[    2.060000] pci 0000:03:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    2.060000] pci_bus 0000:03: busn_res: [bus 03-ff] end is updated to 03
+[    2.060000] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 03
+[    2.060000] pci 0000:00:00.0: BAR 0: no space for [mem size 0x80000000]
+[    2.080000] pci 0000:00:00.0: BAR 0: failed to assign [mem size 0x80000000]
+[    2.090000] pci 0000:00:01.0: BAR 0: no space for [mem size 0x80000000]
+[    2.100000] pci 0000:00:01.0: BAR 0: failed to assign [mem size 0x80000000]
+[    2.120000] pci 0000:00:02.0: BAR 0: no space for [mem size 0x80000000]
+[    2.130000] pci 0000:00:02.0: BAR 0: failed to assign [mem size 0x80000000]
+[    2.140000] pci 0000:00:00.0: BAR 8: assigned [mem 0x60000000-0x600fffff]
+[    2.160000] pci 0000:00:00.0: BAR 9: assigned [mem 0x60100000-0x601fffff pref]
+[    2.170000] pci 0000:00:01.0: BAR 8: assigned [mem 0x60200000-0x602fffff]
+[    2.180000] pci 0000:00:01.0: BAR 9: assigned [mem 0x60300000-0x603fffff pref]
+[    2.200000] pci 0000:00:02.0: BAR 8: assigned [mem 0x60400000-0x604fffff]
+[    2.210000] pci 0000:00:02.0: BAR 9: assigned [mem 0x60500000-0x605fffff pref]
+[    2.230000] pci 0000:00:00.0: BAR 1: assigned [mem 0x60600000-0x6060ffff]
+[    2.240000] pci 0000:00:01.0: BAR 1: assigned [mem 0x60610000-0x6061ffff]
+[    2.250000] pci 0000:00:02.0: BAR 1: assigned [mem 0x60620000-0x6062ffff]
+[    2.270000] pci 0000:00:02.0: BAR 7: no space for [io  size 0x1000]
+[    2.280000] pci 0000:00:02.0: BAR 7: failed to assign [io  size 0x1000]
+[    2.290000] pci 0000:01:00.0: BAR 0: assigned [mem 0x60000000-0x600fffff 64bit]
+[    2.310000] pci 0000:01:00.0: BAR 6: assigned [mem 0x60100000-0x6010ffff pref]
+[    2.320000] pci 0000:00:00.0: PCI bridge to [bus 01]
+[    2.330000] pci 0000:00:00.0:   bridge window [mem 0x60000000-0x600fffff]
+[    2.350000] pci 0000:00:00.0:   bridge window [mem 0x60100000-0x601fffff pref]
+[    2.360000] pci 0000:02:00.0: BAR 0: assigned [mem 0x60200000-0x602fffff 64bit]
+[    2.370000] pci 0000:02:00.0: BAR 6: assigned [mem 0x60300000-0x6030ffff pref]
+[    2.390000] pci 0000:00:01.0: PCI bridge to [bus 02]
+[    2.400000] pci 0000:00:01.0:   bridge window [mem 0x60200000-0x602fffff]
+[    2.410000] pci 0000:00:01.0:   bridge window [mem 0x60300000-0x603fffff pref]
+[    2.430000] pci 0000:03:00.0: BAR 6: assigned [mem 0x60500000-0x6050ffff pref]
+[    2.440000] pci 0000:03:00.0: BAR 5: assigned [mem 0x60400000-0x604001ff]
+[    2.450000] pci 0000:03:00.0: BAR 4: no space for [io  size 0x0020]
+[    2.470000] pci 0000:03:00.0: BAR 4: failed to assign [io  size 0x0020]
+[    2.480000] pci 0000:03:00.0: BAR 0: no space for [io  size 0x0008]
+[    2.490000] pci 0000:03:00.0: BAR 0: failed to assign [io  size 0x0008]
+[    2.500000] pci 0000:03:00.0: BAR 2: no space for [io  size 0x0008]
+[    2.520000] pci 0000:03:00.0: BAR 2: failed to assign [io  size 0x0008]
+[    2.530000] pci 0000:03:00.0: BAR 1: no space for [io  size 0x0004]
+[    2.540000] pci 0000:03:00.0: BAR 1: failed to assign [io  size 0x0004]
+[    2.560000] pci 0000:03:00.0: BAR 3: no space for [io  size 0x0004]
+[    2.570000] pci 0000:03:00.0: BAR 3: failed to assign [io  size 0x0004]
+[    2.580000] pci 0000:00:02.0: PCI bridge to [bus 03]
+[    2.590000] pci 0000:00:02.0:   bridge window [mem 0x60400000-0x604fffff]
+[    2.600000] pci 0000:00:02.0:   bridge window [mem 0x60500000-0x605fffff pref]
+[    2.620000] BAR0 at slot 0 = 0
+[    2.630000] bus=0x0, slot = 0x0
+[    2.630000] BAR0 at slot 1 = 0
+[    2.640000] bus=0x0, slot = 0x1
+[    2.640000] BAR0 at slot 2 = 0
+[    2.650000] bus=0x0, slot = 0x2
+[    2.660000] bus=0x1, slot = 0x0, irq=0xff
+[    2.660000] bus=0x2, slot = 0x1, irq=0xff
+[    2.670000] bus=0x3, slot = 0x2, irq=0x0
+[    2.680000] Switched to clocksource MIPS
+[    2.690000] NET: Registered protocol family 2
+[    2.700000] TCP established hash table entries: 2048 (order: 1, 8192 bytes)
+[    2.720000] TCP bind hash table entries: 2048 (order: 2, 16384 bytes)
+[    2.730000] TCP: Hash tables configured (established 2048 bind 2048)
+[    2.740000] TCP: reno registered
+[    2.750000] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    2.760000] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    2.770000] NET: Registered protocol family 1
+[    2.780000] PCI: CLS 80 bytes, default 32
+[    2.780000] alarmtimer alarmtimer: no of_node; not parsing pinctrl DT
+[    2.780000] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    2.810000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    2.820000] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    2.840000] msgmni has been set to 499
+[    2.840000] io scheduler noop registered
+[    2.850000] io scheduler bfq registered (default)
+[    2.860000] BFQ I/O-scheduler: v7r8
+[    2.870000] Serial: 8250/16550 driver, 2 ports, IRQ sharing disabled
+[    2.880000] serial8250 serial8250: no of_node; not parsing pinctrl DT
+[    2.880000] console [ttyS0] disabled
+[    2.890000] 1e000c00.uartlite: ttyS0 at MMIO 0x1e000c00 (irq = 34, base_baud = 3125000) is a 16550A
+[    2.910000] console [ttyS0] enabled
+[    2.920000] bootconsole [early0] disabled
+[    2.940000] pinctrl core: add 1 pinmux maps
+[    2.940000] rt2880-pinmux pinctrl: found group selector 9 for spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 34 (io34) for 1e000b00.spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 35 (io35) for 1e000b00.spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 36 (io36) for 1e000b00.spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 37 (io37) for 1e000b00.spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 38 (io38) for 1e000b00.spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 39 (io39) for 1e000b00.spi
+[    2.940000] rt2880-pinmux pinctrl: request pin 40 (io40) for 1e000b00.spi
+[    2.940000] spi-mt7621 1e000b00.spi: sys_freq: 50000000
+[    2.950000] m25p80 spi32766.0: gd25q128 (16384 Kbytes)
+[    2.960000] m25p80 spi32766.0: using chunked io
+[    2.970000] 4 ofpart partitions found on MTD device spi32766.0
+[    2.980000] Creating 4 MTD partitions on "spi32766.0":
+[    2.990000] 0x000000000000-0x000000030000 : "u-boot"
+[    3.000000] 0x000000030000-0x000000040000 : "u-boot-env"
+[    3.010000] 0x000000040000-0x000000050000 : "factory"
+[    3.030000] 0x000000050000-0x000001000000 : "firmware"
+[    3.090000] 2 uimage-fw partitions found on MTD device firmware
+[    3.100000] 0x000000050000-0x00000017898b : "kernel"
+[    3.110000] 0x00000017898b-0x000001000000 : "rootfs"
+[    3.120000] mtd: device 5 (rootfs) set to be root filesystem
+[    3.130000] 1 squashfs-split partitions found on MTD device rootfs
+[    3.140000] 0x000000a00000-0x000001000000 : "rootfs_data"
+[    3.160000] netif_napi_add() called with weight 128 on device eth%d
+[    3.180000] change HW-TRAP to 0x17ccf
+[    3.190000] ralink_soc_eth 1e100000.ethernet: generated random MAC address ee:b8:43:a9:60:c7
+[    3.210000] libphy: mdio: probed
+[    3.220000] ralink_soc_eth 1e100000.ethernet: loaded mt7530 driver
+[    3.240000] ralink_soc_eth 1e100000.ethernet eth0: ralink at 0xbe100000, irq 11
+[    3.250000] mt7621_wdt 1e000100.wdt: Initialized
+[    3.260000] TCP: cubic registered
+[    3.270000] NET: Registered protocol family 17
+[    3.280000] bridge: automatic filtering via arp/ip/ip6tables has been deprecated. Update your scripts to load br_netfilter if you need this.
+[    3.300000] 8021q: 802.1Q VLAN Support v1.8
+[    3.320000] VFS: Mounted root (squashfs filesystem) readonly on device 31:5.
+[    3.330000] Freeing unused kernel memory: 164K (80357000 - 80380000)
+[    3.420000] random: nonblocking pool is initialized
+[    4.450000] init: Console is alive
+[    4.460000] init: - watchdog -
+[    5.970000] ralink_soc_eth 1e100000.ethernet eth0: port 4 link up
+[    6.570000] ralink_soc_eth 1e100000.ethernet eth0: port 3 link up
+[    7.570000] usbcore: registered new interface driver usbfs
+[    7.580000] usbcore: registered new interface driver hub
+[    7.590000] usbcore: registered new device driver usb
+[    7.770000] raid6: int32x1     86 MB/s
+[    7.940000] raid6: int32x2    150 MB/s
+[    8.110000] raid6: int32x4    194 MB/s
+[    8.280000] raid6: int32x8    154 MB/s
+[    8.280000] raid6: using algorithm int32x4 (194 MB/s)
+[    8.290000] raid6: using intx1 recovery algorithm
+[    8.300000] xor: measuring software checksum speed
+[    8.410000]    8regs     :   638.800 MB/sec
+[    8.510000]    8regs_prefetch:   608.000 MB/sec
+[    8.610000]    32regs    :   704.400 MB/sec
+[    8.710000]    32regs_prefetch:   667.200 MB/sec
+[    8.710000] xor: using function: 32regs (704.400 MB/sec)
+[    8.890000] Btrfs loaded
+[    8.900000] exFAT: Version 1.2.9
+[    8.960000] SGI XFS with security attributes, no debug enabled
+[    8.980000] SCSI subsystem initialized
+[    9.000000] libata version 3.00 loaded.
+[    9.010000] ahci 0000:03:00.0: no of_node; not parsing pinctrl DT
+[    9.010000] ahci 0000:03:00.0: version 3.0
+[    9.010000] ahci 0000:03:00.0: SSS flag set, parallel bus scan disabled
+[    9.020000] ahci 0000:03:00.0: AHCI 0001.0200 32 slots 2 ports 6 Gbps 0x3 impl SATA mode
+[    9.040000] ahci 0000:03:00.0: flags: 64bit ncq sntf stag led clo pmp pio slum part ccc sxs
+[    9.060000] scsi host0: ahci
+[    9.060000] scsi host1: ahci
+[    9.070000] ata1: SATA max UDMA/133 abar m512@0x60400000 port 0x60400100 irq 33
+[    9.080000] ata2: SATA max UDMA/133 abar m512@0x60400000 port 0x60400180 irq 33
+[    9.470000] ata1: SATA link down (SStatus 0 SControl 300)
+[    9.850000] ata2: SATA link down (SStatus 0 SControl 300)
+[    9.890000] FM_OUT value: u4FmOut = 0(0x00000000)
+[    9.910000] FM_OUT value: u4FmOut = 0(0x00000000)
+[    9.930000] FM_OUT value: u4FmOut = 0(0x00000000)
+[    9.950000] FM_OUT value: u4FmOut = 0(0x00000000)
+[    9.970000] FM_OUT value: u4FmOut = 0(0x00000000)
+[    9.990000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.010000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.030000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.050000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.070000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.130000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.150000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.170000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.190000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.210000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.230000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.250000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.270000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.290000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.310000] FM_OUT value: u4FmOut = 0(0x00000000)
+[   10.460000] xhci-hcd 1e1c0000.xhci: xHCI Host Controller
+[   10.470000] xhci-hcd 1e1c0000.xhci: new USB bus registered, assigned bus number 1
+[   10.480000] xhci-hcd 1e1c0000.xhci: irq 30, io mem 0x1e1c0000
+[   10.500000] usb usb1: no of_node; not parsing pinctrl DT
+[   10.500000] hub 1-0:1.0: no of_node; not parsing pinctrl DT
+[   10.500000] hub 1-0:1.0: USB hub found
+[   10.500000] hub 1-0:1.0: 2 ports detected
+[   10.510000] xhci-hcd 1e1c0000.xhci: xHCI Host Controller
+[   10.520000] xhci-hcd 1e1c0000.xhci: new USB bus registered, assigned bus number 2
+[   10.540000] usb usb2: no of_node; not parsing pinctrl DT
+[   10.540000] hub 2-0:1.0: no of_node; not parsing pinctrl DT
+[   10.540000] hub 2-0:1.0: USB hub found
+[   10.550000] hub 2-0:1.0: 1 port detected
+[   10.560000] xhci-hcd xhci-hcd: no of_node; not parsing pinctrl DT
+[   10.560000] xhci-hcd xhci-hcd: can't request region for resource [mem 0x1e1c0000-0x1e1cffff]
+[   10.570000] xhci-hcd: probe of xhci-hcd failed with error -16
+[   10.590000] MTK MSDC device init.
+[   10.640000] mtk-sd: MediaTek MT6575 MSDC Driver
+[   10.650000] sdhci: Secure Digital Host Controller Interface driver
+[   10.660000] sdhci: Copyright(c) Pierre Ossman
+[   10.670000] sdhci-pltfm: SDHCI platform and OF driver helper
+[   10.680000] usbcore: registered new interface driver usb-storage
+[   11.490000] init: - preinit -
+[   15.160000] jffs2_scan_eraseblock(): End of filesystem marker found at 0x10000
+[   15.180000] jffs2_build_filesystem(): unlocking the mtd device... done.
+[   15.190000] jffs2_build_filesystem(): erasing all blocks after the end marker... done.
+[   42.710000] jffs2: notice: (440) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.
+[   42.740000] mount_root: overlay filesystem has not been fully initialized yet
+[   42.760000] mount_root: switching to jffs2 overlay
+[   43.390000] procd: - early -
+[   43.400000] procd: - watchdog -
+[   44.160000] procd: - ubus -
+[   45.170000] procd: - init -
+[   46.170000] NET: Registered protocol family 10
+[   46.190000] md: linear personality registered for level -1
+[   46.230000] RPC: Registered named UNIX socket transport module.
+[   46.240000] RPC: Registered udp transport module.
+[   46.250000] RPC: Registered tcp transport module.
+[   46.260000] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[   46.280000] ntfs: driver 2.1.31 [Flags: R/O MODULE].
+[   46.330000] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+[   46.350000] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[   46.380000] Loading modules backported from Linux version master-2015-03-09-0-g141f155
+[   46.390000] Backport generated by backports.git backports-20150129-0-gdd4a670
+[   46.430000] cfg80211: Calling CRDA to update world regulatory domain
+[   46.460000] cfg80211: World regulatory domain updated:
+[   46.470000] cfg80211:  DFS Master region: unset
+[   46.480000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+[   46.490000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+[   46.510000] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz, 92000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[   46.530000] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+[   46.550000] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+[   46.560000] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+[   46.580000] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+[   46.600000] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+[   46.620000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+[   46.630000] mt76pci 0000:01:00.0: ASIC revision: 76120044
+[   46.730000] ROM patch build: 20141115060606a
+[   46.750000] Firmware Version: 0.0.00
+[   46.750000] Build: 1
+[   46.760000] Build Time: 201410061140____
+[   46.800000] Firmware running!
+[   46.800000] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   46.800000] mt76pci 0000:02:00.0: ASIC revision: 76020044
+[   46.840000] ROM patch already applied
+[   46.850000] Firmware Version: 0.0.00
+[   46.850000] Build: 1
+[   46.860000] Build Time: 201410061140____
+[   46.890000] Firmware running!
+[   46.890000] ieee80211 phy1: Selected rate control algorithm 'minstrel_ht'
+[   46.900000] i2c /dev entries driver
+[   46.910000] pinctrl core: add 1 pinmux maps
+[   46.910000] rt2880-pinmux pinctrl: found group selector 1 for i2c
+[   46.910000] rt2880-pinmux pinctrl: request pin 3 (io3) for 1e000900.i2c
+[   46.910000] rt2880-pinmux pinctrl: request pin 4 (io4) for 1e000900.i2c
+[   46.910000] i2c-mt7621 1e000900.i2c: loaded
+[   46.940000] hidraw: raw HID events driver (C) Jiri Kosina
+[   46.950000] u32 classifier
+[   46.960000]     input device check on
+[   46.970000]     Actions configured
+[   46.980000] Mirror/redirect action on
+[   47.010000] fuse init (API version 7.23)
+[   47.020000] usbcore: registered new interface driver cdc_wdm
+[   47.040000] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   47.060000] nf_conntrack version 0.5.0 (4000 buckets, 16000 max)
+[   47.160000] usbcore: registered new interface driver ums-alauda
+[   47.170000] usbcore: registered new interface driver ums-cypress
+[   47.190000] usbcore: registered new interface driver ums-datafab
+[   47.200000] usbcore: registered new interface driver ums-freecom
+[   47.220000] usbcore: registered new interface driver ums-isd200
+[   47.230000] usbcore: registered new interface driver ums-jumpshot
+[   47.240000] usbcore: registered new interface driver ums-karma
+[   47.260000] usbcore: registered new interface driver ums-sddr09
+[   47.270000] usbcore: registered new interface driver ums-sddr55
+[   47.280000] usbcore: registered new interface driver ums-usbat
+[   47.320000] xt_time: kernel timezone is -0000
+[   47.340000] PPP generic driver version 2.4.2
+[   47.350000] NET: Registered protocol family 24
+[   52.550000] device eth0.1 entered promiscuous mode
+[   52.560000] device eth0 entered promiscuous mode
+[   52.570000] br-lan: port 1(eth0.1) entered forwarding state
+[   52.590000] br-lan: port 1(eth0.1) entered forwarding state
+[   54.590000] br-lan: port 1(eth0.1) entered forwarding state
+[   56.640000] svc: failed to register lockdv1 RPC service (errno 124).

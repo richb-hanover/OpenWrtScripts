@@ -94,3 +94,4 @@ cat ${out_fqn}
 echo "Output is also in ${out_fqn}"
 
 # Now press Ctl-D, then type "sh getstats.sh"
+

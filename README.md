@@ -15,6 +15,7 @@ These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. The easie
 
 ```
 opkg update
+opkg install netperf
 opkg install git
 cd /usr/lib
 git clone git://github.com/richb-hanover/OpenWrtScripts.git

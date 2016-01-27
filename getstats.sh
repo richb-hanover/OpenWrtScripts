@@ -55,6 +55,10 @@ echo -e "[Installed Modules]"   >> ${out_fqn}
 ls -alR /lib/modules/*          >> ${out_fqn}
 echo -e "\n"                    >> ${out_fqn}
 
+echo -e "[sqm-scripts version]" >> ${out_fqn}
+opkg list | grep sqm-scripts    >> ${out_fqn}
+echo -e "\n"                    >> ${out_fqn}
+
 echo -e "[SQM stop]"            1>> ${out_fqn}
 SQM_DEBUG=1 SQM_VERBOSITY=8     2>> ${out_fqn}
 /etc/init.d/sqm stop            2>> ${out_fqn}

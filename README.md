@@ -3,13 +3,13 @@ OpenWrtScripts
 
 This is a set of scripts (sometimes also called "Openscripts") that configure and measure (and improve) latency in home routers (and everywhere else!) These scripts include:
 
-* Script to configure the OpenWrt router consistently after flashing factory firmware.
+* getstats.sh - a script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
 
-* Script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
+* config-openwrt.sh - a script to configure the OpenWrt router consistently after flashing factory firmware.
 
-* Scripts that measure the performance of your router or offer load to the network for testing.
+* betterspeedtest.sh & netperfrunner.sh & networkhammer.sh - scripts that measure the performance of your router or offer load to the network for testing.
 
-* Script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net.
+* tunnelbroker.sh - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. *This script has not been converted for OpenWrt*
 
 These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. The easiest way to do this is to use ssh into the router and enter these commands:
 
@@ -20,11 +20,21 @@ opkg install git
 cd /usr/lib
 git clone git://github.com/richb-hanover/OpenWrtScripts.git
 ```
+---
+## getstats.sh
+
+The `getstats.sh` script helps diagnose problems with OpenWrt. 
+If you report a problem, it is always helpful to include the output of this script. 
+
+The script collects a number of useful configuration settings and dynamic values and writes the collected output to `/tmp/openwrtstats.txt`
+
+**To run this script,** read the top of the `getstats.sh` file. 
 
 ---
+
 ## config-openwrt.sh
 
-This script updates the factory settings of OpenWrt to a known-good configuration.
+The `config-openwrt.sh` script updates the factory settings of OpenWrt to a known-good configuration.
 If you frequently update your firmware, you can use this script to reconfigure
 the router to a consistent state.
 You should make a copy of this script, customize it to your needs,
@@ -66,20 +76,9 @@ may reset the wireless network.
 **Note:** If you use a secondary OpenWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
 
 ---
-## openwrtstats.sh
-
-_[This script has been partially converted]_
-
-This script collects a number of useful configuration settings and dynamic values for aid in diagnosing problems with OpenWrt. If you report a problem, it would be helpful to include the output of this script.
-
-The script issues the date, uname -a, uptime, ifconfig, top, tc, iw, logread and dmesg commands, and writes the collected output to `/tmp/openwrtstats_output.txt`
-
-_Note:_ What other statistics should this script collect?
-
----
 ## betterspeedtest.sh
 
-This script emulates the web-based test performed by speedtest.net, but does it one better. While script performs a download and an upload to a server on the Internet, it simultaneously measures latency of pings to see whether the file transfers affect the responsiveness of your network. 
+The `betterspeedtest.sh` script emulates the web-based test performed by speedtest.net, but does it one better. While script performs a download and an upload to a server on the Internet, it simultaneously measures latency of pings to see whether the file transfers affect the responsiveness of your network. 
 
 Here's why that's important: If the data transfers do increase the latency/lag much, then other network activity, such as voice or video chat, gaming, and general network activity will also work poorly. Gamers will see this as lagging out when someone else uses the network. Skype and FaceTime will see dropouts or freezes. Latency is bad, and good routers will not allow it to happen.
 
@@ -131,7 +130,7 @@ On the right is a test using SQM: the latency goes up a little (less than 23 mse
 ---         
 ## netperfrunner.sh
 
-This script runs several netperf commands simultaneously.
+The `netperfrunner.sh` script runs several netperf commands simultaneously.
 This mimics the stress test of [netperf-wrapper](https://github.com/tohojo/netperf-wrapper) [Github] but without the nice GUI result.
 
 When you start this script, it concurrently uploads and downloads several
@@ -174,7 +173,7 @@ The output of the script looks like this:
 ## networkhammer.sh
 
 
-This script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
+The `networkhammer.sh` script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
  
 
 ---
@@ -182,7 +181,7 @@ This script continually invokes the netperfrunner script to provide a heavy load
 
 _[This script has not been converted yet]_
 
-This script configures OpenWrt to create an IPv6 tunnel via Hurricane Electric. 
+The `tunnelbroker.sh` script configures OpenWrt to create an IPv6 tunnel via Hurricane Electric. 
 It's an easy way to become familiar with IPv6 if your ISP doesn't offer native IPv6 capabilities. There are three steps:
 
 1. Go to the Hurricane Electric [TunnelBroker.net](http://www.tunnelbroker.net/)  site to set up your free account. There are detailed instructions for setting up an account and an IPv6 tunnel at the

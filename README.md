@@ -7,7 +7,7 @@ This is a set of scripts (sometimes also called "Openscripts") that configure an
 
 * [config-openwrt.sh](#config-openwrtsh) - a script to configure the OpenWrt router consistently after flashing factory firmware.
 
-* [betterspeedtest.sh](#betterspeedtestsh) & [netperfrunner.sh](#netperfrunnersh) & [networkhammer.sh](#networkhammesh) - scripts that measure the performance of your router or offer load to the network for testing.
+* [betterspeedtest.sh](#betterspeedtestsh) & [netperfrunner.sh](#netperfrunnersh) & [networkhammer.sh](#networkhammersh) - scripts that measure the performance of your router or offer load to the network for testing.
 
 * [tunnelbroker.sh](#tunnelbrokersh) - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. *This script has not been converted for OpenWrt*
 

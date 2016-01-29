@@ -1,7 +1,7 @@
 OpenWrtScripts
 ==============
 
-This is a set of scripts (sometimes also called "Openscripts") that configure and measure (and improve) latency in home routers (and everywhere else!) These scripts include:
+This is a set of scripts (sometimes also called "Openscripts") that report, configure and measure (and improve) latency in home routers (and everywhere else!) These scripts include:
 
 * [getstats.sh](#getstatssh) - a script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
 
@@ -26,9 +26,13 @@ git clone git://github.com/richb-hanover/OpenWrtScripts.git
 The `getstats.sh` script helps diagnose problems with OpenWrt. 
 If you report a problem, it is always helpful to include the output of this script. 
 
-The script collects a number of useful configuration settings and dynamic values and writes the collected output to `/tmp/openwrtstats.txt`
+`getstats.sh` executes a built-in set of commands and writes the collected output to `/tmp/openwrtstats.txt`. 
+The script also executes commands passed as arguments on the command line. 
+In the example below, the output would contain results from the standard set of commands plus the two additional arguments: 
 
-**To run this script:** Read the top of the `getstats.sh` file. 
+**Example:** `sh getstats.sh "ls /usr/lib" "ls -al /etc/config"`
+
+**To install and run this script:** The script is self-contained, and can be placed in any directory. Read the top of the [getstats.sh](./getstats.sh) file for a simple procedure. 
 
 **Sample output file:** See a sample output file - [openwrtstats.txt](./sample_output/openwrtstats.txt)
 

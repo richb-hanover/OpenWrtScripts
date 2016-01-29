@@ -20,84 +20,58 @@
 # The script defaults to writing stats in /tmp/openwrtstats.txt
 # Change for your circumstances
 
-out_fqn=/tmp/openwrtstats.txt
+# Output file name
+out_fqn=/tmp/junk.txt
+# Redirect command
+outfile="2>&1 >>$out_fqn"
+# eval echo xx $outfile
 
-cat /etc/banner                  > ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
+# echo "Number of arguments is $#; $1"
+eval echo "===== Output from $0 at `date` =====" > $out_fqn
 
-echo -e "[date]"                >> ${out_fqn}
-date                            >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
+display_command() { 
+	echo "[ $1 ]"           >> $out_fqn
+	eval "$1"               >> $out_fqn 2>> $out_fqn
+	echo -e "\n"           	>> $out_fqn
+}
 
-echo -e "[/etc/openwrt_release]">> ${out_fqn}
-cat /etc/openwrt_release        >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
+# ------- Main Routine -------
 
-echo -e "[uname -a]"            >> ${out_fqn}
-echo $( uname -a )              >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
+# Look to see if they're asking for help
+if [ "$1" == "-h" ] 
+then
+	echo 'Usage: sh getstats.sh "command 1 to be executed" "command 2" "command 3" ... '
+	exit
+fi
 
-echo -e "[uptime]"              >> ${out_fqn}
-echo $( uptime )                >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
+# Handle the standard set of commands first
+while read LINE; do
+#	echo "$LINE"
+    display_command "$LINE"
+done << EOF
+cat /etc/banner
+date
+uname -a
+uptime
+top -b | head -n 20
+ifconfig
+EOF
 
-echo -e "[ifconfig]"            >> ${out_fqn}
-ifconfig                        >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
+#logread 
+#dmesg
+#cat /etc/openwrt_release
 
-echo -e "[top]"                 >> ${out_fqn}
-top -b | head -n 20             >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[tc -s qdisc]"         >> ${out_fqn}
-tc -s qdisc                     >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[ip: path & version]"  >> ${out_fqn}
-which ip                        >> ${out_fqn}
-ip -V                           >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[Installed Modules]"   >> ${out_fqn}
-ls -alR /lib/modules/*          >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[sqm-scripts version]" >> ${out_fqn}
-opkg list | grep sqm-scripts    >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[SQM stop]"            1>> ${out_fqn}
-SQM_DEBUG=1 SQM_VERBOSITY=8     2>> ${out_fqn}
-/etc/init.d/sqm stop            2>> ${out_fqn}
-echo -e "\n"                    1>> ${out_fqn}
-
-echo -e "[SQM start]"           1>> ${out_fqn}
-SQM_DEBUG=1 SQM_VERBOSITY=8     2>> ${out_fqn}
-/etc/init.d/sqm start           2>> ${out_fqn}
-SQM_DEBUG=0                     2>> ${out_fqn}
-echo -e "\n"                    1>> ${out_fqn}
-
-echo -e "[SQM debug directory]" >> ${out_fqn}
-ls -R -al /var/run/sqm          >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[SQM debug log files]" >> ${out_fqn}
-tail -n +1 /var/run/sqm/*.log   >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[logread]"             >> ${out_fqn}
-logread                         >> ${out_fqn}
-echo -e "\n"                    >> ${out_fqn}
-
-echo -e "[dmesg]"               >> ${out_fqn}
-dmesg                           >> ${out_fqn}
-echo -e ""                      >> ${out_fqn}
+# extract options and their arguments into variables.
+while [ $# -gt 0 ] 
+do
+	display_command "$1" 
+	shift 1
+done
 
 echo "Done... Stats written to ${out_fqn} (${0})"
 echo " "
 clear
-echo "============= Output from ${0} ============="
-cat ${out_fqn}
+#cat ${out_fqn}
 echo "Output is also in ${out_fqn}"
 
 # Now press Ctl-D, then type "sh getstats.sh"

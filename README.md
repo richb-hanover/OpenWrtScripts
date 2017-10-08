@@ -58,7 +58,7 @@ By default, the `write` command saves the list of installed packages in
 
 `sh opkgscript.sh install` _use after successful sysupgrade, to restore those packages_
 
-`sh opkgscript.sh` _display full help information for the script_
+`sh opkgscript.sh help` _display full help information for the script_
 
 ---
 ## config-openwrt.sh

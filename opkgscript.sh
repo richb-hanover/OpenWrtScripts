@@ -6,6 +6,11 @@
 #
 # (c) 2013 Malte Forkel <malte.forkel@berlin.de>
 #
+# Originally found on OpenWrt forums at:
+#    https://forum.openwrt.org/viewtopic.php?pid=194478#p194478
+# Thanks, too, to hnyman for important comments on this script
+# Minor edits to the script for publication in github by richb-hanvover 
+#
 # Version history
 #    0.2.1 - fixed typo in awk script for dependency detection
 #    0.2.0 - command interface
@@ -48,16 +53,17 @@ Before the firmware upgrade, execute
 
     $SCRIPTNAME [options...] write [packagelist]
     
-to save the list of currently installed packages. The default package list
-is '$PCKGLIST'. Save the package list in a place that will
-not be wiped out by the firmware upgrade or copy it to another computer 
-before the upgrade.
+to save the list of currently installed packages. Save the package list in a 
+place that will not be wiped out by the firmware upgrade. The default package list
+is '$PCKGLIST', which works well for normal sysupgrades. Or copy that file to 
+another computer before the upgrade if you are not preserving the settings.
 
 After the firmware upgrade, execute
 
     $SCRIPTNAME [options...] install [packagelist]
     
-to re-install all packages that were not part of the firmware image.
+to re-install all packages that were not part of the firmware image. 
+By default, the script will use the previously-created '$PCKGLIST'.
 Alternatively, you can execute
 
     $SCRIPTNAME [options...] script [packagelist]

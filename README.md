@@ -1,17 +1,24 @@
 OpenWrtScripts
 ==============
 
-This is a set of scripts (sometimes also called "Openscripts") that report, configure and measure (and improve) latency in home routers (and everywhere else!) These scripts include:
+This is a set of scripts (sometimes also called "Openscripts") that report, configure and measure (and improve) latency in home routers (and everywhere else!) 
+These scripts work equally well for both [LEDE](https://lede-project.org) and [OpenWrt](https://openwrt.org) and include:
 
 * [getstats.sh](#getstatssh) - a script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
+
+* [opkgscript.sh](#opkgscriptsh) - a script to save the list of 
+currently-installed packages (say, before a sysupgrade), 
+and then restore the full set of packages after the upgrade.
 
 * [config-openwrt.sh](#config-openwrtsh) - a script to configure the OpenWrt router consistently after flashing factory firmware.
 
 * [betterspeedtest.sh](#betterspeedtestsh) & [netperfrunner.sh](#netperfrunnersh) & [networkhammer.sh](#networkhammersh) - scripts that measure the performance of your router or offer load to the network for testing.
 
-* [tunnelbroker.sh](#tunnelbrokersh) - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. *This script has not been converted for OpenWrt*
+* [tunnelbroker.sh](#tunnelbrokersh) - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. 
+*This script was originally created for CeroWrt. It has not been converted for OpenWrt/LEDE.*
 
-These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. The easiest way to do this is to use ssh into the router and enter these commands:
+These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. 
+The easiest way to do this is to use ssh into the router and enter these commands:
 
 ```
 opkg update
@@ -37,7 +44,23 @@ In the example below, the output would contain results from the standard set of 
 **Sample output file:** See a sample output file - [openwrtstats.txt](./sample_output/openwrtstats.txt)
 
 ---
+## opkgscript.sh
 
+The `opkgscript.sh` script helps to restore the current set of packages after a sysupgrade 
+or even a clean install of either LEDE or OpenWrt. 
+By default, the `write` command saves the list of installed packages in 
+`/etc/config/opkg.installed` (where it will be preserved across sysupgrades), and the 
+`install` command reads the file, to restore that set of packages.
+
+**Example:** 
+
+`sh opkgscript.sh write` _use before sysupgrade to save the current set of packages_
+
+`sh opkgscript.sh install` _use after successful sysupgrade, to restore those packages_
+
+`sh opkgscript.sh` _display full help information for the script_
+
+---
 ## config-openwrt.sh
 
 The `config-openwrt.sh` script updates the factory settings of OpenWrt to a known-good configuration.
@@ -58,7 +81,8 @@ All the sections are commented out. There are sections for:
 - Enable mDNS/ZeroConf on the WAN interface 
 - Set the SQM (Smart Queue Management) parameters
 
-_[Note: the remaining items have not been converted to work on OpenWrt yet
+_[ Note: the remaining items have not been converted to work on OpenWrt yet ]_
+
 - Enable NetFlow export for traffic analysis
 - Change default IP addresses and subnets for interfaces
 - Change default DNS names
@@ -68,11 +92,11 @@ _[Note: the remaining items have not been converted to work on OpenWrt yet
 
 **To run this script**
 
-Flash the router with factory firmware. Then telnet in and execute these statements. 
+Flash the router with factory firmware. Then telnet/ssh in and execute these statements. 
 You should do this over a wired connection because some of these changes
 may reset the wireless network.
 
-    telnet 192.168.1.1
+    ssh root@192.168.1.1
     cd /tmp
     cat > config.sh 
     [paste in the contents of this file, then hit ^D]
@@ -185,16 +209,17 @@ The `networkhammer.sh` script continually invokes the netperfrunner script to pr
 ---
 ## tunnelbroker.sh
 
-_[This script has not been converted yet]_
+_[This script was originally created for CeroWrt. It has not been converted for OpenWrt/LEDE.]_
 
-The `tunnelbroker.sh` script configures OpenWrt to create an IPv6 tunnel via Hurricane Electric. 
-It's an easy way to become familiar with IPv6 if your ISP doesn't offer native IPv6 capabilities. There are three steps:
+The `tunnelbroker.sh` script configures CeroWrt to create an IPv6 tunnel via Hurricane Electric. 
+It's an easy way to become familiar with IPv6 if your ISP doesn't offer native IPv6 capabilities. 
+There are three steps:
 
 1. Go to the Hurricane Electric [TunnelBroker.net](http://www.tunnelbroker.net/)  site to set up your free account. There are detailed instructions for setting up an account and an IPv6 tunnel at the
    [IPv6 Tunnel page.](http://www.bufferbloat.net/projects/cerowrt/wiki/IPv6_Tunnel) 
 2. Edit the tunnelbroker.sh script, using the parameters supplied by Tunnelbroker.net. They're on the site's "Tunnel Details" page. Click on the "Example
 Configurations" tab and select "OpenWRT Backfire 10.03.1". Use the info to fill in the corresponding lines of the script. 
-3. ssh into the OpenWrt router and execute this script with these steps.
+3. ssh into the router and execute this script with these steps.
     
         ssh root@172.30.42.1
         cd /tmp

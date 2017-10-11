@@ -9,9 +9,9 @@
 # Originally found on OpenWrt forums at:
 #    https://forum.openwrt.org/viewtopic.php?pid=194478#p194478
 # Thanks, too, to hnyman for important comments on this script
-# Minor edits to the script for publication in github by richb-hanvover 
 #
 # Version history
+#    0.2.2 - editorial tweaks to help text -richb-hanvover 
 #    0.2.1 - fixed typo in awk script for dependency detection
 #    0.2.0 - command interface
 #    0.1.0 - Initial release

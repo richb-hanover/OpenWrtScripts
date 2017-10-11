@@ -28,7 +28,7 @@ cd /usr/lib
 git clone git://github.com/richb-hanover/OpenWrtScripts.git
 ```
 ---
-## getstats.sh
+## [getstats.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/getstats.sh)
 
 The `getstats.sh` script helps diagnose problems with OpenWrt. 
 If you report a problem, it is always helpful to include the output of this script. 
@@ -44,13 +44,14 @@ In the example below, the output would contain results from the standard set of 
 **Sample output file:** See a sample output file - [openwrtstats.txt](./sample_output/openwrtstats.txt)
 
 ---
-## opkgscript.sh
+## [opkgscript.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/opkgscript.sh)
 
 The `opkgscript.sh` script helps to restore the current set of packages after a sysupgrade 
 or even a clean install of either LEDE or OpenWrt. 
 By default, the `write` command saves the list of installed packages in 
 `/etc/config/opkg.installed` (where it will be preserved across sysupgrades), and the 
-`install` command reads the file, to restore that set of packages.
+`install` command reads the file, to restore that set of packages. 
+Cloned from Malte Forkel's [original script.](https://forum.openwrt.org/viewtopic.php?pid=194478#p194478)
 
 **Example:** 
 
@@ -61,7 +62,7 @@ By default, the `write` command saves the list of installed packages in
 `sh opkgscript.sh help` _display full help information for the script_
 
 ---
-## config-openwrt.sh
+## [config-openwrt.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-openwrt.sh)
 
 The `config-openwrt.sh` script updates the factory settings of OpenWrt to a known-good configuration.
 If you frequently update your firmware, you can use this script to reconfigure
@@ -106,7 +107,7 @@ may reset the wireless network.
 **Note:** If you use a secondary OpenWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
 
 ---
-## betterspeedtest.sh
+## [betterspeedtest.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/betterspeedtest.sh)
 
 The `betterspeedtest.sh` script emulates the web-based test performed by speedtest.net, but does it one better. While script performs a download and an upload to a server on the Internet, it simultaneously measures latency of pings to see whether the file transfers affect the responsiveness of your network. 
 
@@ -158,7 +159,7 @@ On the right is a test using SQM: the latency goes up a little (less than 23 mse
           Max: 5334.262                                                Max: 69.333
 
 ---         
-## netperfrunner.sh
+## [netperfrunner.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/netperfrunner.sh)
 
 The `netperfrunner.sh` script runs several netperf commands simultaneously.
 This mimics the stress test of [netperf-wrapper](https://github.com/tohojo/netperf-wrapper) [Github] but without the nice GUI result.
@@ -200,14 +201,14 @@ The output of the script looks like this:
 **Note:** The download and upload speeds reported may be considerably lower than your line's rated speed. This is not a bug, nor is it a problem with your internet connection. That's because the acknowledge messages sent back to the sender consume a significant fraction of the link's capacity (as much as 25%). 
 
 ---
-## networkhammer.sh
+## [networkhammer.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/networkhammer.sh)
 
 
 The `networkhammer.sh` script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
  
 
 ---
-## tunnelbroker.sh
+## [tunnelbroker.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/tunnelbroker.sh)
 
 _[This script was originally created for CeroWrt. It has not been converted for OpenWrt/LEDE.]_
 

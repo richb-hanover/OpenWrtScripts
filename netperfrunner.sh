@@ -1,7 +1,8 @@
 #! /bin/sh
 # Netperfrunner.sh - a shell script that runs several netperf commands simultaneously.
-# This mimics the stress test of netperf-wrapper from Toke <toke@toke.dk> 
-# but doesn't have the nice GUI result. This can live in /usr/lib/OpenWrtScripts
+# This mimics the stress test of Flent (www.flent.org - formerly, "netperf-wrapper") 
+# from Toke <toke@toke.dk> but doesn't have the nice GUI result. 
+# This can live in /usr/lib/OpenWrtScripts
 # 
 # When you start this script, it concurrently uploads and downloads multiple
 # streams (files) to a server on the Internet. This places a heavy load 

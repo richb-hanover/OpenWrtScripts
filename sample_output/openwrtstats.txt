@@ -1,4 +1,5 @@
-===== getstats.sh at Fri Jan 29 02:30:13 EST 2016 =====
+root@LEDE-ArcherC7:/tmp# cat /tmp/openwrtstats.txt
+===== getstats.sh at Sun Dec  9 10:21:02 EST 2018 =====
 [ cat /etc/banner ]
   _______                     ________        __
  |       |.-----.-----.-----.|  |  |  |.----.|  |_
@@ -6,866 +7,1111 @@
  |_______||   __|_____|__|__||________||__|  |____|
           |__| W I R E L E S S   F R E E D O M
  -----------------------------------------------------
- CHAOS CALMER (Chaos Calmer, r48430)
- -----------------------------------------------------
-  * 1 1/2 oz Gin            Shake with a glassful
-  * 1/4 oz Triple Sec       of broken ice and pour
-  * 3/4 oz Lime Juice       unstrained into a goblet.
-  * 1 1/2 oz Orange Juice
-  * 1 tsp. Grenadine Syrup
+ OpenWrt 18.06.1, r7258-5eb055306f
  -----------------------------------------------------
 
 
 [ date ]
-Fri Jan 29 02:30:13 EST 2016
+Sun Dec  9 10:21:02 EST 2018
 
 
 [ cat /etc/openwrt_release ]
 DISTRIB_ID='OpenWrt'
-DISTRIB_RELEASE='Chaos Calmer'
-DISTRIB_REVISION='r48430'
-DISTRIB_CODENAME='chaos_calmer'
-DISTRIB_TARGET='ramips/mt7621'
-DISTRIB_DESCRIPTION='OpenWrt Chaos Calmer 15.05'
-DISTRIB_TAINTS='no-all'
+DISTRIB_RELEASE='18.06.1'
+DISTRIB_REVISION='r7258-5eb055306f'
+DISTRIB_TARGET='ar71xx/generic'
+DISTRIB_ARCH='mips_24kc'
+DISTRIB_DESCRIPTION='OpenWrt 18.06.1 r7258-5eb055306f'
+DISTRIB_TAINTS=''
 
 
 [ uname -a ]
-Linux Witi 3.18.26 #2 SMP Tue Jan 26 11:58:11 EET 2016 mips GNU/Linux
+Linux LEDE-ArcherC7 4.9.120 #0 Thu Aug 16 07:51:15 2018 mips GNU/Linux
 
 
 [ uptime ]
- 02:30:13 up  5:06,  load average: 0.01, 0.02, 0.04
+ 10:21:02 up 25 days, 19:19,  load average: 0.44, 0.36, 0.28
 
 
 [ top -b | head -n 20 ]
-Mem: 64988K used, 191020K free, 760K shrd, 5480K buff, 17956K cached
-CPU:   2% usr   0% sys   0% nic  97% idle   0% io   0% irq   0% sirq
-Load average: 0.01 0.02 0.05 1/91 15738
+Mem: 50844K used, 74452K free, 4992K shrd, 2612K buff, 15248K cached
+CPU:   0% usr   9% sys   0% nic  72% idle   0% io   0% irq  18% sirq
+Load average: 0.44 0.36 0.29 1/54 29271
   PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND
-15737 15729 root     R     1488   1%   1% top -b
-    7     2 root     SW       0   0%   1% [rcu_sched]
- 2225     1 root     S     3192   1%   0% /usr/sbin/nmbd -F
- 2224     1 root     S     3092   1%   0% /usr/sbin/smbd -F
- 2166     1 root     S     2264   1%   0% /usr/sbin/uhttpd -f -h /www -r Witi -x /cgi-bin -u /ubus -t 60 -T 30 -k 20 -A 1 -n 3 -N 100 -p 0.0.0.0:80 -p [::]:80 -C /etc/uhttpd.crt -K /etc/uhttpd.key -s 0.0.0.0:443 -s [::]:443
- 1939     1 root     S     1812   1%   0% /usr/sbin/hostapd -P /var/run/wifi-phy0.pid -B /var/run/hostapd-phy0.conf
- 1929     1 root     S     1808   1%   0% /usr/sbin/hostapd -P /var/run/wifi-phy1.pid -B /var/run/hostapd-phy1.conf
- 1146     1 root     S     1644   1%   0% /sbin/netifd
- 2324     1 root     S     1620   1%   0% /usr/sbin/rpc.mountd -p 32780 -F
- 1103     1 root     S     1572   1%   0% /sbin/rpcd
-10490 10489 root     S     1496   1%   0% -ash
- 1205     1 root     S     1492   1%   0% /usr/sbin/crond -f -c /etc/crontabs -l 8
-11196 11195 root     S     1492   1%   0% -ash
- 2273     1 root     S     1484   1%   0% /usr/sbin/ntpd -n -S /usr/sbin/ntpd-hotplug -p 0.openwrt.pool.ntp.org -p 1.openwrt.pool.ntp.org -p 2.openwrt.pool.ntp.org -p 3.openwrt.pool.ntp.org
-15699 11196 root     S     1484   1%   0% less openwrtstats.txt
- 1380  1146 root     S     1484   1%   0% udhcpc -p /var/run/udhcpc-eth0.2.pid -s /lib/netifd/dhcp.script -f -t 0 -i eth0.2 -C
+13031     1 root     S     2924   2%   0% /usr/sbin/snmpd -Lf /dev/null -f
+ 7791     1 root     SN    2004   2%   0% /bin/sh /opt/YAMon3/yamon3.4.5.sh
+ 1141     1 root     S     1720   1%   0% /sbin/netifd
+ 1878     1 root     S     1704   1%   0% /usr/sbin/hostapd -s -P /var/run/wifi-phy1.pid -B /var/run/hostapd-phy1.conf
+ 2000     1 root     S     1704   1%   0% /usr/sbin/hostapd -s -P /var/run/wifi-phy0.pid -B /var/run/hostapd-phy0.conf
+    1     0 root     S     1548   1%   0% /sbin/procd
+ 1032     1 root     S     1528   1%   0% /sbin/rpcd
+ 1179     1 root     S     1420   1%   0% /usr/sbin/odhcpd
+ 2315     1 dnsmasq  S     1344   1%   0% /usr/sbin/dnsmasq -C /var/etc/dnsmasq.conf.cfg01411c -k -x /var/run/dnsmasq/dnsmasq.cfg01411c.pid
+ 2395     1 root     S     1328   1%   0% /usr/sbin/uhttpd -f -h /www -r LEDE-ArcherC7 -x /cgi-bin -t 60 -T 30 -k 20 -A 1 -n 3 -N 100 -R -p 0.0.0.0:80 -p [::]:80
+ 1015     1 root     S     1268   1%   0% /sbin/logd -S 64
+ 3602     1 root     S<    1204   1%   0% /usr/sbin/ntpd -n -N -S /usr/sbin/ntpd-hotplug -p 0.lede.pool.ntp.org -p 1.lede.pool.ntp.org -p 2.lede.pool.ntp.org -p 3.lede.pool.ntp.org
+28506 28501 root     S     1204   1%   0% -ash
+  570     1 root     S     1200   1%   0% /sbin/ubusd
+ 1422  1141 root     S     1200   1%   0% udhcpc -p /var/run/udhcpc-eth0.pid -s /lib/netifd/dhcp.script -f -t 0 -i eth0 -x hostname:LEDE-ArcherC7 -C -O 121
+29262 28506 root     S     1200   1%   0% sh getstats.sh
 
 
 [ du -sh / ; du -sh /* ]
-56.0M	/
-555.0K	/bin
-0	/dev
-595.5K	/etc
-8.1M	/lib
-0	/mnt
-205.0K	/overlay
-0	/proc
-27.5M	/rom
-512	/root
-469.0K	/sbin
-0	/sys
-780.0K	/tmp
-17.7M	/usr
-0	/var
-130.5K	/www
+106.4M  /
+451.5K  /bin
+0 /dev
+248.5K  /etc
+4.5M  /lib
+0 /mnt
+39.3M /opt
+43.4M /overlay
+0 /proc
+7.4M  /rom
+0 /root
+450.5K  /sbin
+0 /sys
+4.9M  /tmp
+5.7M  /usr
+0 /var
+128.0K  /www
+
+
+[ User-installed packages ]
+block-mount
+e2fsprogs
+fdisk
+kmod-fs-ext4
+kmod-usb-storage
+kmod-usb3
+luci-app-sqm
+snmpd
+sqm-scripts
 
 
 [ ifconfig ]
-br-lan    Link encap:Ethernet  HWaddr 00:0C:43:28:80:5B
-          inet addr:192.168.200.1  Bcast:192.168.200.255  Mask:255.255.255.0
-          inet6 addr: fd11:1504:432a:4::1/62 Scope:Global
-          inet6 addr: fe80::20c:43ff:fe28:805b/64 Scope:Link
-          inet6 addr: fd1d:722f:20e::1/60 Scope:Global
+br-lan    Link encap:Ethernet  HWaddr 30:B5:C2:84:D3:5E
+          inet addr:192.168.253.1  Bcast:192.168.253.255  Mask:255.255.255.0
+          inet6 addr: fe80::32b5:c2ff:fe84:d35e/64 Scope:Link
+          inet6 addr: fd60:723a:c40d::1/60 Scope:Global
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:79655 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:129401 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:8094385 (7.7 MiB)  TX bytes:76163643 (72.6 MiB)
-
-eth0      Link encap:Ethernet  HWaddr 26:5B:D2:A0:B3:64
-          inet6 addr: fe80::245b:d2ff:fea0:b364/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:146524 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:136563 errors:0 dropped:0 overruns:0 carrier:0
+          RX packets:125538222 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:130644085 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000
-          RX bytes:53863421 (51.3 MiB)  TX bytes:57739162 (55.0 MiB)
-          Interrupt:11
+          RX bytes:12053354625 (11.2 GiB)  TX bytes:152215296052 (141.7 GiB)
 
-eth0.1    Link encap:Ethernet  HWaddr 26:5B:D2:A0:B3:64
+eth0      Link encap:Ethernet  HWaddr 30:B5:C2:84:D3:5F
+          inet addr:192.168.252.2  Bcast:192.168.252.255  Mask:255.255.255.0
+          inet6 addr: fe80::32b5:c2ff:fe84:d35f/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:80626 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:74554 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:8193830 (7.8 MiB)  TX bytes:49084201 (46.8 MiB)
+          RX packets:129649751 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:112701180 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1644258292 (1.5 GiB)  TX bytes:2388122748 (2.2 GiB)
+          Interrupt:4
 
-eth0.2    Link encap:Ethernet  HWaddr 00:0C:43:28:80:5C
-          inet addr:192.168.253.146  Bcast:192.168.253.255  Mask:255.255.255.0
-          inet6 addr: fd11:1504:432a:0:20c:43ff:fe28:805c/64 Scope:Global
-          inet6 addr: fe80::20c:43ff:fe28:805c/64 Scope:Link
-          inet6 addr: fd11:1504:432a::dbe/128 Scope:Global
+eth1      Link encap:Ethernet  HWaddr 30:B5:C2:84:D3:5E
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:65895 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:61005 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:43032021 (41.0 MiB)  TX bytes:7460422 (7.1 MiB)
+          RX packets:76766012 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:96947844 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2766740151 (2.5 GiB)  TX bytes:4239422122 (3.9 GiB)
+          Interrupt:5
 
-ifb4eth0.2 Link encap:Ethernet  HWaddr DA:1D:0B:89:55:59
-          inet6 addr: fe80::d81d:bff:fe89:5559/64 Scope:Link
+ifb4eth0  Link encap:Ethernet  HWaddr 12:A0:3B:5A:D3:33
+          inet6 addr: fe80::10a0:3bff:fe5a:d333/64 Scope:Link
           UP BROADCAST RUNNING NOARP  MTU:1500  Metric:1
-          RX packets:3388 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:3388 errors:0 dropped:0 overruns:0 carrier:0
+          RX packets:61371579 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:61371579 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:32
-          RX bytes:1266328 (1.2 MiB)  TX bytes:1266328 (1.2 MiB)
+          RX bytes:69978344216 (65.1 GiB)  TX bytes:69978344216 (65.1 GiB)
 
 lo        Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
           inet6 addr: ::1/128 Scope:Host
           UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:109 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:109 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:8477 (8.2 KiB)  TX bytes:8477 (8.2 KiB)
+          RX packets:570 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:570 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1
+          RX bytes:85741 (83.7 KiB)  TX bytes:85741 (83.7 KiB)
 
-wlan0     Link encap:Ethernet  HWaddr 00:00:00:00:00:A0
-          inet6 addr: fe80::200:ff:fe00:a0/64 Scope:Link
+wlan0     Link encap:Ethernet  HWaddr 30:B5:C2:84:D3:5C
+          inet6 addr: fe80::32b5:c2ff:fe84:d35c/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:1914 errors:0 dropped:0 overruns:0 carrier:0
+          RX packets:42430166 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:47515271 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000
-          RX bytes:0 (0.0 B)  TX bytes:423279 (413.3 KiB)
+          RX bytes:6015177982 (5.6 GiB)  TX bytes:44034170552 (41.0 GiB)
 
-wlan1     Link encap:Ethernet  HWaddr 00:00:00:00:00:80
-          inet6 addr: fe80::200:ff:fe00:80/64 Scope:Link
+wlan1     Link encap:Ethernet  HWaddr 30:B5:C2:84:D3:5D
+          inet6 addr: fe80::32b5:c2ff:fe84:d35d/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:1912 errors:0 dropped:0 overruns:0 carrier:0
+          RX packets:8105162 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:19768202 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000
-          RX bytes:0 (0.0 B)  TX bytes:423111 (413.1 KiB)
+          RX bytes:1185275127 (1.1 GiB)  TX bytes:13982565325 (13.0 GiB)
 
 
 
 [ logread ]
-Fri Jan 29 00:45:00 2016 cron.info crond[1205]: USER root pid 13366 cmd killall -HUP dnsmasq
-Fri Jan 29 00:45:00 2016 cron.info crond[1205]: USER root pid 13367 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 00:45:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 00:45:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 00:45:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 00:45:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 00:50:00 2016 cron.info crond[1205]: USER root pid 13372 cmd killall -HUP dnsmasq
-Fri Jan 29 00:50:00 2016 cron.info crond[1205]: USER root pid 13373 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 00:50:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 00:50:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 00:50:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 00:50:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 00:55:00 2016 cron.info crond[1205]: USER root pid 13402 cmd killall -HUP dnsmasq
-Fri Jan 29 00:55:00 2016 cron.info crond[1205]: USER root pid 13403 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 00:55:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 00:55:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 00:55:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 00:55:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:00:00 2016 cron.info crond[1205]: USER root pid 13431 cmd killall -HUP dnsmasq
-Fri Jan 29 01:00:00 2016 cron.info crond[1205]: USER root pid 13432 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:00:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:00:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:00:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:00:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:05:00 2016 cron.info crond[1205]: USER root pid 13438 cmd killall -HUP dnsmasq
-Fri Jan 29 01:05:00 2016 cron.info crond[1205]: USER root pid 13439 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:05:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:05:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:05:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:05:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:10:00 2016 cron.info crond[1205]: USER root pid 13467 cmd killall -HUP dnsmasq
-Fri Jan 29 01:10:00 2016 cron.info crond[1205]: USER root pid 13468 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:10:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:10:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:10:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:10:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:15:00 2016 cron.info crond[1205]: USER root pid 13496 cmd killall -HUP dnsmasq
-Fri Jan 29 01:15:00 2016 cron.info crond[1205]: USER root pid 13497 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:15:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:15:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:15:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:15:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:20:00 2016 cron.info crond[1205]: USER root pid 13564 cmd killall -HUP dnsmasq
-Fri Jan 29 01:20:00 2016 cron.info crond[1205]: USER root pid 13565 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:20:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:20:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:20:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:20:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:22:28 2016 user.notice SQM: Stopping SQM on eth0.2
-Fri Jan 29 01:22:29 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 8600 Kbps, out: 950 Kbps
-Fri Jan 29 01:22:30 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
-Fri Jan 29 01:24:45 2016 daemon.err miniupnpd[2236]: PCP MAP: added mapping UDP 16402->192.168.200.104:16402 'PCP MAP b077c408708879b881f84900'
-Fri Jan 29 01:24:45 2016 daemon.notice miniupnpd[2236]: remove port mapping 16402 UDP because it has expired
-Fri Jan 29 01:25:00 2016 cron.info crond[1205]: USER root pid 14092 cmd killall -HUP dnsmasq
-Fri Jan 29 01:25:00 2016 cron.info crond[1205]: USER root pid 14093 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:25:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:25:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:25:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:25:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:30:00 2016 cron.info crond[1205]: USER root pid 14142 cmd killall -HUP dnsmasq
-Fri Jan 29 01:30:00 2016 cron.info crond[1205]: USER root pid 14143 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:30:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:30:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:30:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:30:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:35:00 2016 cron.info crond[1205]: USER root pid 14204 cmd killall -HUP dnsmasq
-Fri Jan 29 01:35:00 2016 cron.info crond[1205]: USER root pid 14205 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:35:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:35:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:35:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:35:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:40:00 2016 cron.info crond[1205]: USER root pid 14272 cmd killall -HUP dnsmasq
-Fri Jan 29 01:40:00 2016 cron.info crond[1205]: USER root pid 14273 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:40:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:40:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:40:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:40:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:45:00 2016 cron.info crond[1205]: USER root pid 14276 cmd killall -HUP dnsmasq
-Fri Jan 29 01:45:00 2016 cron.info crond[1205]: USER root pid 14277 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:45:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:45:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:45:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:45:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:49:22 2016 user.notice SQM: Stopping SQM on eth0.2
-Fri Jan 29 01:49:22 2016 user.notice SQM: ifb associated with interface eth0.2:
-Fri Jan 29 01:49:22 2016 user.notice SQM: Currently no ifb is associated with eth0.2, this is normal during starting of the sqm system.
-Fri Jan 29 01:49:22 2016 user.notice SQM: /usr/lib/sqm/stop-sqm: ifb4eth0.2 shaper deleted
-Fri Jan 29 01:49:22 2016 user.notice SQM: /usr/lib/sqm/stop-sqm: ifb4eth0.2 interface deleted
-Fri Jan 29 01:49:22 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 8600 Kbps, out: 950 Kbps
-Fri Jan 29 01:49:22 2016 user.notice SQM: QDISC htb is useable.
-Fri Jan 29 01:49:23 2016 user.notice SQM: QDISC fq_codel is useable.
-Fri Jan 29 01:49:23 2016 user.notice SQM: Starting simple.qos
-Fri Jan 29 01:49:23 2016 user.notice SQM: ifb associated with interface eth0.2:
-Fri Jan 29 01:49:23 2016 user.notice SQM: Currently no ifb is associated with eth0.2, this is normal during starting of the sqm system.
-Fri Jan 29 01:49:23 2016 user.notice SQM: Squashing differentiated services code points (DSCP) from ingress.
-Fri Jan 29 01:49:23 2016 user.notice SQM: IFACE: eth0.2 MTU: 1500
-Fri Jan 29 01:49:23 2016 user.notice SQM: CUR_HTB_QUANTUM: 1500, BANDWIDTH: 950
-Fri Jan 29 01:49:23 2016 user.notice SQM: STAB: stab mtu 2047 tsize 512 mpu 0 overhead 44 linklayer atm
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 01:49:23 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 01:49:24 2016 user.notice SQM: egress shaping activated
-Fri Jan 29 01:49:24 2016 user.notice SQM: QDISC ingress is useable.
-Fri Jan 29 01:49:24 2016 user.notice SQM: IFACE: eth0.2 MTU: 1500
-Fri Jan 29 01:49:24 2016 user.notice SQM: CUR_HTB_QUANTUM: 1500, BANDWIDTH: 8600
-Fri Jan 29 01:49:24 2016 user.notice SQM: Do not perform DSCP based filtering on ingress. (1-tier classification)
-Fri Jan 29 01:49:24 2016 user.notice SQM: STAB: stab mtu 2047 tsize 512 mpu 0 overhead 44 linklayer atm
-Fri Jan 29 01:49:24 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 01:49:24 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 01:49:24 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 01:49:24 2016 user.notice SQM: ingress shaping activated
-Fri Jan 29 01:49:24 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
-Fri Jan 29 01:50:00 2016 cron.info crond[1205]: USER root pid 14836 cmd killall -HUP dnsmasq
-Fri Jan 29 01:50:00 2016 cron.info crond[1205]: USER root pid 14837 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:50:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:50:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:50:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:50:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 01:55:00 2016 cron.info crond[1205]: USER root pid 14930 cmd killall -HUP dnsmasq
-Fri Jan 29 01:55:00 2016 cron.info crond[1205]: USER root pid 14931 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 01:55:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 01:55:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 01:55:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 01:55:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:00:00 2016 cron.info crond[1205]: USER root pid 14959 cmd killall -HUP dnsmasq
-Fri Jan 29 02:00:00 2016 cron.info crond[1205]: USER root pid 14960 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:00:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:00:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:00:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:00:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:05:00 2016 cron.info crond[1205]: USER root pid 14989 cmd killall -HUP dnsmasq
-Fri Jan 29 02:05:00 2016 cron.info crond[1205]: USER root pid 14990 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:05:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:05:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:05:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:05:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:10:00 2016 cron.info crond[1205]: USER root pid 15045 cmd killall -HUP dnsmasq
-Fri Jan 29 02:10:00 2016 cron.info crond[1205]: USER root pid 15046 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:10:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:10:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:10:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:10:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:15:00 2016 cron.info crond[1205]: USER root pid 15101 cmd killall -HUP dnsmasq
-Fri Jan 29 02:15:00 2016 cron.info crond[1205]: USER root pid 15102 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:15:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:15:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:15:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:15:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:17:57 2016 user.notice SQM: Stopping SQM on eth0.2
-Fri Jan 29 02:17:57 2016 user.notice SQM: ifb associated with interface eth0.2:
-Fri Jan 29 02:17:57 2016 user.notice SQM: Currently no ifb is associated with eth0.2, this is normal during starting of the sqm system.
-Fri Jan 29 02:17:57 2016 user.notice SQM: /usr/lib/sqm/stop-sqm: ifb4eth0.2 shaper deleted
-Fri Jan 29 02:17:58 2016 user.notice SQM: /usr/lib/sqm/stop-sqm: ifb4eth0.2 interface deleted
-Fri Jan 29 02:17:58 2016 user.notice SQM: Starting SQM script: simple.qos on eth0.2, in: 8600 Kbps, out: 950 Kbps
-Fri Jan 29 02:17:58 2016 user.notice SQM: QDISC htb is useable.
-Fri Jan 29 02:17:58 2016 user.notice SQM: QDISC fq_codel is useable.
-Fri Jan 29 02:17:58 2016 user.notice SQM: Starting simple.qos
-Fri Jan 29 02:17:58 2016 user.notice SQM: ifb associated with interface eth0.2:
-Fri Jan 29 02:17:58 2016 user.notice SQM: Currently no ifb is associated with eth0.2, this is normal during starting of the sqm system.
-Fri Jan 29 02:17:58 2016 user.notice SQM: Squashing differentiated services code points (DSCP) from ingress.
-Fri Jan 29 02:17:59 2016 user.notice SQM: IFACE: eth0.2 MTU: 1500
-Fri Jan 29 02:17:59 2016 user.notice SQM: CUR_HTB_QUANTUM: 1500, BANDWIDTH: 950
-Fri Jan 29 02:17:59 2016 user.notice SQM: STAB: stab mtu 2047 tsize 512 mpu 0 overhead 44 linklayer atm
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 02:17:59 2016 user.notice SQM: egress shaping activated
-Fri Jan 29 02:17:59 2016 user.notice SQM: QDISC ingress is useable.
-Fri Jan 29 02:17:59 2016 user.notice SQM: IFACE: eth0.2 MTU: 1500
-Fri Jan 29 02:17:59 2016 user.notice SQM: CUR_HTB_QUANTUM: 1500, BANDWIDTH: 8600
-Fri Jan 29 02:17:59 2016 user.notice SQM: Do not perform DSCP based filtering on ingress. (1-tier classification)
-Fri Jan 29 02:17:59 2016 user.notice SQM: STAB: stab mtu 2047 tsize 512 mpu 0 overhead 44 linklayer atm
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_limit:  CURLIMIT: 1001
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_target defaulting to auto.
-Fri Jan 29 02:17:59 2016 user.notice SQM: get_ECN: ECN CURECN: ecn IECN: ECN EECN: ECN
-Fri Jan 29 02:17:59 2016 user.notice SQM: ingress shaping activated
-Fri Jan 29 02:17:59 2016 user.notice SQM: simple.qos was started on eth0.2 successfully
-Fri Jan 29 02:20:00 2016 cron.info crond[1205]: USER root pid 15634 cmd killall -HUP dnsmasq
-Fri Jan 29 02:20:00 2016 cron.info crond[1205]: USER root pid 15635 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:20:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:20:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:20:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:20:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:24:45 2016 daemon.err miniupnpd[2236]: PCP MAP: added mapping UDP 16402->192.168.200.104:16402 'PCP MAP b077c408708879b881f84900'
-Fri Jan 29 02:25:00 2016 cron.info crond[1205]: USER root pid 15679 cmd killall -HUP dnsmasq
-Fri Jan 29 02:25:00 2016 cron.info crond[1205]: USER root pid 15680 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:25:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:25:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:25:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:25:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
-Fri Jan 29 02:30:00 2016 cron.info crond[1205]: USER root pid 15700 cmd killall -HUP dnsmasq
-Fri Jan 29 02:30:00 2016 cron.info crond[1205]: USER root pid 15701 cmd /usr/sbin/ff_olsr_watchdog
-Fri Jan 29 02:30:00 2016 daemon.info dnsmasq[2167]: read /etc/hosts - 1 addresses
-Fri Jan 29 02:30:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/dhcp - 1 addresses
-Fri Jan 29 02:30:00 2016 daemon.info dnsmasq[2167]: read /tmp/hosts/odhcpd - 0 addresses
-Fri Jan 29 02:30:00 2016 daemon.info dnsmasq-dhcp[2167]: read /etc/ethers - 0 addresses
+Sun Dec  9 01:24:59 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:31:41 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:34:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:34:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:34:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:36:49 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:40:19 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.110 ac:bc:32:8e:d7:69
+Sun Dec  9 01:40:19 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:40:19 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.110 ac:bc:32:8e:d7:69 Richs-MBP-10337
+Sun Dec  9 01:40:19 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 01:40:19 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::d8b/128
+Sun Dec  9 01:40:19 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.205 00:1c:42:4f:58:60
+Sun Dec  9 01:40:19 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.205 00:1c:42:4f:58:60 win7-on-richb
+Sun Dec  9 01:40:19 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 01:40:19 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::d8b/128
+Sun Dec  9 01:40:19 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:40:20 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 01:40:20 2018 daemon.warn odhcpd[1179]: DHCPV6 REQUEST IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::d8b/128
+Sun Dec  9 01:40:20 2018 daemon.info dnsmasq[2315]: read /etc/hosts - 4 addresses
+Sun Dec  9 01:40:20 2018 daemon.info dnsmasq[2315]: read /tmp/hosts/odhcpd - 1 addresses
+Sun Dec  9 01:40:20 2018 daemon.info dnsmasq[2315]: read /tmp/hosts/dhcp.cfg01411c - 2 addresses
+Sun Dec  9 01:40:20 2018 daemon.info dnsmasq-dhcp[2315]: read /etc/ethers - 0 addresses
+Sun Dec  9 01:40:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:40:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:40:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 01:40:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 01:40:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 01:40:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 01:42:18 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:42:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.196 44:74:6c:21:a9:98
+Sun Dec  9 01:42:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.196 44:74:6c:21:a9:98 android-cbcd55ea3b5e1f88
+Sun Dec  9 01:44:51 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:44:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:48:54 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:48:56 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 01:48:56 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 01:48:56 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:48:59 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:49:01 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:49:05 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:49:57 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:56:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.196 44:74:6c:21:a9:98
+Sun Dec  9 01:56:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.196 44:74:6c:21:a9:98 android-cbcd55ea3b5e1f88
+Sun Dec  9 01:57:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 01:59:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.155 d8:a2:5e:29:1a:c2
+Sun Dec  9 01:59:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.155 d8:a2:5e:29:1a:c2
+Sun Dec  9 02:04:26 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:08:43 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 02:08:43 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:08:49 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:08:49 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 02:10:22 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:10:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:12:47 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:16:49 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:18:57 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:19:01 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:20:47 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 02:20:47 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:20:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:20:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 02:22:02 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:28:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:32:43 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:35:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:35:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:36:00 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:36:22 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:36:26 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:36:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 02:36:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:37:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:37:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 02:38:06 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:43:31 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:45:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:46:08 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 02:46:08 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:46:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:46:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 02:47:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.246 ac:22:0b:3d:5d:b7
+Sun Dec  9 02:47:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.246 ac:22:0b:3d:5d:b7 android-54bc45b686c0d6e9
+Sun Dec  9 02:48:39 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:48:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:48:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:49:42 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 02:49:42 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 02:49:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:49:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:49:50 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:51:16 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 02:56:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 02:56:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:57:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 02:57:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:00:54 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:01:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:01:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:01:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:02:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:02:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:03:36 2018 daemon.notice netifd: wan (1422): udhcpc: sending renew to 192.168.252.1
+Sun Dec  9 03:03:36 2018 daemon.notice netifd: wan (1422): udhcpc: lease of 192.168.252.2 obtained, lease time 86400
+Sun Dec  9 03:04:38 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 03:04:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:05:15 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:05:15 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:05:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:05:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:07:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:07:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:07:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:07:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:11:59 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:11:59 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:12:05 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:12:05 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:12:06 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:13:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:13:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:13:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:13:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:16:45 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:16:45 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:18:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:18:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:19:24 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:19:24 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:19:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:19:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:21:17 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:22:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.170 f8:27:93:bd:15:fc
+Sun Dec  9 03:22:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.170 f8:27:93:bd:15:fc LinsOnDringiPad
+Sun Dec  9 03:27:00 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:27:04 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:29:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:29:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:30:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:30:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:30:24 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:33:35 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:33:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:33:45 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:34:50 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.144 54:35:30:cf:fa:10
+Sun Dec  9 03:34:50 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.144 54:35:30:cf:fa:10 BRW543530CFFA10
+Sun Dec  9 03:35:53 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:37:10 2018 daemon.info hostapd: wlan1: STA b0:34:95:79:a8:ef IEEE 802.11: authenticated
+Sun Dec  9 03:37:10 2018 daemon.info hostapd: wlan1: STA b0:34:95:79:a8:ef IEEE 802.11: associated (aid 1)
+Sun Dec  9 03:37:10 2018 daemon.notice hostapd: wlan1: AP-STA-CONNECTED b0:34:95:79:a8:ef
+Sun Dec  9 03:37:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:37:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:37:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:37:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:39:17 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.135 b0:34:95:79:a8:ef
+Sun Dec  9 03:39:17 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.135 b0:34:95:79:a8:ef LAJBWhihone8279
+Sun Dec  9 03:39:17 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:39:22 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:40:35 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:40:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.205 00:1c:42:4f:58:60
+Sun Dec  9 03:40:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.205 00:1c:42:4f:58:60 win7-on-richb
+Sun Dec  9 03:40:36 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:40:37 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 03:40:37 2018 daemon.warn odhcpd[1179]: DHCPV6 CONFIRM IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: not on-link fd60:723a:c40d::d8b/128
+Sun Dec  9 03:40:38 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 03:40:38 2018 daemon.warn odhcpd[1179]: DHCPV6 CONFIRM IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: not on-link fd60:723a:c40d::d8b/128
+Sun Dec  9 03:40:38 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 03:40:38 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::d8b/128
+Sun Dec  9 03:40:38 2018 daemon.info dnsmasq[2315]: read /etc/hosts - 4 addresses
+Sun Dec  9 03:40:38 2018 daemon.info dnsmasq[2315]: read /tmp/hosts/odhcpd - 0 addresses
+Sun Dec  9 03:40:38 2018 daemon.info dnsmasq[2315]: read /tmp/hosts/dhcp.cfg01411c - 2 addresses
+Sun Dec  9 03:40:38 2018 daemon.info dnsmasq-dhcp[2315]: read /etc/ethers - 0 addresses
+Sun Dec  9 03:40:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:40:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:42:50 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:43:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:43:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:43:13 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:43:13 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:47:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.232 70:f0:87:69:93:73
+Sun Dec  9 03:47:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.232 70:f0:87:69:93:73 Rich-Browns-7
+Sun Dec  9 03:48:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:48:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:48:53 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:50:28 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 03:50:28 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 03:50:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:50:33 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:50:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:52:18 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:52:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:52:36 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 03:53:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 03:53:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:53:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 03:53:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 03:56:06 2018 daemon.info hostapd: wlan1: STA b0:34:95:79:a8:ef IEEE 802.11: authenticated
+Sun Dec  9 03:56:06 2018 daemon.info hostapd: wlan1: STA b0:34:95:79:a8:ef IEEE 802.11: associated (aid 1)
+Sun Dec  9 03:56:06 2018 daemon.notice hostapd: wlan1: AP-STA-CONNECTED b0:34:95:79:a8:ef
+Sun Dec  9 03:59:23 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.229 a8:86:dd:58:be:ce
+Sun Dec  9 03:59:23 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.229 a8:86:dd:58:be:ce LAJBiPhone9802
+Sun Dec  9 03:59:35 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:05:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:05:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:05:46 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:05:46 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:08:08 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:16:33 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:16:50 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:16:50 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:17:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:17:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:18:06 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:18:06 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:18:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:18:26 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:18:31 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:23:20 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:25:05 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:25:05 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:25:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:25:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:25:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:25:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:27:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:27:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:27:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:27:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:30:08 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:35:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:37:56 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:37:56 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:38:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:38:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:40:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:40:59 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:41:04 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:45:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:45:33 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:45:47 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:45:47 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:45:49 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:45:49 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:47:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:48:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:48:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:48:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:51:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 04:51:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 04:51:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:51:19 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:51:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:53:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:53:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:53:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 04:53:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:54:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 04:54:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 04:54:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:55:54 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:55:54 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:57:07 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:57:07 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 04:57:20 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:01:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:01:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:04:24 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:05:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:05:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:05:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:05:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:08:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:08:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:09:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:11:55 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:11:55 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:11:57 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:11:57 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:13:33 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:14:39 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:14:39 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:14:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:16:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:16:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:16:57 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:16:57 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:18:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.143 60:fe:c5:b6:e5:b7
+Sun Dec  9 05:18:36 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.143 60:fe:c5:b6:e5:b7 LinBrownsiPad2
+Sun Dec  9 05:18:36 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:18:41 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:23:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:27:33 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:27:33 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:28:01 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:28:01 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:28:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:32:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:32:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:32:15 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:32:15 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:34:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:37:23 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:37:23 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:37:50 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:37:50 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:40:52 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:40:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.205 00:1c:42:4f:58:60
+Sun Dec  9 05:40:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.205 00:1c:42:4f:58:60 win7-on-richb
+Sun Dec  9 05:40:52 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 05:40:52 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::65e/128
+Sun Dec  9 05:40:52 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:40:52 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 05:40:52 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::65e/128
+Sun Dec  9 05:40:53 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 05:40:57 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:41:01 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:41:24 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:41:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:42:00 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:44:35 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:46:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:48:38 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:48:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:49:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:49:50 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:49:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:52:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 05:52:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 05:52:00 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:52:05 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:52:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:52:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:52:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:52:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.192 ac:7f:3e:0d:41:85
+Sun Dec  9 05:52:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.192 ac:7f:3e:0d:41:85 White-iPhone
+Sun Dec  9 05:52:40 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:52:40 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:53:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:53:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:53:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:53:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 05:56:03 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 05:56:03 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:56:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 05:56:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 05:57:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:01:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 06:01:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:02:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:02:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 06:03:15 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:09:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:11:23 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.135 b0:34:95:79:a8:ef
+Sun Dec  9 06:11:23 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.135 b0:34:95:79:a8:ef LAJBWhihone8279
+Sun Dec  9 06:11:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:11:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:11:32 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:12:40 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 06:12:40 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:12:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:12:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 06:13:34 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:18:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:18:45 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:21:58 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:22:03 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:22:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:24:44 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 06:24:44 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:25:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:25:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 06:25:37 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 06:25:37 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:26:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:26:04 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 06:27:38 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:31:51 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:34:39 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 06:34:39 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:34:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:34:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 06:40:49 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:41:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:41:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:41:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:41:47 2018 daemon.info hostapd: wlan1: STA b0:34:95:79:a8:ef IEEE 802.11: authenticated
+Sun Dec  9 06:41:47 2018 daemon.info hostapd: wlan1: STA b0:34:95:79:a8:ef IEEE 802.11: associated (aid 1)
+Sun Dec  9 06:41:47 2018 daemon.notice hostapd: wlan1: AP-STA-CONNECTED b0:34:95:79:a8:ef
+Sun Dec  9 06:41:50 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:45:16 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:48:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:48:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:49:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:49:28 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 06:49:28 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:49:41 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 06:49:41 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 06:52:41 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:52:46 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 06:52:46 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 06:52:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:52:50 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:52:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 06:58:39 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:03:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:03:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:03:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:03:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 07:07:36 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:11:49 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:11:54 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:14:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:14:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:14:34 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:14:34 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 07:16:49 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:18:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:18:44 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:18:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:18:57 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:21:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:21:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:21:28 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:21:28 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 07:23:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:25:19 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:25:19 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:25:32 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:25:32 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 07:31:18 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:32:49 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:32:54 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:32:59 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:33:25 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:33:25 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:33:29 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:33:33 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:34:02 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:34:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.143 60:fe:c5:b6:e5:b7
+Sun Dec  9 07:34:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.143 60:fe:c5:b6:e5:b7 LinBrownsiPad2
+Sun Dec  9 07:35:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:35:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:35:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:35:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 07:38:43 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:41:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.110 ac:bc:32:8e:d7:69
+Sun Dec  9 07:41:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.110 ac:bc:32:8e:d7:69 Richs-MBP-10337
+Sun Dec  9 07:41:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:41:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.205 00:1c:42:4f:58:60
+Sun Dec  9 07:41:09 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.205 00:1c:42:4f:58:60 win7-on-richb
+Sun Dec  9 07:41:09 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:41:10 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 07:41:10 2018 daemon.warn odhcpd[1179]: DHCPV6 CONFIRM IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: not on-link
+Sun Dec  9 07:41:11 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 07:41:11 2018 daemon.warn odhcpd[1179]: DHCPV6 CONFIRM IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: not on-link
+Sun Dec  9 07:41:11 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 07:41:11 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::e71/128
+Sun Dec  9 07:41:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:41:18 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:41:53 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:41:57 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:42:04 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:42:04 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:42:13 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.196 44:74:6c:21:a9:98
+Sun Dec  9 07:42:13 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.196 44:74:6c:21:a9:98 android-cbcd55ea3b5e1f88
+Sun Dec  9 07:43:11 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:44:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:44:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:44:56 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:44:56 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 07:47:22 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.155 d8:a2:5e:29:1a:c2
+Sun Dec  9 07:47:22 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.155 d8:a2:5e:29:1a:c2
+Sun Dec  9 07:48:01 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:48:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:48:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:48:50 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:53:31 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 07:53:31 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 07:53:31 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:53:36 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:53:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:57:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 07:57:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:57:26 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 07:57:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 07:57:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:01:40 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:03:02 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:03:06 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:03:11 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:06:43 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:09:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:09:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:09:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:09:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:11:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:11:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:11:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:13:16 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:14:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:14:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:14:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:14:14 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:19:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:21:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:21:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:21:58 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:22:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:22:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:22:02 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:22:06 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:27:46 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:32:46 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:32:46 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:33:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:33:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:36:19 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:36:22 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.205 00:1c:42:4f:58:60
+Sun Dec  9 08:36:22 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.205 00:1c:42:4f:58:60 win7-on-richb
+Sun Dec  9 08:36:22 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 08:36:22 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::f90/128
+Sun Dec  9 08:36:23 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 08:36:23 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::f90/128
+Sun Dec  9 08:36:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:36:24 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 08:36:24 2018 daemon.warn odhcpd[1179]: DHCPV6 REQUEST IA_NA from 000100011e0e2bd2001c424f5860 on br-lan: ok fd60:723a:c40d::f90/128
+Sun Dec  9 08:36:24 2018 daemon.info dnsmasq[2315]: read /etc/hosts - 4 addresses
+Sun Dec  9 08:36:24 2018 daemon.info dnsmasq[2315]: read /tmp/hosts/odhcpd - 1 addresses
+Sun Dec  9 08:36:24 2018 daemon.info dnsmasq[2315]: read /tmp/hosts/dhcp.cfg01411c - 2 addresses
+Sun Dec  9 08:36:24 2018 daemon.info dnsmasq-dhcp[2315]: read /etc/ethers - 0 addresses
+Sun Dec  9 08:36:24 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:36:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:36:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:36:31 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:37:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:41:28 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:41:33 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:42:02 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:42:02 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:42:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:42:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:42:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:42:48 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:44:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:44:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:44:32 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:44:32 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:45:08 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:46:04 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:46:04 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:46:08 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:47:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.246 ac:22:0b:3d:5d:b7
+Sun Dec  9 08:47:20 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.246 ac:22:0b:3d:5d:b7 android-54bc45b686c0d6e9
+Sun Dec  9 08:52:07 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:52:07 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:52:11 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:52:16 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:52:40 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:52:40 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:53:08 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:53:08 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 08:54:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 08:54:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 08:54:18 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:54:23 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:54:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:57:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.170 f8:27:93:bd:15:fc
+Sun Dec  9 08:57:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.170 f8:27:93:bd:15:fc LinsOnDringiPad
+Sun Dec  9 08:57:52 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:57:52 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:57:56 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:57:56 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:58:00 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:58:01 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:58:26 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 08:59:22 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 08:59:22 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:59:24 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 08:59:24 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:02:25 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.144 54:35:30:cf:fa:10
+Sun Dec  9 09:02:25 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.144 54:35:30:cf:fa:10 BRW543530CFFA10
+Sun Dec  9 09:04:25 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:04:25 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:04:39 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 09:04:39 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:04:39 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:05:18 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:09:32 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.232 70:f0:87:69:93:73
+Sun Dec  9 09:09:32 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.232 70:f0:87:69:93:73 Rich-Browns-7
+Sun Dec  9 09:11:31 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:11:36 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:13:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:13:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:13:49 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:13:49 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:14:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:16:22 2018 authpriv.info dropbear[28501]: Child connection from 192.168.253.110:52284
+Sun Dec  9 09:16:26 2018 authpriv.notice dropbear[28501]: Password auth succeeded for 'root' from 192.168.253.110:52284
+Sun Dec  9 09:17:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:17:07 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:17:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:17:21 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:21:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:22:10 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:22:14 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:23:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.229 a8:86:dd:58:be:ce
+Sun Dec  9 09:23:18 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.229 a8:86:dd:58:be:ce LAJBiPhone9802
+Sun Dec  9 09:24:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:24:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:24:37 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:24:37 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:26:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:26:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:26:33 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:26:33 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:28:26 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:28:26 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:28:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:28:53 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:29:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:34:47 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:36:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:36:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:36:41 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:36:41 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:37:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:37:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:38:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:38:00 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:41:35 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:41:39 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:41:59 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:41:59 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:42:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:42:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:43:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:47:25 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:49:11 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:49:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:49:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:49:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:49:58 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:51:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:51:12 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:51:13 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:51:13 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:51:52 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:51:57 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:52:39 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:52:39 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:52:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:52:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:52:59 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:52:59 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 09:52:59 2018 daemon.warn odhcpd[1179]: DHCPV6 SOLICIT IA_NA from 000100011edf3ce230636bcf3772 on br-lan: ok fd60:723a:c40d::958/128
+Sun Dec  9 09:53:00 2018 daemon.notice odhcpd[1179]: Got DHCPv6 request
+Sun Dec  9 09:53:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 30:63:6b:cf:37:72
+Sun Dec  9 09:53:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.186 30:63:6b:cf:37:72
+Sun Dec  9 09:53:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 30:63:6b:cf:37:72
+Sun Dec  9 09:53:02 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.186 30:63:6b:cf:37:72
+Sun Dec  9 09:53:03 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.186 30:63:6b:cf:37:72
+Sun Dec  9 09:53:03 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.186 30:63:6b:cf:37:72 iPhone
+Sun Dec  9 09:53:47 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:53:47 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:53:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:53:48 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 09:54:25 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:55:03 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.208 10:40:f3:7b:de:76
+Sun Dec  9 09:55:03 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.208 10:40:f3:7b:de:76 LinBrowin333885
+Sun Dec  9 09:55:03 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:55:08 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:55:12 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 09:55:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 09:55:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:55:31 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 09:55:31 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:00:55 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:02:24 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:02:24 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:02:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:02:30 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:03:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:03:29 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:03:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:03:35 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:05:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:05:38 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:06:05 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:06:05 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:06:31 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:06:31 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:06:37 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:06:37 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:07:15 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:07:15 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:07:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:07:16 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:07:27 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:08:11 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:08:11 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:08:17 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:08:17 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:11:30 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:11:38 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:11:38 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:11:42 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:12:29 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:12:29 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:16:37 2018 daemon.info odhcpd[1179]: Using a RA lifetime of 0 seconds on br-lan
+Sun Dec  9 10:17:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:17:27 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:17:33 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:17:33 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
+Sun Dec  9 10:18:51 2018 daemon.info dnsmasq-dhcp[2315]: DHCPDISCOVER(br-lan) 00:27:02:16:8d:99
+Sun Dec  9 10:18:51 2018 daemon.info dnsmasq-dhcp[2315]: DHCPOFFER(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:18:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPREQUEST(br-lan) 192.168.253.231 00:27:02:16:8d:99
+Sun Dec  9 10:18:52 2018 daemon.info dnsmasq-dhcp[2315]: DHCPACK(br-lan) 192.168.253.231 00:27:02:16:8d:99 target
 
 
 [ dmesg ]
-[    0.000000] Linux version 3.18.26 (demetris@Athlon-M5A78L) (gcc version 4.8.3 (OpenWrt/Linaro GCC 4.8-2014.04 r48430) ) #2 SMP Tue Jan 26 11:58:11 EET 2016
-[    0.000000] SoC Type: MediaTek MT7621 ver:1 eco:3
+[    0.000000] Linux version 4.9.120 (buildbot@builds-03.infra.lede-project.org) (gcc version 7.3.0 (OpenWrt GCC 7.3.0 r7102-3f3a2c9) ) #0 Thu Aug 16 07:51:15 2018
+[    0.000000] MyLoader: sysp=0200c040, boardp=00000210, parts=00009821
 [    0.000000] bootconsole [early0] enabled
-[    0.000000] CPU0 revision is: 0001992f (MIPS 1004Kc)
-[    0.000000] MIPS: machine is MQmaker WITI
+[    0.000000] CPU0 revision is: 00019750 (MIPS 74Kc)
+[    0.000000] SoC: Qualcomm Atheros QCA9558 ver 1 rev 0
 [    0.000000] Determined physical RAM map:
-[    0.000000]  memory: 10000000 @ 00000000 (usable)
+[    0.000000]  memory: 08000000 @ 00000000 (usable)
 [    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
 [    0.000000] Zone ranges:
-[    0.000000]   Normal   [mem 0x00000000-0x0fffffff]
-[    0.000000]   HighMem  empty
+[    0.000000]   Normal   [mem 0x0000000000000000-0x0000000007ffffff]
 [    0.000000] Movable zone start for each node
 [    0.000000] Early memory node ranges
-[    0.000000]   node   0: [mem 0x00000000-0x0fffffff]
-[    0.000000] Initmem setup node 0 [mem 0x00000000-0x0fffffff]
-[    0.000000] On node 0 totalpages: 65536
-[    0.000000] free_area_init_node: node 0, pgdat 80345b80, node_mem_map 81000000
-[    0.000000]   Normal zone: 512 pages used for memmap
+[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] On node 0 totalpages: 32768
+[    0.000000] free_area_init_node: node 0, pgdat 80442044, node_mem_map 81000020
+[    0.000000]   Normal zone: 256 pages used for memmap
 [    0.000000]   Normal zone: 0 pages reserved
-[    0.000000]   Normal zone: 65536 pages, LIFO batch:15
-[    0.000000] Detected 3 available secondary CPU(s)
-[    0.000000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
-[    0.000000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
-[    0.000000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
-[    0.000000] PERCPU: Embedded 9 pages/cpu @8120b000 s5696 r8192 d22976 u36864
-[    0.000000] pcpu-alloc: s5696 r8192 d22976 u36864 alloc=9*4096
-[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3
-[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 65024
-[    0.000000] Kernel command line: console=ttyS0,57600 rootfstype=squashfs,jffs2
-[    0.000000] PID hash table entries: 1024 (order: 0, 4096 bytes)
-[    0.000000] Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
-[    0.000000] Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
-[    0.000000] Writing ErrCtl register=0005ba00
-[    0.000000] Readback ErrCtl register=0005ba00
-[    0.000000] Memory: 255844K/262144K available (2740K kernel code, 144K rwdata, 524K rodata, 164K init, 228K bss, 6300K reserved, 0K highmem)
-[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
-[    0.000000] Hierarchical RCU implementation.
-[    0.000000] NR_IRQS:256
-[    0.000000] gic: revision 3.0
-[    0.000000] CPU Clock: 880MHz
-[    0.050000] Calibrating delay loop... 580.40 BogoMIPS (lpj=2902016)
-[    0.060000] pid_max: default: 32768 minimum: 301
-[    0.070000] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
-[    0.080000] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
-[    0.090000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
-[    0.090000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
-[    0.090000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
-[    0.090000] CPU1 revision is: 0001992f (MIPS 1004Kc)
-[    0.190000] Synchronize counters for CPU 1: done.
-[    0.190000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
-[    0.190000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
-[    0.190000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
-[    0.200000] CPU2 revision is: 0001992f (MIPS 1004Kc)
-[    0.290000] Synchronize counters for CPU 2: done.
-[    0.300000] Primary instruction cache 32kB, VIPT, 4-way, linesize 32 bytes.
-[    0.300000] Primary data cache 32kB, 4-way, PIPT, no aliases, linesize 32 bytes
-[    0.300000] MIPS secondary cache 256kB, 8-way, linesize 32 bytes.
-[    0.310000] CPU3 revision is: 0001992f (MIPS 1004Kc)
-[    0.400000] Synchronize counters for CPU 3: done.
-[    0.410000] Brought up 4 CPUs
-[    0.420000] pinctrl core: initialized pinctrl subsystem
-[    0.430000] NET: Registered protocol family 16
-[    0.440000] rt2880-pinmux pinctrl: try to register 61 pins ...
-[    0.440000] pinctrl core: registered pin 0 (io0) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 1 (io1) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 2 (io2) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 3 (io3) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 4 (io4) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 5 (io5) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 6 (io6) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 7 (io7) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 8 (io8) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 9 (io9) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 10 (io10) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 11 (io11) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 12 (io12) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 13 (io13) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 14 (io14) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 15 (io15) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 16 (io16) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 17 (io17) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 18 (io18) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 19 (io19) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 20 (io20) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 21 (io21) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 22 (io22) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 23 (io23) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 24 (io24) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 25 (io25) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 26 (io26) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 27 (io27) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 28 (io28) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 29 (io29) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 30 (io30) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 31 (io31) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 32 (io32) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 33 (io33) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 34 (io34) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 35 (io35) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 36 (io36) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 37 (io37) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 38 (io38) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 39 (io39) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 40 (io40) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 41 (io41) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 42 (io42) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 43 (io43) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 44 (io44) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 45 (io45) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 46 (io46) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 47 (io47) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 48 (io48) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 49 (io49) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 50 (io50) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 51 (io51) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 52 (io52) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 53 (io53) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 54 (io54) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 55 (io55) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 56 (io56) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 57 (io57) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 58 (io58) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 59 (io59) on rt2880-pinmux
-[    0.440000] pinctrl core: registered pin 60 (io60) on rt2880-pinmux
-[    0.440000] pinctrl core: add 4 pinmux maps
-[    0.440000] rt2880-pinmux pinctrl: found group selector 5 for wdt
-[    0.440000] rt2880-pinmux pinctrl: found group selector 8 for rgmii2
-[    0.440000] rt2880-pinmux pinctrl: found group selector 4 for jtag
-[    0.440000] rt2880-pinmux pinctrl: found group selector 7 for mdio
-[    0.440000] rt2880-pinmux pinctrl: request pin 18 (io18) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 22 (io22) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 23 (io23) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 24 (io24) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 25 (io25) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 26 (io26) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 27 (io27) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 28 (io28) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 29 (io29) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 30 (io30) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 31 (io31) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 32 (io32) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 33 (io33) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 13 (io13) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 14 (io14) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 15 (io15) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 16 (io16) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 17 (io17) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 20 (io20) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: request pin 21 (io21) for pinctrl
-[    0.440000] rt2880-pinmux pinctrl: failed to lookup the sleep state
-[    0.440000] FPU Affinity set after 11720 emulations
-[    0.440000] pinctrl core: add 1 pinmux maps
-[    0.440000] rt2880-pinmux pinctrl: found group selector 6 for pcie
-[    0.440000] rt2880-pinmux pinctrl: request pin 19 (io19) for 1e140000.pcie
-[    0.440000] pull PCIe RST: RALINK_RSTCTRL = 4000000
-[    0.740000] release PCIe RST: RALINK_RSTCTRL = 7000000
-[    0.750000] ***** Xtal 40MHz *****
-[    0.750000] release PCIe RST: RALINK_RSTCTRL = 7000000
-[    0.760000] Port 0 N_FTS = 1b105000
-[    0.760000] Port 1 N_FTS = 1b105000
-[    0.770000] Port 2 N_FTS = 1b105000
-[    1.910000]  -> 21007f2
-[    1.920000] PCIE0 enabled
-[    1.920000] PCIE1 enabled
-[    1.930000] PCIE2 enabled
-[    1.930000] PCI host bridge /pcie@1e140000 ranges:
-[    1.940000]  MEM 0x0000000060000000..0x000000006fffffff
-[    1.950000]   IO 0x000000001e160000..0x000000001e16ffff
-[    1.990000] mt7621_gpio 1e000600.gpio: registering 32 gpios
-[    2.000000] mt7621_gpio 1e000600.gpio: registering 32 gpios
-[    2.010000] mt7621_gpio 1e000600.gpio: registering 32 gpios
-[    2.020000] PCI host bridge to bus 0000:00
-[    2.030000] pci_bus 0000:00: root bus resource [mem 0x60000000-0x6fffffff]
-[    2.040000] pci_bus 0000:00: root bus resource [io  0xffffffff]
-[    2.050000] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
-[    2.070000] pci 0000:00:00.0: [0e8d:0801] type 01 class 0x060400
-[    2.070000] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x7fffffff]
-[    2.070000] pci 0000:00:00.0: reg 0x14: [mem 0x60600000-0x6060ffff]
-[    2.070000] pci 0000:00:00.0: supports D1
-[    2.070000] pci 0000:00:00.0: PME# supported from D0 D1 D3hot
-[    2.070000] pci 0000:00:01.0: [0e8d:0801] type 01 class 0x060400
-[    2.070000] pci 0000:00:01.0: reg 0x10: [mem 0x00000000-0x7fffffff]
-[    2.070000] pci 0000:00:01.0: reg 0x14: [mem 0x60610000-0x6061ffff]
-[    2.070000] pci 0000:00:01.0: supports D1
-[    2.070000] pci 0000:00:01.0: PME# supported from D0 D1 D3hot
-[    2.070000] pci 0000:00:02.0: [0e8d:0801] type 01 class 0x060400
-[    2.070000] pci 0000:00:02.0: reg 0x10: [mem 0x00000000-0x7fffffff]
-[    2.070000] pci 0000:00:02.0: reg 0x14: [mem 0x60620000-0x6062ffff]
-[    2.070000] pci 0000:00:02.0: supports D1
-[    2.070000] pci 0000:00:02.0: PME# supported from D0 D1 D3hot
-[    2.070000] pci 0000:01:00.0: [14c3:7662] type 00 class 0x028000
-[    2.070000] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x000fffff 64bit]
-[    2.070000] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
-[    2.070000] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
-[    2.070000] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
-[    2.070000] pci 0000:02:00.0: [14c3:7662] type 00 class 0x028000
-[    2.070000] pci 0000:02:00.0: reg 0x10: [mem 0x00000000-0x000fffff 64bit]
-[    2.070000] pci 0000:02:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
-[    2.070000] pci 0000:02:00.0: PME# supported from D0 D3hot D3cold
-[    2.070000] pci_bus 0000:02: busn_res: [bus 02-ff] end is updated to 02
-[    2.070000] pci 0000:03:00.0: [1b21:0612] type 00 class 0x010601
-[    2.070000] pci 0000:03:00.0: reg 0x10: [io  0x0000-0x0007]
-[    2.070000] pci 0000:03:00.0: reg 0x14: [io  0x0000-0x0003]
-[    2.070000] pci 0000:03:00.0: reg 0x18: [io  0x0000-0x0007]
-[    2.070000] pci 0000:03:00.0: reg 0x1c: [io  0x0000-0x0003]
-[    2.070000] pci 0000:03:00.0: reg 0x20: [io  0x0000-0x001f]
-[    2.070000] pci 0000:03:00.0: reg 0x24: [mem 0x00000000-0x000001ff]
-[    2.070000] pci 0000:03:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
-[    2.070000] pci_bus 0000:03: busn_res: [bus 03-ff] end is updated to 03
-[    2.070000] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 03
-[    2.070000] pci 0000:00:00.0: BAR 0: no space for [mem size 0x80000000]
-[    2.090000] pci 0000:00:00.0: BAR 0: failed to assign [mem size 0x80000000]
-[    2.100000] pci 0000:00:01.0: BAR 0: no space for [mem size 0x80000000]
-[    2.110000] pci 0000:00:01.0: BAR 0: failed to assign [mem size 0x80000000]
-[    2.130000] pci 0000:00:02.0: BAR 0: no space for [mem size 0x80000000]
-[    2.140000] pci 0000:00:02.0: BAR 0: failed to assign [mem size 0x80000000]
-[    2.150000] pci 0000:00:00.0: BAR 8: assigned [mem 0x60000000-0x600fffff]
-[    2.170000] pci 0000:00:00.0: BAR 9: assigned [mem 0x60100000-0x601fffff pref]
-[    2.180000] pci 0000:00:01.0: BAR 8: assigned [mem 0x60200000-0x602fffff]
-[    2.190000] pci 0000:00:01.0: BAR 9: assigned [mem 0x60300000-0x603fffff pref]
-[    2.210000] pci 0000:00:02.0: BAR 8: assigned [mem 0x60400000-0x604fffff]
-[    2.220000] pci 0000:00:02.0: BAR 9: assigned [mem 0x60500000-0x605fffff pref]
-[    2.240000] pci 0000:00:00.0: BAR 1: assigned [mem 0x60600000-0x6060ffff]
-[    2.250000] pci 0000:00:01.0: BAR 1: assigned [mem 0x60610000-0x6061ffff]
-[    2.260000] pci 0000:00:02.0: BAR 1: assigned [mem 0x60620000-0x6062ffff]
-[    2.280000] pci 0000:00:02.0: BAR 7: no space for [io  size 0x1000]
-[    2.290000] pci 0000:00:02.0: BAR 7: failed to assign [io  size 0x1000]
-[    2.300000] pci 0000:01:00.0: BAR 0: assigned [mem 0x60000000-0x600fffff 64bit]
-[    2.320000] pci 0000:01:00.0: BAR 6: assigned [mem 0x60100000-0x6010ffff pref]
-[    2.330000] pci 0000:00:00.0: PCI bridge to [bus 01]
-[    2.340000] pci 0000:00:00.0:   bridge window [mem 0x60000000-0x600fffff]
-[    2.360000] pci 0000:00:00.0:   bridge window [mem 0x60100000-0x601fffff pref]
-[    2.370000] pci 0000:02:00.0: BAR 0: assigned [mem 0x60200000-0x602fffff 64bit]
-[    2.380000] pci 0000:02:00.0: BAR 6: assigned [mem 0x60300000-0x6030ffff pref]
-[    2.400000] pci 0000:00:01.0: PCI bridge to [bus 02]
-[    2.410000] pci 0000:00:01.0:   bridge window [mem 0x60200000-0x602fffff]
-[    2.420000] pci 0000:00:01.0:   bridge window [mem 0x60300000-0x603fffff pref]
-[    2.440000] pci 0000:03:00.0: BAR 6: assigned [mem 0x60500000-0x6050ffff pref]
-[    2.450000] pci 0000:03:00.0: BAR 5: assigned [mem 0x60400000-0x604001ff]
-[    2.460000] pci 0000:03:00.0: BAR 4: no space for [io  size 0x0020]
-[    2.480000] pci 0000:03:00.0: BAR 4: failed to assign [io  size 0x0020]
-[    2.490000] pci 0000:03:00.0: BAR 0: no space for [io  size 0x0008]
-[    2.500000] pci 0000:03:00.0: BAR 0: failed to assign [io  size 0x0008]
-[    2.510000] pci 0000:03:00.0: BAR 2: no space for [io  size 0x0008]
-[    2.530000] pci 0000:03:00.0: BAR 2: failed to assign [io  size 0x0008]
-[    2.540000] pci 0000:03:00.0: BAR 1: no space for [io  size 0x0004]
-[    2.550000] pci 0000:03:00.0: BAR 1: failed to assign [io  size 0x0004]
-[    2.570000] pci 0000:03:00.0: BAR 3: no space for [io  size 0x0004]
-[    2.580000] pci 0000:03:00.0: BAR 3: failed to assign [io  size 0x0004]
-[    2.590000] pci 0000:00:02.0: PCI bridge to [bus 03]
-[    2.600000] pci 0000:00:02.0:   bridge window [mem 0x60400000-0x604fffff]
-[    2.610000] pci 0000:00:02.0:   bridge window [mem 0x60500000-0x605fffff pref]
-[    2.630000] BAR0 at slot 0 = 0
-[    2.640000] bus=0x0, slot = 0x0
-[    2.640000] BAR0 at slot 1 = 0
-[    2.650000] bus=0x0, slot = 0x1
-[    2.650000] BAR0 at slot 2 = 0
-[    2.660000] bus=0x0, slot = 0x2
-[    2.670000] bus=0x1, slot = 0x0, irq=0xff
-[    2.670000] bus=0x2, slot = 0x1, irq=0xff
-[    2.680000] bus=0x3, slot = 0x2, irq=0x0
-[    2.690000] Switched to clocksource MIPS
-[    2.700000] NET: Registered protocol family 2
-[    2.710000] TCP established hash table entries: 2048 (order: 1, 8192 bytes)
-[    2.730000] TCP bind hash table entries: 2048 (order: 2, 16384 bytes)
-[    2.740000] TCP: Hash tables configured (established 2048 bind 2048)
-[    2.750000] TCP: reno registered
-[    2.760000] UDP hash table entries: 256 (order: 1, 8192 bytes)
-[    2.770000] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
-[    2.780000] NET: Registered protocol family 1
-[    2.790000] PCI: CLS 80 bytes, default 32
-[    2.790000] alarmtimer alarmtimer: no of_node; not parsing pinctrl DT
-[    2.790000] futex hash table entries: 1024 (order: 4, 65536 bytes)
-[    2.820000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
-[    2.830000] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
-[    2.850000] msgmni has been set to 499
-[    2.850000] io scheduler noop registered
-[    2.860000] io scheduler bfq registered (default)
-[    2.870000] BFQ I/O-scheduler: v7r8
-[    2.880000] Serial: 8250/16550 driver, 2 ports, IRQ sharing disabled
-[    2.890000] serial8250 serial8250: no of_node; not parsing pinctrl DT
-[    2.890000] console [ttyS0] disabled
-[    2.900000] 1e000c00.uartlite: ttyS0 at MMIO 0x1e000c00 (irq = 34, base_baud = 3125000) is a 16550A
-[    2.920000] console [ttyS0] enabled
-[    2.930000] bootconsole [early0] disabled
-[    2.950000] pinctrl core: add 1 pinmux maps
-[    2.950000] rt2880-pinmux pinctrl: found group selector 9 for spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 34 (io34) for 1e000b00.spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 35 (io35) for 1e000b00.spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 36 (io36) for 1e000b00.spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 37 (io37) for 1e000b00.spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 38 (io38) for 1e000b00.spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 39 (io39) for 1e000b00.spi
-[    2.950000] rt2880-pinmux pinctrl: request pin 40 (io40) for 1e000b00.spi
-[    2.950000] spi-mt7621 1e000b00.spi: sys_freq: 50000000
-[    2.960000] m25p80 spi32766.0: gd25q128 (16384 Kbytes)
-[    2.970000] m25p80 spi32766.0: using chunked io
-[    2.980000] 4 ofpart partitions found on MTD device spi32766.0
-[    2.990000] Creating 4 MTD partitions on "spi32766.0":
-[    3.000000] 0x000000000000-0x000000030000 : "u-boot"
-[    3.010000] 0x000000030000-0x000000040000 : "u-boot-env"
-[    3.020000] 0x000000040000-0x000000050000 : "factory"
-[    3.040000] 0x000000050000-0x000001000000 : "firmware"
-[    3.100000] 2 uimage-fw partitions found on MTD device firmware
-[    3.110000] 0x000000050000-0x00000017898b : "kernel"
-[    3.120000] 0x00000017898b-0x000001000000 : "rootfs"
-[    3.130000] mtd: device 5 (rootfs) set to be root filesystem
-[    3.140000] 1 squashfs-split partitions found on MTD device rootfs
-[    3.150000] 0x000000a00000-0x000001000000 : "rootfs_data"
-[    3.170000] netif_napi_add() called with weight 128 on device eth%d
-[    3.190000] change HW-TRAP to 0x17ccf
-[    3.200000] ralink_soc_eth 1e100000.ethernet: generated random MAC address 26:5b:d2:a0:b3:64
-[    3.220000] libphy: mdio: probed
-[    3.230000] ralink_soc_eth 1e100000.ethernet: loaded mt7530 driver
-[    3.250000] ralink_soc_eth 1e100000.ethernet eth0: ralink at 0xbe100000, irq 11
-[    3.260000] mt7621_wdt 1e000100.wdt: Initialized
-[    3.270000] TCP: cubic registered
-[    3.280000] NET: Registered protocol family 17
-[    3.290000] bridge: automatic filtering via arp/ip/ip6tables has been deprecated. Update your scripts to load br_netfilter if you need this.
-[    3.310000] 8021q: 802.1Q VLAN Support v1.8
-[    3.330000] VFS: Mounted root (squashfs filesystem) readonly on device 31:5.
-[    3.340000] Freeing unused kernel memory: 164K (80357000 - 80380000)
-[    3.420000] random: nonblocking pool is initialized
-[    4.610000] init: Console is alive
-[    4.620000] init: - watchdog -
-[    5.820000] ralink_soc_eth 1e100000.ethernet eth0: port 4 link up
-[    6.580000] ralink_soc_eth 1e100000.ethernet eth0: port 3 link up
-[    7.640000] usbcore: registered new interface driver usbfs
-[    7.650000] usbcore: registered new interface driver hub
-[    7.660000] usbcore: registered new device driver usb
-[    7.840000] raid6: int32x1     86 MB/s
-[    8.010000] raid6: int32x2    150 MB/s
-[    8.180000] raid6: int32x4    195 MB/s
-[    8.350000] raid6: int32x8    154 MB/s
-[    8.350000] raid6: using algorithm int32x4 (195 MB/s)
-[    8.360000] raid6: using intx1 recovery algorithm
-[    8.370000] xor: measuring software checksum speed
-[    8.480000]    8regs     :   639.200 MB/sec
-[    8.580000]    8regs_prefetch:   608.000 MB/sec
-[    8.680000]    32regs    :   704.400 MB/sec
-[    8.780000]    32regs_prefetch:   667.600 MB/sec
-[    8.780000] xor: using function: 32regs (704.400 MB/sec)
-[    8.960000] Btrfs loaded
-[    8.970000] exFAT: Version 1.2.9
-[    9.030000] SGI XFS with security attributes, no debug enabled
-[    9.050000] SCSI subsystem initialized
-[    9.080000] libata version 3.00 loaded.
-[    9.080000] ahci 0000:03:00.0: no of_node; not parsing pinctrl DT
-[    9.080000] ahci 0000:03:00.0: version 3.0
-[    9.080000] ahci 0000:03:00.0: SSS flag set, parallel bus scan disabled
-[    9.090000] ahci 0000:03:00.0: AHCI 0001.0200 32 slots 2 ports 6 Gbps 0x3 impl SATA mode
-[    9.110000] ahci 0000:03:00.0: flags: 64bit ncq sntf stag led clo pmp pio slum part ccc sxs
-[    9.130000] scsi host0: ahci
-[    9.130000] scsi host1: ahci
-[    9.140000] ata1: SATA max UDMA/133 abar m512@0x60400000 port 0x60400100 irq 33
-[    9.150000] ata2: SATA max UDMA/133 abar m512@0x60400000 port 0x60400180 irq 33
-[    9.520000] ata1: SATA link down (SStatus 0 SControl 300)
-[    9.880000] ata2: SATA link down (SStatus 0 SControl 300)
-[    9.910000] FM_OUT value: u4FmOut = 0(0x00000000)
-[    9.930000] FM_OUT value: u4FmOut = 0(0x00000000)
-[    9.950000] FM_OUT value: u4FmOut = 0(0x00000000)
-[    9.970000] FM_OUT value: u4FmOut = 0(0x00000000)
-[    9.990000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.010000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.030000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.050000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.070000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.090000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.150000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.170000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.190000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.210000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.230000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.250000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.270000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.290000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.310000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.330000] FM_OUT value: u4FmOut = 0(0x00000000)
-[   10.480000] xhci-hcd 1e1c0000.xhci: xHCI Host Controller
-[   10.490000] xhci-hcd 1e1c0000.xhci: new USB bus registered, assigned bus number 1
-[   10.500000] xhci-hcd 1e1c0000.xhci: irq 30, io mem 0x1e1c0000
-[   10.520000] usb usb1: no of_node; not parsing pinctrl DT
-[   10.520000] hub 1-0:1.0: no of_node; not parsing pinctrl DT
-[   10.520000] hub 1-0:1.0: USB hub found
-[   10.520000] hub 1-0:1.0: 2 ports detected
-[   10.530000] xhci-hcd 1e1c0000.xhci: xHCI Host Controller
-[   10.540000] xhci-hcd 1e1c0000.xhci: new USB bus registered, assigned bus number 2
-[   10.560000] usb usb2: no of_node; not parsing pinctrl DT
-[   10.560000] hub 2-0:1.0: no of_node; not parsing pinctrl DT
-[   10.560000] hub 2-0:1.0: USB hub found
-[   10.570000] hub 2-0:1.0: 1 port detected
-[   10.580000] xhci-hcd xhci-hcd: no of_node; not parsing pinctrl DT
-[   10.580000] xhci-hcd xhci-hcd: can't request region for resource [mem 0x1e1c0000-0x1e1cffff]
-[   10.590000] xhci-hcd: probe of xhci-hcd failed with error -16
-[   10.610000] MTK MSDC device init.
-[   10.660000] mtk-sd: MediaTek MT6575 MSDC Driver
-[   10.670000] sdhci: Secure Digital Host Controller Interface driver
-[   10.680000] sdhci: Copyright(c) Pierre Ossman
-[   10.690000] sdhci-pltfm: SDHCI platform and OF driver helper
-[   10.700000] usbcore: registered new interface driver usb-storage
-[   11.620000] init: - preinit -
-[   15.350000] jffs2: notice: (437) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.
-[   15.390000] mount_root: switching to jffs2 overlay
-[   15.430000] procd: - early -
-[   15.440000] procd: - watchdog -
-[   16.270000] procd: - ubus -
-[   17.280000] procd: - init -
-[   18.280000] NET: Registered protocol family 10
-[   18.300000] md: linear personality registered for level -1
-[   18.350000] RPC: Registered named UNIX socket transport module.
-[   18.360000] RPC: Registered udp transport module.
-[   18.370000] RPC: Registered tcp transport module.
-[   18.380000] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[   18.400000] ntfs: driver 2.1.31 [Flags: R/O MODULE].
-[   18.460000] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-[   18.470000] ip6_tables: (C) 2000-2006 Netfilter Core Team
-[   18.500000] Loading modules backported from Linux version master-2015-03-09-0-g141f155
-[   18.510000] Backport generated by backports.git backports-20150129-0-gdd4a670
-[   18.550000] cfg80211: Calling CRDA to update world regulatory domain
-[   18.570000] cfg80211: World regulatory domain updated:
-[   18.580000] cfg80211:  DFS Master region: unset
-[   18.580000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
-[   18.600000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
-[   18.620000] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz, 92000 KHz AUTO), (N/A, 2000 mBm), (N/A)
-[   18.640000] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
-[   18.650000] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
-[   18.670000] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
-[   18.690000] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
-[   18.710000] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
-[   18.720000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
-[   18.740000] mt76pci 0000:01:00.0: ASIC revision: 76120044
-[   18.840000] ROM patch build: 20141115060606a
-[   18.850000] Firmware Version: 0.0.00
-[   18.860000] Build: 1
-[   18.860000] Build Time: 201410061140____
-[   18.890000] Firmware running!
-[   18.890000] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
-[   18.890000] mt76pci 0000:02:00.0: ASIC revision: 76020044
-[   18.930000] ROM patch already applied
-[   18.940000] Firmware Version: 0.0.00
-[   18.940000] Build: 1
-[   18.950000] Build Time: 201410061140____
-[   18.980000] Firmware running!
-[   18.980000] ieee80211 phy1: Selected rate control algorithm 'minstrel_ht'
-[   18.990000] i2c /dev entries driver
-[   19.000000] pinctrl core: add 1 pinmux maps
-[   19.000000] rt2880-pinmux pinctrl: found group selector 1 for i2c
-[   19.000000] rt2880-pinmux pinctrl: request pin 3 (io3) for 1e000900.i2c
-[   19.000000] rt2880-pinmux pinctrl: request pin 4 (io4) for 1e000900.i2c
-[   19.000000] i2c-mt7621 1e000900.i2c: loaded
-[   19.030000] hidraw: raw HID events driver (C) Jiri Kosina
-[   19.050000] u32 classifier
-[   19.050000]     input device check on
-[   19.060000]     Actions configured
-[   19.070000] Mirror/redirect action on
-[   19.100000] fuse init (API version 7.23)
-[   19.110000] usbcore: registered new interface driver cdc_wdm
-[   19.130000] ip_tables: (C) 2000-2006 Netfilter Core Team
-[   19.150000] nf_conntrack version 0.5.0 (4000 buckets, 16000 max)
-[   19.280000] usbcore: registered new interface driver ums-alauda
-[   19.290000] usbcore: registered new interface driver ums-cypress
-[   19.310000] usbcore: registered new interface driver ums-datafab
-[   19.320000] usbcore: registered new interface driver ums-freecom
-[   19.340000] usbcore: registered new interface driver ums-isd200
-[   19.350000] usbcore: registered new interface driver ums-jumpshot
-[   19.360000] usbcore: registered new interface driver ums-karma
-[   19.380000] usbcore: registered new interface driver ums-sddr09
-[   19.390000] usbcore: registered new interface driver ums-sddr55
-[   19.400000] usbcore: registered new interface driver ums-usbat
-[   19.440000] xt_time: kernel timezone is -0000
-[   19.460000] PPP generic driver version 2.4.2
-[   19.470000] NET: Registered protocol family 24
-[   23.790000] device eth0.1 entered promiscuous mode
-[   23.800000] device eth0 entered promiscuous mode
-[   23.820000] br-lan: port 1(eth0.1) entered forwarding state
-[   23.830000] br-lan: port 1(eth0.1) entered forwarding state
-[   24.870000] cfg80211: Calling CRDA for country: US
-[   24.880000] cfg80211: Regulatory domain changed to country: US
-[   24.890000] cfg80211:  DFS Master region: FCC
-[   24.900000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
-[   24.920000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 3000 mBm), (N/A)
-[   24.940000] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2300 mBm), (N/A)
-[   24.960000] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2300 mBm), (0 s)
-[   24.970000] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2300 mBm), (0 s)
-[   24.990000] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 3000 mBm), (N/A)
-[   25.010000] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 4000 mBm), (N/A)
-[   25.830000] br-lan: port 1(eth0.1) entered forwarding state
-[   26.970000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
-[   27.310000] IPv6: ADDRCONF(NETDEV_UP): wlan1: link is not ready
-[   27.320000] device wlan0 entered promiscuous mode
-[   27.340000] device wlan1 entered promiscuous mode
-[   27.350000] br-lan: port 3(wlan1) entered forwarding state
-[   27.360000] br-lan: port 3(wlan1) entered forwarding state
-[   28.040000] IPv6: ADDRCONF(NETDEV_CHANGE): wlan1: link becomes ready
-[   28.050000] br-lan: port 2(wlan0) entered forwarding state
-[   28.060000] br-lan: port 2(wlan0) entered forwarding state
-[   28.070000] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
-[   29.360000] br-lan: port 3(wlan1) entered forwarding state
-[   30.060000] br-lan: port 2(wlan0) entered forwarding state
-[   30.100000] svc: failed to register lockdv1 RPC service (errno 124).
+[    0.000000]   Normal zone: 32768 pages, LIFO batch:7
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 32512
+[    0.000000] Kernel command line:  board=ARCHER-C7-V2  console=ttyS0,115200 rootfstype=squashfs noinitrd
+[    0.000000] PID hash table entries: 512 (order: -1, 2048 bytes)
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 124996K/131072K available (3363K kernel code, 172K rwdata, 444K rodata, 300K init, 219K bss, 6076K reserved, 0K cma-reserved)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:51
+[    0.000000] Clocks: CPU:720.000MHz, DDR:600.000MHz, AHB:200.000MHz, Ref:40.000MHz
+[    0.000000] clocksource: MIPS: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 5309056796 ns
+[    0.000008] sched_clock: 32 bits at 360MHz, resolution 2ns, wraps every 5965232126ns
+[    0.008298] Calibrating delay loop... 358.80 BogoMIPS (lpj=1794048)
+[    0.071187] pid_max: default: 32768 minimum: 301
+[    0.076189] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.083230] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.092859] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.103359] futex hash table entries: 256 (order: -1, 3072 bytes)
+[    0.110829] NET: Registered protocol family 16
+[    0.116744] MIPS: machine is TP-LINK Archer C7
+[    0.124551] ar724x-pci ar724x-pci.0: PCIe link is down
+[    0.130054] registering PCI controller with io_map_base unset
+[    0.136268] registering PCI controller with io_map_base unset
+[    0.622968] Can't analyze schedule() prologue at 803a5594
+[    0.637618] PCI host bridge to bus 0000:00
+[    0.641987] pci_bus 0000:00: root bus resource [mem 0x10000000-0x11ffffff]
+[    0.649332] pci_bus 0000:00: root bus resource [io  0x0000]
+[    0.655260] pci_bus 0000:00: root bus resource [??? 0x00000000 flags 0x0]
+[    0.662485] pci_bus 0000:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.670919] pci_bus 0000:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.671028] PCI host bridge to bus 0000:01
+[    0.675413] pci_bus 0000:01: root bus resource [mem 0x12000000-0x13ffffff]
+[    0.682719] pci_bus 0000:01: root bus resource [io  0x0001]
+[    0.688651] pci_bus 0000:01: root bus resource [??? 0x00000000 flags 0x0]
+[    0.695865] pci_bus 0000:01: No busn resource found for root bus, will use [bus 01-ff]
+[    0.704320] pci 0000:01:00.0: [168c:003c] type 00 class 0x028000
+[    0.704358] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x001fffff 64bit]
+[    0.704410] pci 0000:01:00.0: reg 0x30: [mem 0x00000000-0x0000ffff pref]
+[    0.704477] pci 0000:01:00.0: supports D1 D2
+[    0.704643] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    0.704665] pci 0000:01:00.0: BAR 0: assigned [mem 0x12000000-0x121fffff 64bit]
+[    0.712456] pci 0000:01:00.0: BAR 6: assigned [mem 0x12200000-0x1220ffff pref]
+[    0.720165] pci 0000:01:00.0: using irq 41 for pin 1
+[    0.728064] clocksource: Switched to clocksource MIPS
+[    0.734334] NET: Registered protocol family 2
+[    0.739746] TCP established hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.747170] TCP bind hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.753974] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.760815] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.767042] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.773945] NET: Registered protocol family 1
+[    0.778644] PCI: CLS 0 bytes, default 32
+[    0.780851] Crashlog allocated RAM at address 0x3f00000
+[    0.787233] workingset: timestamp_bits=30 max_order=15 bucket_order=0
+[    0.800026] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.806229] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.824159] io scheduler noop registered
+[    0.828365] io scheduler deadline registered (default)
+[    0.834171] Serial: 8250/16550 driver, 16 ports, IRQ sharing enabled
+[    0.843112] console [ttyS0] disabled
+[    0.866983] serial8250.0: ttyS0 at MMIO 0x18020000 (irq = 11, base_baud = 2500000) is a 16550A
+[    0.876164] console [ttyS0] enabled
+[    0.883580] bootconsole [early0] disabled
+[    0.896875] m25p80 spi0.0: found w25q128, expected m25p80
+[    0.913312] m25p80 spi0.0: w25q128 (16384 Kbytes)
+[    0.918569] 5 tp-link partitions found on MTD device spi0.0
+[    0.924219] Creating 5 MTD partitions on "spi0.0":
+[    0.929106] 0x000000000000-0x000000020000 : "u-boot"
+[    0.935615] 0x000000020000-0x00000016df58 : "kernel"
+[    0.942291] 0x00000016df58-0x000000ff0000 : "rootfs"
+[    0.948622] mtd: device 2 (rootfs) set to be root filesystem
+[    0.954427] 1 squashfs-split partitions found on MTD device rootfs
+[    0.960734] 0x000000400000-0x000000ff0000 : "rootfs_data"
+[    0.967893] 0x000000ff0000-0x000001000000 : "art"
+[    0.974347] 0x000000020000-0x000000ff0000 : "firmware"
+[    0.982006] libphy: Fixed MDIO Bus: probed
+[    0.999028] switch0: Atheros AR8327 rev. 4 switch registered on ag71xx-mdio.0
+[    1.686812] libphy: ag71xx_mdio: probed
+[    2.319571] ag71xx ag71xx.0: connected to PHY at ag71xx-mdio.0:00 [uid=004dd034, driver=Atheros AR8216/AR8236/AR8316]
+[    2.330934] eth0: Atheros AG71xx at 0xb9000000, irq 4, mode:RGMII
+[    2.608060] random: fast init done
+[    2.959695] eth1: Atheros AG71xx at 0xba000000, irq 5, mode:SGMII
+[    2.967482] NET: Registered protocol family 10
+[    2.975380] NET: Registered protocol family 17
+[    2.979973] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[    2.993206] 8021q: 802.1Q VLAN Support v1.8
+[    2.998914] hctosys: unable to open rtc device (rtc0)
+[    3.010693] VFS: Mounted root (squashfs filesystem) readonly on device 31:2.
+[    3.018956] Freeing unused kernel memory: 300K
+[    3.023458] This architecture does not have kernel memory protection.
+[    3.716204] init: Console is alive
+[    3.719874] init: - watchdog -
+[    4.775905] kmodloader: loading kernel modules from /etc/modules-boot.d/*
+[    4.833875] usbcore: registered new interface driver usbfs
+[    4.839568] usbcore: registered new interface driver hub
+[    4.845024] usbcore: registered new device driver usb
+[    4.854365] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    4.862274] ehci-platform: EHCI generic platform driver
+[    4.867650] ehci-platform ehci-platform.0: EHCI Host Controller
+[    4.873719] ehci-platform ehci-platform.0: new USB bus registered, assigned bus number 1
+[    4.884008] ehci-platform ehci-platform.0: TX-TX IDP fix enabled
+[    4.890129] ehci-platform ehci-platform.0: irq 48, io mem 0x1b000000
+[    4.918095] ehci-platform ehci-platform.0: USB 2.0 started, EHCI 1.00
+[    4.925327] hub 1-0:1.0: USB hub found
+[    4.929482] hub 1-0:1.0: 1 port detected
+[    4.933790] ehci-platform ehci-platform.1: EHCI Host Controller
+[    4.939854] ehci-platform ehci-platform.1: new USB bus registered, assigned bus number 2
+[    4.950139] ehci-platform ehci-platform.1: TX-TX IDP fix enabled
+[    4.956243] ehci-platform ehci-platform.1: irq 49, io mem 0x1b400000
+[    4.988086] ehci-platform ehci-platform.1: USB 2.0 started, EHCI 1.00
+[    4.995353] hub 2-0:1.0: USB hub found
+[    4.999457] hub 2-0:1.0: 1 port detected
+[    5.004102] kmodloader: done loading kernel modules from /etc/modules-boot.d/*
+[    5.021810] init: - preinit -
+[    5.958133] usb 1-1: new high-speed USB device number 2 using ehci-platform
+[    6.280848] random: procd: uninitialized urandom read (4 bytes read)
+[    6.290803] eth1: link up (1000Mbps/Full duplex)
+[    9.888482] jffs2: notice: (448) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.
+[    9.914569] mount_root: loading kmods from internal overlay
+[   10.474867] kmodloader: loading kernel modules from /tmp/overlay/upper/etc/modules-boot.d/*
+[   10.905827] SCSI subsystem initialized
+[   11.015782] usb-storage 1-1:1.0: USB Mass Storage device detected
+[   11.022596] scsi host0: usb-storage 1-1:1.0
+[   11.027250] usbcore: registered new interface driver usb-storage
+[   11.034183] kmodloader: done loading kernel modules from /tmp/overlay/upper/etc/modules-boot.d/*
+[   11.303569] block: attempting to load /tmp/jffs_cfg/upper/etc/config/fstab
+[   11.313284] block: extroot: not configured
+[   11.318285] mount_root: switching to jffs2 overlay
+[   13.062841] scsi 0:0:0:0: Direct-Access     General  USB Flash Disk   1100 PQ: 0 ANSI: 4
+[   13.075971] sd 0:0:0:0: [sda] 7864320 512-byte logical blocks: (4.03 GB/3.75 GiB)
+[   13.100596] sd 0:0:0:0: [sda] Write Protect is on
+[   13.105407] sd 0:0:0:0: [sda] Mode Sense: 43 00 80 00
+[   13.106539] sd 0:0:0:0: [sda] Attached SCSI removable disk
+[   19.369348] overlayfs: failed to create directory /overlay/work/work (errno: 28); mounting read-only
+[   19.381454] urandom-seed: Seeding with /etc/urandom.seed
+[   19.488308] eth1: link down
+[   19.504280] procd: - early -
+[   19.507283] procd: - watchdog -
+[   19.705299]  sda: sda1
+[   20.209186] procd: - watchdog -
+[   20.212600] procd: - ubus -
+[   20.324330] random: ubusd: uninitialized urandom read (4 bytes read)
+[   20.337566] random: ubusd: uninitialized urandom read (4 bytes read)
+[   20.344447] random: ubusd: uninitialized urandom read (4 bytes read)
+[   20.351879] procd: - init -
+[   20.710021] kmodloader: loading kernel modules from /etc/modules.d/*
+[   20.725142] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[   20.761467] u32 classifier
+[   20.764214]     input device check on
+[   20.767927]     Actions configured
+[   20.773558] Mirror/redirect action on
+[   20.784638] nf_conntrack version 0.5.0 (2048 buckets, 8192 max)
+[   20.809820] Loading modules backported from Linux version wt-2017-11-01-0-gfe248fc2c180
+[   20.817938] Backport generated by backports.git v4.14-rc2-1-31-g86cf0e5d
+[   20.827505] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   20.910859] xt_time: kernel timezone is -0000
+[   21.091901] PPP generic driver version 2.4.2
+[   21.098394] NET: Registered protocol family 24
+[   21.122197] PCI: Enabling device 0000:01:00.0 (0000 -> 0002)
+[   21.128153] ath10k_pci 0000:01:00.0: pci irq legacy oper_irq_mode 1 irq_mode 0 reset_mode 0
+[   21.401711] ath10k_pci 0000:01:00.0: Direct firmware load for ath10k/pre-cal-pci-0000:01:00.0.bin failed with error -2
+[   21.412628] ath10k_pci 0000:01:00.0: Falling back to user helper
+[   30.342845] random: crng init done
+[   30.346307] random: 5 urandom warning(s) missed due to ratelimiting
+[   35.055672] firmware ath10k!pre-cal-pci-0000:01:00.0.bin: firmware_loading_store: map pages failed
+[   35.066156] ath10k_pci 0000:01:00.0: Direct firmware load for ath10k/QCA988X/hw2.0/firmware-6.bin failed with error -2
+[   35.077041] ath10k_pci 0000:01:00.0: Falling back to user helper
+[   35.223217] firmware ath10k!QCA988X!hw2.0!firmware-6.bin: firmware_loading_store: map pages failed
+[   35.236573] ath10k_pci 0000:01:00.0: qca988x hw2.0 target 0x4100016c chip_id 0x043202ff sub 0000:0000
+[   35.245971] ath10k_pci 0000:01:00.0: kconfig debug 0 debugfs 1 tracing 0 dfs 1 testmode 1
+[   35.258999] ath10k_pci 0000:01:00.0: firmware ver 10.2.4-1.0-00033 api 5 features no-p2p,raw-mode,mfp,allows-mesh-bcast crc32 c41417d0
+[   35.356240] ath10k_pci 0000:01:00.0: Direct firmware load for ath10k/QCA988X/hw2.0/board-2.bin failed with error -2
+[   35.366878] ath10k_pci 0000:01:00.0: Falling back to user helper
+[   35.438664] firmware ath10k!QCA988X!hw2.0!board-2.bin: firmware_loading_store: map pages failed
+[   35.447858] ath10k_pci 0000:01:00.0: board_file api 1 bmi_id N/A crc32 bebc7c08
+[   36.535168] ath10k_pci 0000:01:00.0: htt-ver 2.1 wmi-op 5 htt-op 2 cal file max-sta 128 raw 0 hwcrypto 1
+[   36.679295] ath: EEPROM regdomain: 0x0
+[   36.679301] ath: EEPROM indicates default country code should be used
+[   36.679303] ath: doing EEPROM country->regdmn map search
+[   36.679315] ath: country maps to regdmn code: 0x3a
+[   36.679319] ath: Country alpha2 being used: US
+[   36.679322] ath: Regpair used: 0x3a
+[   36.740380] ath: EEPROM regdomain: 0x0
+[   36.740387] ath: EEPROM indicates default country code should be used
+[   36.740390] ath: doing EEPROM country->regdmn map search
+[   36.740402] ath: country maps to regdmn code: 0x3a
+[   36.740406] ath: Country alpha2 being used: US
+[   36.740409] ath: Regpair used: 0x3a
+[   36.756378] ieee80211 phy1: Selected rate control algorithm 'minstrel_ht'
+[   36.759576] ieee80211 phy1: Atheros AR9550 Rev:0 mem=0xb8100000, irq=47
+[   36.870046] kmodloader: done loading kernel modules from /etc/modules.d/*
+[   44.670301] eth1: link up (1000Mbps/Full duplex)
+[   44.676536] br-lan: port 1(eth1) entered blocking state
+[   44.681928] br-lan: port 1(eth1) entered disabled state
+[   44.687524] device eth1 entered promiscuous mode
+[   44.716982] IPv6: ADDRCONF(NETDEV_UP): br-lan: link is not ready
+[   44.776606] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   45.776857] br-lan: port 1(eth1) entered blocking state
+[   45.782211] br-lan: port 1(eth1) entered forwarding state
+[   46.022835] IPv6: ADDRCONF(NETDEV_CHANGE): br-lan: link becomes ready
+[   46.109564] eth0: link up (1000Mbps/Full duplex)
+[   46.114406] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[   51.074759] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[   51.115788] IPv6: ADDRCONF(NETDEV_UP): wlan1: link is not ready
+[   51.180957] br-lan: port 2(wlan0) entered blocking state
+[   51.186355] br-lan: port 2(wlan0) entered disabled state
+[   51.192126] device wlan0 entered promiscuous mode
+[   51.345490] br-lan: port 3(wlan1) entered blocking state
+[   51.350928] br-lan: port 3(wlan1) entered disabled state
+[   51.356643] device wlan1 entered promiscuous mode
+[   51.361530] br-lan: port 3(wlan1) entered blocking state
+[   51.366922] br-lan: port 3(wlan1) entered forwarding state
+[   51.600641] IPv6: ADDRCONF(NETDEV_CHANGE): wlan1: link becomes ready
+[   52.934978] IPv6: ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+[   52.941666] br-lan: port 2(wlan0) entered blocking state
+[   52.947066] br-lan: port 2(wlan0) entered forwarding state
 
 
 ===== end of getstats.sh =====

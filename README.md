@@ -4,7 +4,7 @@ OpenWrtScripts
 This is a set of scripts (sometimes also called "Openscripts") that report, configure and measure (and improve) latency in home routers (and everywhere else!) 
 These scripts work equally well for both [LEDE](https://lede-project.org) and [OpenWrt](https://openwrt.org) and include:
 
-* [getstats.sh](#getstatssh) - a script to collect troubleshooting information that helps us diagnose problems in the OpenWrt distribution.
+* [getstats.sh](#getstatssh) - a script to collect troubleshooting information that helps to diagnose problems in the OpenWrt distribution.
 
 * [opkgscript.sh](#opkgscriptsh) - a script to save the list of 
 currently-installed packages (say, before a sysupgrade), 
@@ -34,12 +34,14 @@ The `getstats.sh` script helps diagnose problems with OpenWrt.
 If you report a problem, it is always helpful to include the output of this script. 
 
 `getstats.sh` executes a built-in set of commands and writes the collected output to `/tmp/openwrtstats.txt`. 
-The script also executes commands passed as arguments on the command line. 
+The script also executes commands passed as arguments on the command line.
+It also displays a list of user-installed opkg packages - that is those not installed by default. 
 In the example below, the output would contain results from the standard set of commands plus the two additional arguments: 
 
-**Example:** `sh getstats.sh "ls /usr/lib" "ls -al /etc/config"`
+**Usage:** `sh getstats.sh "ls /usr/lib" "ls -al /etc/config"`
 
-**To install and run this script:** The script is self-contained, and can be placed in any directory. Read the top of the [getstats.sh](./getstats.sh) file for a simple procedure. 
+**To install and run this script:** The script is self-contained, and can be placed in any directory. 
+Read the top of the [getstats.sh](./getstats.sh) file for a simple procedure for using the script. 
 
 **Sample output file:** See a sample output file - [openwrtstats.txt](./sample_output/openwrtstats.txt)
 
@@ -53,7 +55,7 @@ By default, the `write` command saves the list of installed packages in
 `install` command reads the file, to restore that set of packages. 
 Cloned from Malte Forkel's [original script.](https://forum.openwrt.org/viewtopic.php?pid=194478#p194478)
 
-**Example:** 
+**Usage:** 
 
 `sh opkgscript.sh write` _use before sysupgrade to save the current set of packages_
 

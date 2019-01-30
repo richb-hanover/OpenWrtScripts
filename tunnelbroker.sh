@@ -1,18 +1,29 @@
 #!/bin/sh
-# Script for setting OpenWrt to create an IPv6 tunnel 
-# to Hurricane Electric at http://www.tunnelbroker.net/
-# There are two steps:
+# Script for configuring OpenWrt to create a new 'henet' interface that 
+#  uses '6in4' encapsulation to send your IPv6 packets inside IPv4 packets.
+#  It uses Hurricane Electric as the tunnel at http://www.tunnelbroker.net/
+#
+# There are a few steps to set this up:
 # 1) Go to the Tunnelbroker.net site to set up your free account
-# 2) Run the script below, using the parameters supplied by Tunnelbroker
-# This CeroWrt page gives detailed instructions for setting up an IPv6 tunnel: 
-#    http://www.bufferbloat.net/projects/cerowrt/wiki/IPv6_Tunnel  
+# 2) From its main page, click "Create Regular Tunnel"
+#    - Enter your IP address in "IPv4 Endpoint" (paste in the address you're "viewing from")
+#    - Select a nearby Tunnel Server
+#    - Click "Create Tunnel"
+# 3) On the resulting Tunnel Details page, click "Assign /48" to get a /48 prefix
+# 4) From the Tunnel Details page, copy and paste the matching values to the variables below 
+#    Note: The User_Name is the name you used to create the account
+#    Note: Find the Update_Key on the Advanced Tab of the Tunnel Details page.
+
+User_Name=abdcef
+Tunnel_ID=123456
+Server_IPv4_Address=123.45.67.89
+Client_IPv6_Address=2001:470:abcd:ef::/64
+Routed_48=2001:470:abcd::/48
+Update_Key=AbCDeF54321vWxYz
+
+# 5) Finally, ssh into the router and execute this script with these steps:
 # 
-# Once you've created your account and a tunnel, get the "Example
-# Configurations" for OpenWRT Backfire, and use the info to fill in this
-# file, then save it as a file named "tunnel.sh" Finally, ssh into the 
-# router and execute this script with these steps:
-# 
-# ssh root@172.30.42.1
+# ssh root@192.168.1.1  # use your router's address 
 # cd /tmp
 # cat > tunnel.sh 
 # [paste in the contents of this file, then hit ^D]
@@ -30,108 +41,53 @@ opkg update
 opkg install 6in4
 
 # ==============================================
-# Create a 6in4 interface to tunnel IPv6. These steps show how to
-# set the credentials for a Hurricane Electric tunnel
-# First create an account at http://HE.net, then use their
-# Example Configurations page to get the specifics, which are
-# automatically generated specifically for *your* tunnel 
-# Copy/paste the information from the Example Configurations
-# generated for the OpenWRT Backfire 10.03.1 dropdown
-# then edit the following to match your parameters.
-#
-# NOTE: The username should be your plain UserID (the "Account Name:
-# 	on the tunnelbroker.net site) not the long alphanumeric string
+# Create a 6in4 interface named 'henet' to tunnel IPv6. 
 #
 echo 'Setting up HE.net tunnel'
-# ------- USE THE INFORMATION FROM TUNNELBROKER.NET HERE --------
 uci set network.henet=interface
 uci set network.henet.proto=6in4
-uci set network.henet.peeraddr=xxx.xxx.xxx.xxx
-uci set network.henet.ip6addr='2001:470:ABCD::2/64'
-uci set network.henet.tunnelid=123456
-uci set network.henet.username='your-plain-userid'
-uci set network.henet.password='your-password'
-# ------- END OF TUNNELBROKER.NET INFO --------
-
-# ------- Additional configuration info required for the tunnel --------
-# This automatically assigns each LAN interface a /64 from your routed /48
-# Set the ip6prefix to use your routed /48 prefix from HE.net
-uci set network.henet.ip6prefix='2001:470:ABCD::/48'   
+uci set network.henet.peeraddr=$Server_IPv4_Address
+uci set network.henet.ip6addr=$Client_IPv6_Address
+uci set network.henet.ip6prefix=$Routed_48_Prefix
+uci set network.henet.tunnelid=$Tunnel_ID
+uci set network.henet.username=$User_Name
+uci set network.henet.password=$Update_Key
 uci set network.henet.mtu=1424
 uci set network.henet.ttl=64
 uci commit network
 
 # ==============================================
-# Configure the 6in4-henet interface into the WAN zone
-# CeroWrt puts WAN stuff in zone[0], not zone[1] as with OpenWrt
-uci set firewall.@zone[0].network='ge00 henet'
+# Configure the 6in4-henet interface into the WAN zone (along with wan & wan6)
+uci set firewall.@zone[1].network='wan wan6 henet'
 uci commit firewall
 
 # ==============================================
 # Invoke the new configuration
-echo 'Restarting network... "Device busy (-16)" messages are OK.'
+echo 'Restarting network...'
 /etc/init.d/network restart
 echo 'Restarting firewall...'
 /etc/init.d/firewall restart
 
 # Belt and suspenders - you could also restart
-echo 'Done. You should restart the router now to make these take effect.'
+echo 'Done. You could also restart the router now to ensure these take effect.'
 
 # ==============================================
-# What's going on here?
 #
-# CeroWrt is configured to do a lot of stuff automatically, so you may not notice
-# all the magic that's happening under the covers. Here are some of the configuration
-# tricks that have been worked out over the various test releases of CeroWrt 3.10.x
-#
-# IPv6-in-IPv4 tunnel to Hurricane Electric (http://HE.net):
-#
-# These lines create an interface named "6in4-henet" that acquires an IPv6 address
-# for the CeroWrt router, and also gets the assigned /48 prefix to assign to the 
-# individual routed LAN interfaces.
-#
-# In addition, the script places 6in4-henet into the firewall's WAN zone.
-# 
-# DNS/DHCP:
-#
-# dnsmasq-dhcpv6 is the default DNS and DHCP server. By default, it is prepared
-# to handle all DNS duties and to hand out IPv4 and IPv6 addresses.
-# Each time it restarts, its config file (/etc/config/dhcp) is compiled to 
-# create /var/etc/dnsmasq.conf. This in turn links to a conf file at
-# /etc/dnsmasq.conf. The latter file contains the information required for 
-# handing out IPv6 addresses on the LAN interfaces (se00, sw00, gw00, sw10, gw10).
-#
-# Restarting services:
-# 
-# The final step in the script is to restart the network and firewall services.
-# It never hurts to reboot the router after this completes.
-#
-# NB: This has been tested with CeroWrt 3.10.50-1 (July 2014)
-
-# ==============================================
 # Re-establishing the Tunnel
 #
-# NB: As of CeroWrt 3.7.5-2 (Feb 2013), the automatic re-establishment code 
-# of the 6in4 module appears not to be working. You will need to re-establish 
-# the tunnel manually when your external IP address changes.
+# The automatic re-establishment code of the 6in4 module appears not always to work. 
+# If the 6in4 tunnel goes down, you may need to re-establish it manually,
+# say, when your external IP address changes.
 #
-# To re-establish the tunnel, say, because your external IP address changed,
-# you can also use the following URL with these parameters. Note that the 
-# USERNAME and PASSWORD are what you type to log into the Tunnelbroker site.
+# To re-establish the tunnel, simply paste the following URL (with the parameters defined above).
+# into your browser. You should get a cryptic "OK" response.
 #
-# USERNAME is the Account Name 
-# PASSWORD is the current password
-# TUNNELID is the Tunnel ID  
-# https://USERNAME:PASSWORD@ipv4.tunnelbroker.net/ipv4_end.php?tid=TUNNELID
-# 
-# You can also use a non-HTTPS URL and parameters to re-establish the link.
-# This form relies on hashed representations of the credentials since they're
-# not carried on a secure connection. You can get more information about the
-# parameters at https://ipv4.tunnelbroker.net/ipv4_end.php
-#
-# USERID is the "User ID" from the Tunnelbroker site's Main Page
-# PWHASH is the MD5 hash of the password
-# TUNNELID is the Tunnel ID
-# http://ipv4.tunnelbroker.net/ipv4_end.php?ip=AUTO&apikey=USERID&pass=PWHASH&tid=TUNNELID
+# User_Name is your user account name 
+# Update_Key is the Update Key shown above
+# Tunnel_ID is the Tunnel ID  
+# https://User_Name:Update_Key@ipv4.tunnelbroker.net/nic/update?hostname=Tunnel_ID
 #
 # --- end of script ---
+# 
+# Final Steps:
+# Hit Ctl-D, then type sh tunnel.sh 

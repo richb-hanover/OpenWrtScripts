@@ -15,7 +15,6 @@ and then restore the full set of packages after the upgrade.
 * [betterspeedtest.sh](#betterspeedtestsh) & [netperfrunner.sh](#netperfrunnersh) & [networkhammer.sh](#networkhammersh) - scripts that measure the performance of your router or offer load to the network for testing.
 
 * [tunnelbroker.sh](#tunnelbrokersh) - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. 
-*This script was originally created for CeroWrt. It has not been converted for OpenWrt/LEDE.*
 
 These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. 
 The easiest way to do this is to use ssh into the router and enter these commands:
@@ -212,19 +211,19 @@ The `networkhammer.sh` script continually invokes the netperfrunner script to pr
 ---
 ## [tunnelbroker.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/tunnelbroker.sh)
 
-_[This script was originally created for CeroWrt. It has not been converted for OpenWrt/LEDE.]_
-
-The `tunnelbroker.sh` script configures CeroWrt to create an IPv6 tunnel via Hurricane Electric. 
+The `tunnelbroker.sh` script configures OpenWrt to create an IPv6 tunnel via Hurricane Electric. 
 It's an easy way to become familiar with IPv6 if your ISP doesn't offer native IPv6 capabilities. 
-There are three steps:
+There are several steps:
 
-1. Go to the Hurricane Electric [TunnelBroker.net](http://www.tunnelbroker.net/)  site to set up your free account. There are detailed instructions for setting up an account and an IPv6 tunnel at the
-   [IPv6 Tunnel page.](http://www.bufferbloat.net/projects/cerowrt/wiki/IPv6_Tunnel) 
-2. Edit the tunnelbroker.sh script, using the parameters supplied by Tunnelbroker.net. They're on the site's "Tunnel Details" page. Click on the "Example
-Configurations" tab and select "OpenWRT Backfire 10.03.1". Use the info to fill in the corresponding lines of the script. 
+1. Go to the Hurricane Electric [TunnelBroker.net](http://www.tunnelbroker.net/) site to set up your free account. 
+There are detailed instructions for setting up an account and an IPv6 tunnel 
+in the script itself, or at the
+[IPv6 Tunnel page.](http://www.bufferbloat.net/projects/cerowrt/wiki/IPv6_Tunnel) 
+2. Edit the tunnelbroker.sh script to use the values supplied by Tunnelbroker.net. 
+The values from the "Tunnel Details" page go into the matching lines of the script. 
 3. ssh into the router and execute this script with these steps.
     
-        ssh root@172.30.42.1
+        ssh root@192.168.1.1     # use the address of your router
         cd /tmp
         cat > tunnel.sh 
         [paste in the contents of this file, then hit ^D]

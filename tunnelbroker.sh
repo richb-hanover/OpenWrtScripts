@@ -27,6 +27,7 @@ Update_Key=AbCDeF54321vWxYz
 # cd /tmp
 # cat > tunnel.sh 
 # [paste in the contents of this file, then hit ^D]
+# [edit the script to match your tunnelbroker values (see #4 above)]
 # sh tunnel.sh
 # [Restart your router. This seems to make a difference.]
 #
@@ -90,4 +91,6 @@ echo 'Done. You could also restart the router now to ensure these take effect.'
 # --- end of script ---
 # 
 # Final Steps:
-# Hit Ctl-D, then type sh tunnel.sh 
+# 1) Hit Ctl-D
+# 2) Edit six lines of the file (User_Name through Update_Key) to add your tunnelbroker values 
+# 3) Type: sh tunnel.sh 

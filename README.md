@@ -116,7 +116,7 @@ Here's why that's important: If the data transfers do increase the latency/lag m
 
 The betterspeedtest.sh script measures latency during file transfers. To invoke it:
 
-    sh betterspeedtest.sh [ -4 | -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [-n simultaneous-streams ]
+    sh betterspeedtest.sh [ -4 | -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-streams ]
 
 Options, if present, are:
 
@@ -126,8 +126,8 @@ and netperf-eu (Denmark)
 * -4 | -6:     Enable ipv4 or ipv6 testing (default - ipv4)
 * -t | --time: Duration for how long each direction's test should run - (default - 60 seconds)
 * -p | --ping: Host to ping to measure latency (default - gstatic.com)
-* -n | --number: Number of simultaneous sessions (default - 5 sessions)
 * -i | --idle: Don't send traffic, only measure idle latency
+* -n | --number: Number of simultaneous sessions (default - 5 sessions)
 
 The output shows separate (one-way) download and upload speed, along with a summary of latencies, including min, max, average, median, and 10th and 90th percentiles so you can get a sense of the distribution. The tool also displays the percent packet loss. The example below shows two measurements, bad and good. 
 

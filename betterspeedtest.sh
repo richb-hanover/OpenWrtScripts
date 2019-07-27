@@ -5,7 +5,7 @@
 # Output the measured transfer rates and the resulting ping latency
 # It's better than 'speedtest.net' because it measures latency *while* measuring the speed.
 
-# Usage: sh betterspeedtest.sh [-4 -6] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -n simultaneous-streams ]
+# Usage: sh betterspeedtest.sh [-4 -6] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-streams ]
 
 # Options: If options are present:
 #
@@ -15,8 +15,8 @@
 # -4 | -6:       enable ipv4 or ipv6 testing (ipv4 is the default)
 # -t | --time:   Duration for how long each direction's test should run - (default - 60 seconds)
 # -p | --ping:   Host to ping to measure latency (default - gstatic.com)
-# -n | --number: Number of simultaneous sessions (default - 5 sessions)
 # -i | --idle:   Don't send traffic, only measure idle latency
+# -n | --number: Number of simultaneous sessions (default - 5 sessions)
 
 # Copyright (c) 2014-2019 - Rich Brown rich.brown@blueberryhillsoftware.com
 # GPLv2

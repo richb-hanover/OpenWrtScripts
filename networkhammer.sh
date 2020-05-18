@@ -4,7 +4,7 @@
 #
 
 echo "Hammering the network to gw.home.lan. Hit Ctl-C to cancel"
-while True;
+while true;
 do
   ./netperfrunner.sh -H gw.home.lan
 done

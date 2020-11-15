@@ -108,9 +108,9 @@ start_pings() {
   # Start Ping
   if [ $TESTPROTO -eq "-4" ]
   then
-    ping  $PINGHOST > $PINGFILE &
+    "${PING4}" $PINGHOST > $PINGFILE &
   else
-    ping6 $PINGHOST > $PINGFILE &
+    "${PING6}" $PINGHOST > $PINGFILE &
   fi
   ping_pid=$!
   # echo "Ping PID: $ping_pid"
@@ -127,6 +127,11 @@ start_pings() {
 
 # set an initial values for defaults
 TESTDUR="60"
+
+PING4=ping
+command -v ping4 > /dev/null 2>&1 && PING4=ping4
+PING6=ping6
+
 PINGHOST="gstatic.com"
 TESTPROTO="-4"
 

@@ -7,11 +7,11 @@
 #
 # ***** To install and run this script *****
 #
-# SSH into your router and execute these statements. 
-# 
+# SSH into your router and execute these statements.
+#
 # ssh root@192.168.1.1
 # cd /tmp
-# cat > getstats.sh 
+# cat > getstats.sh
 # [paste in the contents of this file, then hit ^D]
 # sh getstats.sh
 # The results listed are written to the designated file
@@ -31,7 +31,7 @@ out_fqn=/tmp/openwrtstats.txt
 # Format the command results into the output file
 # Redirect both standard out and error out to that file.
 
-display_command() { 
+display_command() {
 	echo "[ $1 ]"  >> $out_fqn
 	eval "$1"      >> $out_fqn 2>> $out_fqn
 	echo -e "\n"   >> $out_fqn
@@ -43,14 +43,15 @@ display_command() {
 display_user_packages() {
   echo "[ User-installed packages ]" >> $out_fqn
 
-  install_time=`opkg status kernel | awk '$1 == "Installed-Time:" { print $2 }'`
-  opkg status | awk '$1 == "Package:" {package = $2} \
-  $1 == "Status:" { user_inst = / user/ && / installed/ } \
-  $1 == "Installed-Time:" && $2 != '$install_time' && user_inst { print package }' | \
-  sort >> $out_fqn 2>> $out_fqn
+  # see https://github.com/openwrt/openwrt/blob/d8afae0be8f0a2a4a26e303dd5212e2a2f8d69a3/package/base-files/files/sbin/sysupgrade#L247
+  find /usr/lib/opkg/info -name '*.control' \( \
+    \( -exec test -f /rom/{} \; -exec echo {} rom \; \) -o \
+    \( -exec test -f /overlay/upper/{} \; -exec echo {} overlay \; \) -o \
+    \( -exec echo {} unknown \; \) \
+    \) | grep overlay$ | sed -e 's|.*/||' | cut -d. -f 1 | sort -u >> $out_fqn 2>> $out_fqn
 
   echo -e "\n" >> $out_fqn
-} 
+}
 
 # ------- Main Routine -------
 
@@ -90,9 +91,9 @@ EOF
 
 
 # 2. Extract arguments from the command line and display them.
-while [ $# -gt 0 ] 
+while [ $# -gt 0 ]
 do
-	display_command "$1" 
+	display_command "$1"
 	shift 1
 done
 
@@ -118,4 +119,3 @@ echo "Done... Diagnostic information written to $out_fqn"
 echo " "
 
 # Now press Ctl-D, then type "sh getstats.sh"
-

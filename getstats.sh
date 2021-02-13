@@ -48,7 +48,7 @@ display_user_packages() {
     \( -exec test -f /rom/{} \; -exec echo {} rom \; \) -o \
     \( -exec test -f /overlay/upper/{} \; -exec echo {} overlay \; \) -o \
     \( -exec echo {} unknown \; \) \
-    \) | grep overlay$ | sed -e 's|.*/||' | cut -d. -f 1 | sort -u >> $out_fqn 2>> $out_fqn
+    \) | grep overlay$ | sed -e 's|.*/||' | cut -d. -f 1 | sort -u 2>&1 >> $out_fqn
 
   echo -e "\n" >> $out_fqn
 }

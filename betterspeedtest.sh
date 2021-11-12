@@ -36,7 +36,7 @@ summarize_pings() {
   kill_pings
   kill_dots
 
-  sed 's/^.*time=\([^ ]*\) ms/\1/' < $1 | grep -v "PING" | sort -n | \
+  sed 's/^.*time=\([^ ]*\) ms/\1/' < "$1" | grep -v "PING" | sort -n | \
   awk 'BEGIN {numdrops=0; numrows=0;} \
     { \
       if ( $0 ~ /timeout/ ) { \
@@ -58,7 +58,7 @@ summarize_pings() {
      }'
 
   # and finally remove the PINGFILE
-  rm $1
+  rm "$1"
 
 }
 
@@ -75,8 +75,8 @@ print_dots() {
 
 kill_dots() {
   # echo "Pings: $ping_pid Dots: $dots_pid"
-  kill -9 $dots_pid
-  wait $dots_pid 2>/dev/null
+  kill -9 "$dots_pid"
+  wait "$dots_pid" 2>/dev/null
   dots_pid=0
 }
 
@@ -84,8 +84,8 @@ kill_dots() {
 
 kill_pings() {
   # echo "Pings: $ping_pid Dots: $dots_pid"
-  kill -9 $ping_pid 
-  wait $ping_pid 2>/dev/null
+  kill -9 "$ping_pid"
+  wait "$ping_pid" 2>/dev/null
   ping_pid=0
 }
 
@@ -94,7 +94,7 @@ kill_pings() {
 kill_pings_and_dots_and_exit() {
   kill_dots
   kill_pings
-  echo "\nStopped"
+  printf "\nStopped" 
   exit 1
 }
 
@@ -104,7 +104,7 @@ kill_pings_and_dots_and_exit() {
 start_pings() {
 
   # Create temp file
-  PINGFILE=`mktemp /tmp/measurepings.XXXXXX` || exit 1
+  PINGFILE=$(mktemp /tmp/measurepings.XXXXXX) || exit 1
 
   # Start dots
   print_dots &
@@ -112,11 +112,11 @@ start_pings() {
   # echo "Dots PID: $dots_pid"
 
   # Start Ping
-  if [ $TESTPROTO -eq "-4" ]
+  if [ "$TESTPROTO" -eq "-4" ]
   then
-    "${PING4}"  $PINGHOST > $PINGFILE &
+    "$PING4"  "$PINGHOST" > "$PINGFILE" &
   else
-    "${PING6}"	$PINGHOST > $PINGFILE &
+    "$PING6"  "$PINGHOST" > "$PINGFILE" &
   fi
   ping_pid=$!
   # echo "Ping PID: $ping_pid"
@@ -131,14 +131,14 @@ start_pings() {
 measure_direction() {
 
   # Create temp file
-  SPEEDFILE=`mktemp /tmp/netperfUL.XXXXXX` || exit 1
+  SPEEDFILE=$(mktemp /tmp/netperfUL.XXXXXX) || exit 1
   DIRECTION=$1
   
   # start off the ping process
   start_pings
 
   # Start netperf with the proper direction
-  if [ $DIRECTION = "Download" ]; then
+  if [ "$DIRECTION" = "Download" ]; then
     dir="TCP_MAERTS"
   else
     dir="TCP_STREAM"
@@ -146,9 +146,9 @@ measure_direction() {
   
   # Start $MAXSESSIONS datastreams between netperf client and the netperf server
   # netperf writes the sole output value (in Mbps) to stdout when completed
-  for i in $( seq $MAXSESSIONS )
+  for i in $( seq "$MAXSESSIONS" )
   do
-    netperf $TESTPROTO -H $TESTHOST -t $dir -l $TESTDUR -v 0 -P 0 >> $SPEEDFILE &
+    netperf "$TESTPROTO" -H "$TESTHOST" -t "$dir" -l "$TESTDUR" -v 0 -P 0 >> "$SPEEDFILE" &
     # echo "Starting PID $! params: $TESTPROTO -H $TESTHOST -t $dir -l $TESTDUR -v 0 -P 0 >> $SPEEDFILE"
   done
   
@@ -156,20 +156,20 @@ measure_direction() {
   # echo "Process is $$"
   # echo `pgrep -P $$ netperf `
 
-  for i in `pgrep -P $$ netperf `   # gets a list of PIDs for child processes named 'netperf'
+  for i in $(pgrep -P $$ netperf )   # gets a list of PIDs for child processes named 'netperf'
   do
     #echo "Waiting for $i"
-    wait $i
+    wait "$i"
   done
 
   # Print TCP Download speed
   echo ""
-  awk -v dir="$1" '{s+=$1} END {printf " %s: %1.2f Mbps", dir, s}' < $SPEEDFILE 
+  awk -v dir="$1" '{s+=$1} END {printf " %s: %1.2f Mbps", dir, s}' < "$SPEEDFILE" 
 
   # When netperf completes, summarize the ping data
-  summarize_pings $PINGFILE
+  summarize_pings "$PINGFILE"
 
-  rm $SPEEDFILE
+  rm "$SPEEDFILE"
 }
 
 # ------- Start of the main routine --------
@@ -232,13 +232,13 @@ done
 
 # Start the main test
 
-if [ $TESTPROTO -eq "-4" ]
+if [ "$TESTPROTO" -eq "-4" ]
 then
   PROTO="ipv4"
 else
   PROTO="ipv6"
 fi
-DATE=`date "+%Y-%m-%d %H:%M:%S"`
+DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
 # Catch a Ctl-C and stop the pinging and the print_dots
 trap kill_pings_and_dots_and_exit HUP INT TERM
@@ -247,12 +247,11 @@ if $IDLETEST
 then
   echo "$DATE Testing idle line while pinging $PINGHOST ($TESTDUR seconds)"
   start_pings
-  sleep $TESTDUR
-  summarize_pings $PINGFILE
+  sleep "$TESTDUR"
+  summarize_pings "$PINGFILE"
 
 else
   echo "$DATE Testing against $TESTHOST ($PROTO) with $MAXSESSIONS simultaneous sessions while pinging $PINGHOST ($TESTDUR seconds in each direction)"
   measure_direction "Download" 
   measure_direction "  Upload" 
 fi
-

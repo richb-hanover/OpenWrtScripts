@@ -67,7 +67,7 @@ summarize_pings() {
 print_dots() {
   while : ; do
     printf "."
-    sleep 1s
+    sleep 1
   done
 }
 

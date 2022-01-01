@@ -18,49 +18,11 @@
 # -i | --idle:   Don't send traffic, only measure idle latency
 # -n | --number: Number of simultaneous sessions (default - 5 sessions)
 
-# Copyright (c) 2014-2019 - Rich Brown rich.brown@blueberryhillsoftware.com
+# Copyright (c) 2014-2022 - Rich Brown rich.brown@blueberryhillsoftware.com
 # GPLv2
 
-# Summarize the contents of the ping's output file to show min, avg, median, max, etc.
-#   input parameter ($1) file contains the output of the ping command
-
-summarize_pings() {     
-  
-  # Process the ping times, and summarize the results
-  # grep to keep lines that have "time=", then sed to isolate the time stamps, and sort them
-  # awk builds an array of those values, and prints first & last (which are min, max) 
-  # and computes average.
-  # If the number of samples is >= 10, also computes median, and 10th and 90th percentile readings
-
-  # stop pinging and drawing dots
-  kill_pings
-  kill_dots
-
-  sed 's/^.*time=\([^ ]*\) ms/\1/' < "$1" | grep -v "PING" | sort -n | \
-  awk 'BEGIN {numdrops=0; numrows=0;} \
-    { \
-      if ( $0 ~ /timeout/ ) { \
-          numdrops += 1; \
-      } else { \
-        numrows += 1; \
-        arr[numrows]=$1; sum+=$1; \
-      } \
-    } \
-    END { \
-      pc10="-"; pc90="-"; med="-"; \
-      if (numrows == 0) {numrows=1} \
-      if (numrows>=10) \
-      {   ix=int(numrows/10); pc10=arr[ix]; ix=int(numrows*9/10);pc90=arr[ix]; \
-        if (numrows%2==1) med=arr[(numrows+1)/2]; else med=(arr[numrows/2]); \
-      }; \
-      pktloss = numdrops/(numdrops+numrows) * 100; \
-      printf("\n  Latency: (in msec, %d pings, %4.2f%% packet loss)\n      Min: %4.3f \n    10pct: %4.3f \n   Median: %4.3f \n      Avg: %4.3f \n    90pct: %4.3f \n      Max: %4.3f\n", numrows, pktloss, arr[1], pc10, med, sum/numrows, pc90, arr[numrows] )\
-     }'
-
-  # and finally remove the PINGFILE
-  rm "$1"
-
-}
+# include the summarize_pings() function from the lib directory
+. "./lib/summarize_pings.sh"
 
 # Print a line of dots as a progress indicator.
 
@@ -89,12 +51,22 @@ kill_pings() {
   ping_pid=0
 }
 
+
+# Clean up all the debris from the testing
+clean_up() {
+  kill_pings
+  kill_dots
+  rm "$PINGFILE"
+}
+
 # Stop the current pings and dots, and exit
 # ping command catches (and handles) first Ctrl-C, so you have to hit it again...
-kill_pings_and_dots_and_exit() {
-  kill_dots
-  kill_pings
+catch_interrupt() {
   printf "\nStopped" 
+  kill_pings
+  kill_dots 
+  summarize_pings "$PINGFILE"
+  rm "$PINGFILE"
   exit 1
 }
 
@@ -169,7 +141,8 @@ measure_direction() {
   # When netperf completes, summarize the ping data
   summarize_pings "$PINGFILE"
 
-  rm "$SPEEDFILE"
+  # stop the dots & pings, rm "$PINGFILE"
+  clean_up
 }
 
 # ------- Start of the main routine --------
@@ -240,8 +213,8 @@ else
 fi
 DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
-# Catch a Ctl-C and stop the pinging and the print_dots
-trap kill_pings_and_dots_and_exit HUP INT TERM
+# Catch a Ctl-C and close up
+trap catch_interrupt HUP INT TERM
 
 if $IDLETEST
 then
@@ -249,6 +222,7 @@ then
   start_pings
   sleep "$TESTDUR"
   summarize_pings "$PINGFILE"
+  clean_up
 
 else
   echo "$DATE Testing against $TESTHOST ($PROTO) with $MAXSESSIONS simultaneous sessions while pinging $PINGHOST ($TESTDUR seconds in each direction)"

@@ -1,5 +1,3 @@
-summarize_pings() {     
-  
   # Process the ping times from the passed-in file, and summarize the results
   # grep to keep lines that have "time=", then sed to isolate the time stamps, and sort them
   # Use awk to build an array of those values, and print first & last (which are min, max) 
@@ -15,6 +13,8 @@ summarize_pings() {
   #  90pct: 23.202
   #    Max: 23.394
 
+summarize_pings() {     
+  
 grep "time" < "$1" | cat | \
 sed 's/^.*time=\([^ ]*\) ms/\1/'| \
   # tee >&2 | \

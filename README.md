@@ -28,7 +28,7 @@ opkg install git
 cd /usr/lib
 git clone git://github.com/richb-hanover/OpenWrtScripts.git
 ```
----
+
 ## [getstats.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/getstats.sh)
 
 The `getstats.sh` script helps diagnose problems with OpenWrt. 
@@ -46,7 +46,6 @@ Read the top of the [getstats.sh](./getstats.sh) file for a simple procedure for
 
 **Sample output file:** See a sample output file - [openwrtstats.txt](./sample_output/openwrtstats.txt)
 
----
 ## [opkgscript.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/opkgscript.sh)
 
 The `opkgscript.sh` script helps to restore the current set of packages after a sysupgrade 
@@ -64,7 +63,6 @@ Cloned from Malte Forkel's [original script.](https://forum.openwrt.org/viewtopi
 
 `sh opkgscript.sh help` _display full help information for the script_
 
----
 ## [config-openwrt.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-openwrt.sh)
 
 The `config-openwrt.sh` script updates the factory settings of OpenWrt to a known-good configuration.
@@ -109,7 +107,6 @@ may reset the wireless network.
 
 **Note:** If you use a secondary OpenWrt router, you can create another copy of this script, and use it to set different configuration parameters (perhaps different subnets, radio channels, SSIDs, enable mDNS, etc).  
 
----
 ## [betterspeedtest.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/betterspeedtest.sh)
 
 The `betterspeedtest.sh` script emulates the web-based test performed by speedtest.net, but does it one better. While script performs a download and an upload to a server on the Internet, it simultaneously measures latency of pings to see whether the file transfers affect the responsiveness of your network. 
@@ -135,6 +132,13 @@ The output shows separate (one-way) download and upload speed, along with a summ
 
 The Idle test uses the same process to measure latency of the line, but without any additional traffic from this script. It runs for the specified --time. 
 
+_Note:_ If the script displays the latency values as all-zeros on OpenWrt,
+then it's likely that the device has received (and is trying to use)
+an IPv6 address for the ping host.
+This will fail if you don't have IPv6 service from your ISP.
+To solve this, add `-p 1.1.1.1` or `-p 8.8.8.8` to the command to force an IPv4 host.
+
+### Sample Results
 On the left is a test run without SQM. Note that the latency gets huge (greater than 5 seconds), meaning that network performance would be terrible for anyone else using the network. 
 
 On the right is a test using SQM: the latency goes up a little (less than 23 msec under load), and network performance remains good.
@@ -164,35 +168,6 @@ On the right is a test using SQM: the latency goes up a little (less than 23 mse
         90pct: 5163.901                                              90pct: 56.061
           Max: 5334.262                                                Max: 69.333
 
----
-## [idlelatency.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/idlelatency.sh)
-
-The `idlelatency.sh` script summarizes ping times measured over a specified time interval. To invoke the script:
-
-    sh idlelatency.sh [ -4 | -6 ] [ -t duration ] [ -p host-to-ping ] 
-    
-Options, if present are:
-
-* -4 | -6: Enable ipv4 or ipv6 testing (default - ipv4)
-* -t | --time: Duration for how long each direction's test should run - (default - 60 seconds)
-* -p | --ping: Host to ping to measure latency (default - gstatic.com)
-
-The output of the script looks like this:
-
-```
-root@openwrt: sh idlelatency.sh
-2020-05-02 12:10:53 Testing idle line while pinging gstatic.com (60 seconds)
-............................................................
-  Latency: (in msec, 60 pings, 0.00% packet loss)
-      Min: 20.438
-    10pct: 22.633
-   Median: 36.907
-      Avg: 35.143
-    90pct: 45.994
-      Max: 50.377
-```
-
----         
 ## [netperfrunner.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/netperfrunner.sh)
 
 The `netperfrunner.sh` script runs several netperf commands simultaneously.
@@ -210,8 +185,11 @@ To invoke the script:
 Options, if present, are:
 
 * -H | --host: DNS or Address of a netperf server (default - netperf.bufferbloat.net)  
-Alternate servers are netperf-east (east coast US), netperf-west (California), 
-and netperf-eu (Denmark)
+Alternate servers are netperf-east (East Coast US),
+netperf-west (California), 
+netperf-eu (Denmark), or
+flent-fremont (also California)
+
 * -4 | -6: Enable ipv4 or ipv6 testing (default - ipv4)
 * -t | --time: Duration for how long each direction's test should run - (default - 60 seconds)
 * -p | --ping: Host to ping to measure latency (default - gstatic.com)
@@ -234,14 +212,16 @@ The output of the script looks like this:
 
 **Note:** The download and upload speeds reported may be considerably lower than your line's rated speed. This is not a bug, nor is it a problem with your internet connection. That's because the acknowledge messages sent back to the sender consume a significant fraction of the link's capacity (as much as 25%). 
 
----
 ## [networkhammer.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/networkhammer.sh)
 
 
 The `networkhammer.sh` script continually invokes the netperfrunner script to provide a heavy load. It runs forever - Ctl-C will interrupt it. 
  
+## [idlelatency.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/idlelatency.sh)
 
----
+_This script is no longer maintained.
+Use the `--idle` option of the `betterspeedtest.sh` script._
+
 ## [tunnelbroker.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/tunnelbroker.sh)
 
 The `tunnelbroker.sh` script configures OpenWrt to create an IPv6 tunnel via Hurricane Electric. 

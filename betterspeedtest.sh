@@ -101,16 +101,18 @@ clean_up() {
   kill_pings
   kill_dots
   rm "$PINGFILE"
+  rm "$SPEEDFILE"
 }
 
 # Stop the current pings and dots, and exit
-# ping command catches (and handles) first Ctrl-C, so you have to hit it again...
 catch_interrupt() {
+
   printf "\nStopped" 
   kill_pings
   kill_dots 
   summarize_pings "$PINGFILE"
   rm "$PINGFILE"
+  rm "$SPEEDFILE"
   exit 1
 }
 
@@ -263,6 +265,7 @@ trap catch_interrupt HUP INT TERM
 if $IDLETEST
 then
   echo "$DATE Testing idle line while pinging $PINGHOST ($TESTDUR seconds)"
+  SPEEDFILE=$(mktemp /tmp/netperfUL.XXXXXX) || exit 1
   start_pings
   sleep "$TESTDUR"
   summarize_pings "$PINGFILE"

@@ -170,6 +170,8 @@ DATE=`date "+%Y-%m-%d %H:%M:%S"`
 # Catch a Ctl-C and stop the pinging and the print_dots
 trap kill_pings_and_dots_and_exit HUP INT TERM
 
+echo "THIS SCRIPT IS NO LONGER MAINTAINED."
+echo "Use the --idle option with the betterspeedtest.sh script"
 echo "$DATE Testing idle line while pinging $PINGHOST ($TESTDUR seconds)"
 start_pings
 sleep $TESTDUR

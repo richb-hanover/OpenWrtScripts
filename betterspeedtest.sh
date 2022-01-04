@@ -107,7 +107,7 @@ clean_up() {
 # Stop the current pings and dots, and exit
 catch_interrupt() {
 
-  printf "\nStopped" 
+  printf "  Stopped!" 
   kill_pings
   kill_dots 
   summarize_pings "$PINGFILE"

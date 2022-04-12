@@ -26,7 +26,7 @@ opkg update
 opkg install netperf
 opkg install git
 cd /usr/lib
-git clone git://github.com/richb-hanover/OpenWrtScripts.git
+git clone https://github.com/richb-hanover/OpenWrtScripts.git
 ```
 
 ## [getstats.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/getstats.sh)

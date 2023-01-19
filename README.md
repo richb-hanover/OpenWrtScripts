@@ -23,8 +23,7 @@ The easiest way to do this is to use ssh into the router and enter these command
 
 ```
 opkg update
-opkg install netperf
-opkg install git
+opkg install netperf git git-http
 cd /usr/lib
 git clone https://github.com/richb-hanover/OpenWrtScripts.git
 ```

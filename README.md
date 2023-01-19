@@ -47,7 +47,12 @@ Read the top of the [getstats.sh](./getstats.sh) file for a simple procedure for
 
 ## [opkgscript.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/opkgscript.sh)
 
-The `opkgscript.sh` script helps to restore the current set of packages after a sysupgrade 
+_**NOTE:** This script is deprecated.
+It still works, but when upgrading to a new OpenWrt release, a far easier option is to use the
+[Attended Sysupgrade](https://openwrt.org/docs/guide-user/installation/attended.sysupgrade)
+in recent versions of OpenWrt._
+
+The `opkgscript.sh` script helps to restore the current set of packages after a sysupgrade
 or even a clean install of either LEDE or OpenWrt. 
 By default, the `write` command saves the list of installed packages in 
 `/etc/config/opkg.installed` (where it will be preserved across sysupgrades), and the 

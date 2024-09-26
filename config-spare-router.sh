@@ -56,13 +56,13 @@ $NEWPASSWD
 $NEWPASSWD
 EOF
 
-# === Update IP Subnet Ranges ==================
-# Change the local IP Subnet
-#
-echo "Changing LAN address"
-uci set network.lan.ipaddr=$LANIPADDRESS
-uci set network.lan.netmask=$LANSUBNET
-uci commit network
+# === Update the LAN address ==================
+# Change the default 192.168.1.1 to $LANIPADDRESS
+# Make the change in the /etc/config/network file to avoid
+# perturbing the SSH session. Reboot at the end of the script
+echo "Changing IP address to $LANIPADDRESS"
+sed -i s#192.168.1.1#$LANIPADDRESS#g /etc/config/network
+# sleep 5
 
 # === Enable Wifi on the first radio with configured parameters
 # Only one radio opened up for access
@@ -74,18 +74,6 @@ uci set wireless.@wifi-iface[0].encryption=$ENCRMODE
 uci set wireless.@wifi-iface[0].disabled='0'
 uci set wireless.@wifi-device[0].disabled='0'
 uci commit wireless
-wifi
-
-# === Set the Time Zone ========================
-# Set the time zone to non-default (other than UTC)
-# Full list of time zones is at:
-# https://github.com/openwrt/luci/blob/master/modules/luci-lua-runtime/luasrc/sys/zoneinfo/tzdata.lua
-#
-echo 'Setting timezone to' $TIMEZONE
-uci set system.@system[0].timezone="$TIMEZONE"
-echo 'Setting zone name to' $ZONENAME 
-uci set system.@system[0].zonename="$ZONENAME"
-uci commit system
 
 # === Update the software packages =============
 # Download and update all the interesting packages
@@ -95,8 +83,10 @@ echo 'Updating software packages'
 opkg update                # retrieve updated packages
 opkg install luci          # install the web GUI
 opkg install snmpd         # install snmpd 
+opkg install umdns         # install mDNS responder
 opkg install luci-app-sqm  # install the SQM modules to get fq_codel etc
 opkg install travelmate	   # install the travelmate package to be a repeater
+opkg install luci-app-travelmate # and its LuCI GUI
 # opkg install netperf	   # install the netperf module for speed testing
 # opkg install ppp-mod-pppoe # install PPPoE module
 # opkg install avahi-daemon  # install the mDNS daemon
@@ -116,40 +106,25 @@ uci commit snmpd
 /etc/init.d/snmpd restart   # default snmpd config uses 'public' 
 /etc/init.d/snmpd enable  	# community string for SNMPv1 & SNMPv2c
 
-# ==============================
-# Set Smart Queue Management (SQM) values for your own network
+# === Set the Time Zone ========================
+# Set the time zone to non-default (other than UTC)
+# Full list of time zones is at:
+# https://github.com/openwrt/luci/blob/master/modules/luci-lua-runtime/luasrc/sys/zoneinfo/tzdata.lua
 #
-# Use a speed test (http://speedtest.net or other) to determine 
-# the speed of your own network, then set the speeds  accordingly.
-# Speeds below are in kbits per second (3000 = 3 megabits/sec)
-# For details about setting the SQM for your router, see:
-# https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm
-# Set DOWNLOADSPEED, UPLOADSPEED, WANIF and then uncomment 18 lines
-#
-# DOWNLOADSPEED=20000
-# UPLOADSPEED=2000
-# WANIF=eth0
-# echo 'Setting SQM on '$WANIF ' to ' $DOWNLOADSPEED/$UPLOADSPEED 'kbps down/up'
-# uci set sqm.@queue[0].interface=$WANIF
-# uci set sqm.@queue[0].enabled=1
-# uci set sqm.@queue[0].download=$DOWNLOADSPEED
-# uci set sqm.@queue[0].upload=$UPLOADSPEED
-# uci set sqm.@queue[0].script='simple.qos' # Already the default
-# uci set sqm.@queue[0].qdisc='fq_codel'
-# uci set sqm.@queue[0].itarget='auto'
-# uci set sqm.@queue[0].etarget='auto'
-# uci set sqm.@queue[0].linklayer='atm'
-# uci set sqm.@queue[0].overhead='44'
-# uci commit sqm
-# /etc/init.d/sqm restart
-# /etc/init.d/sqm enable
+echo 'Setting timezone to' $TIMEZONE
+uci set system.@system[0].timezone="$TIMEZONE"
+echo 'Setting zone name to' $ZONENAME 
+uci set system.@system[0].zonename="$ZONENAME"
+uci commit system
 
-# === Get parameters for the Router Config Display ===
+# === Display Router Config ===================
 # 
 today=$(date +"%Y-%b-%d")
 device=$(cat /tmp/sysinfo/model)
 openwrtversion=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"')
 
+echo ""
+echo "Print the following label and tape it to the router..."
 echo ""
 echo "================================================="
 echo " Configured: $today"
@@ -163,8 +138,11 @@ echo "    WiFi PW: $WIFIPASSWD"
 echo "================================================="
 echo ""
 
-echo 'You should restart the router now for these changes to take effect...'
-echo 'Note that there may be a different IP address for the LAN port...'
+echo "Rebooting the router now for these changes to take effect..."
+echo "  You should now make a new connection to $LANIPADDRESS."
+
+reboot
+
 # --- end of script ---
 
 # ================ 
@@ -196,7 +174,33 @@ echo 'Note that there may be a different IP address for the LAN port...'
 # fprobe -i ge00 -f ip -d 15 -e 60 NEWIPPORT' /etc/rc.local
 # sed -i s#NEWIPPORT#$NETFLOWCOLLECTORADRS:$NETFLOWCOLLECTORPORT#g /etc/rc.local
 
-
+# ==============================
+# Set Smart Queue Management (SQM) values for your own network
+#
+# Use a speed test (http://speedtest.net or other) to determine 
+# the speed of your own network, then set the speeds  accordingly.
+# Speeds below are in kbits per second (3000 = 3 megabits/sec)
+# For details about setting the SQM for your router, see:
+# https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm
+# Set DOWNLOADSPEED, UPLOADSPEED, WANIF and then uncomment 18 lines
+#
+# DOWNLOADSPEED=20000
+# UPLOADSPEED=2000
+# WANIF=eth0
+# echo 'Setting SQM on '$WANIF ' to ' $DOWNLOADSPEED/$UPLOADSPEED 'kbps down/up'
+# uci set sqm.@queue[0].interface=$WANIF
+# uci set sqm.@queue[0].enabled=1
+# uci set sqm.@queue[0].download=$DOWNLOADSPEED
+# uci set sqm.@queue[0].upload=$UPLOADSPEED
+# uci set sqm.@queue[0].script='simple.qos' # Already the default
+# uci set sqm.@queue[0].qdisc='fq_codel'
+# uci set sqm.@queue[0].itarget='auto'
+# uci set sqm.@queue[0].etarget='auto'
+# uci set sqm.@queue[0].linklayer='atm'
+# uci set sqm.@queue[0].overhead='44'
+# uci commit sqm
+# /etc/init.d/sqm restart
+# /etc/init.d/sqm enable
 
 # === Update local DNS domain ==================
 # DNS: 

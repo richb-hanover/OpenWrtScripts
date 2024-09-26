@@ -4,19 +4,29 @@ OpenWrtScripts
 This is a set of scripts (sometimes also called "Openscripts") that report, configure and measure (and improve) latency in home routers (and everywhere else!) 
 These scripts work equally well for both [LEDE](https://lede-project.org) and [OpenWrt](https://openwrt.org) and include:
 
-* [getstats.sh](#getstatssh) - a script to collect troubleshooting information that helps to diagnose problems in the OpenWrt distribution.
+* [getstats.sh](#getstatssh) - a script to collect troubleshooting
+  information that helps to diagnose problems in the OpenWrt distribution.
 
-* [opkgscript.sh](#opkgscriptsh) - a script to save the list of 
-currently-installed packages (say, before a sysupgrade), 
-and then restore the full set of packages after the upgrade.
+* [opkgscript.sh](#opkgscriptsh) - a script to save the list of
+  currently-installed packages (say, before a sysupgrade),
+  and then restore the full set of packages after the upgrade.
 
-* [config-openwrt.sh](#config-openwrtsh) - a script to configure the OpenWrt router consistently after flashing factory firmware.
+* [config-openwrt.sh](#config-openwrtsh) - a script to configure the
+  OpenWrt router consistently after flashing factory firmware.
 
-* [betterspeedtest.sh](#betterspeedtestsh) & [netperfrunner.sh](#netperfrunnersh) & [networkhammer.sh](#networkhammersh) - scripts that measure the performance of your router or offer load to the network for testing.
+* [config-spare-router.sh](#config-spare-routersh) - Configure a
+  "spare router" to known settings so it's easy to use in a new setting.
 
-* [idlelatency.sh](#idlelatencysh) - a script to measure the latency of an "idle line" without any additional traffic generation from the script.
+* [betterspeedtest.sh](#betterspeedtestsh) &
+  [netperfrunner.sh](#netperfrunnersh) &
+  [networkhammer.sh](#networkhammersh) - scripts that measure the
+  performance of your router or offer load to the network for testing.
 
-* [tunnelbroker.sh](#tunnelbrokersh) - a script to set up a IPv6 6-in-4 tunnel to TunnelBroker.net. 
+* [idlelatency.sh](#idlelatencysh) - a script to measure the latency of
+  an "idle line" without any additional traffic generation from the script.
+
+* [tunnelbroker.sh](#tunnelbrokersh) - a script to set up a
+  IPv6 6-in-4 tunnel to TunnelBroker.net. 
 
 These scripts can be saved in the `/usr/lib/OpenWrtScripts` directory. 
 The easiest way to do this is to use ssh into the router and enter these commands:
@@ -67,6 +77,41 @@ Cloned from Malte Forkel's [original script.](https://forum.openwrt.org/viewtopi
 
 `sh opkgscript.sh help` _display full help information for the script_
 
+## [config-spare-router.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-spare-router.sh)
+
+Configure a "spare router" to known settings so that
+it's easy to use in a new situation.
+Many of us have a pile of routers that might be passed along to
+friends, family, or neighbors.
+But they're in an unknown state, and it's a hassle to figure out the
+current configuration to reuse them.
+
+This script configures an OpenWrt router to a known state.
+It also prints a label that can be taped to the outside of the router
+so the next person "to touch it" can log in easily.
+
+When you're taking a router out of service,
+reset it, then run this script.
+Print the label below and tape it to the router.
+It'll be easy to start using it again.
+
+```
+=================================================
+     Device: D-Link DIR-878 A1
+    OpenWrt: 'OpenWrt 23.05.5 r24106-10cc5fcd00'
+ Connect to: http://SpareRouter.local
+         or: ssh root@SpareRouter.local
+        LAN: 172.30.42.1
+       User: root
+   Login PW: SpareRouter
+  WiFi SSID: SpareRouter
+    WiFi PW:
+ Configured: 2024-Sep-26
+=================================================
+
+Power Brick Label: D-Link DIR-878 A1
+```
+ 
 ## [config-openwrt.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-openwrt.sh)
 
 The `config-openwrt.sh` script updates the factory settings of OpenWrt to a known-good configuration.

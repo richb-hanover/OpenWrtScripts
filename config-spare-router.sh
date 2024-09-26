@@ -37,6 +37,7 @@
 # === CONFIGURATION PARAMETERS ===
 # Set the variables in this section to be used for configuration
 
+HOSTNAME="SpareRouter"
 NEWPASSWD="SpareRouter"
 TIMEZONE='EST5EDT,M3.2.0,M11.1.0' 	# see link to other time zones below
 ZONENAME='America/New York'			
@@ -50,17 +51,24 @@ ENCRMODE='none'
 # === Update root password =====================
 # Update the root password. 
 # 
-echo 'Updating root password'
+echo '*** Updating root password'
 passwd <<EOF
 $NEWPASSWD
 $NEWPASSWD
 EOF
 
+# === Set the hostname ========================
+# Displayed in LuCI GUI also
+# ssh root@$HOSTNAME.local and http://$HOSTNAME.local
+echo '*** Setting host name'
+uci set system.@system[0].hostname=$HOSTNAME
+uci commit system
+
 # === Update the LAN address ==================
 # Change the default 192.168.1.1 to $LANIPADDRESS
 # Make the change in the /etc/config/network file to avoid
 # perturbing the SSH session. Reboot at the end of the script
-echo "Changing IP address to $LANIPADDRESS"
+echo "*** Changing IP address to $LANIPADDRESS"
 sed -i s#192.168.1.1#$LANIPADDRESS#g /etc/config/network
 # sleep 5
 
@@ -68,54 +76,41 @@ sed -i s#192.168.1.1#$LANIPADDRESS#g /etc/config/network
 # Only one radio opened up for access
 # Use its default channel
 #
-echo "Setting Wi-fi Parameters"
+echo "*** Setting Wifi Parameters"
 uci set wireless.@wifi-iface[0].ssid=$WIFISSID
 uci set wireless.@wifi-iface[0].encryption=$ENCRMODE
 uci set wireless.@wifi-iface[0].disabled='0'
 uci set wireless.@wifi-device[0].disabled='0'
 uci commit wireless
 
-# === Update the software packages =============
-# Download and update all the interesting packages
-# Some of these are pre-installed, but there is no harm in
-# updating/installing them a second time.
-echo 'Updating software packages'
-opkg update                # retrieve updated packages
-opkg install luci          # install the web GUI
-opkg install snmpd         # install snmpd 
-opkg install umdns         # install mDNS responder
-opkg install luci-app-sqm  # install the SQM modules to get fq_codel etc
-opkg install travelmate	   # install the travelmate package to be a repeater
-opkg install luci-app-travelmate # and its LuCI GUI
-# opkg install netperf	   # install the netperf module for speed testing
-# opkg install ppp-mod-pppoe # install PPPoE module
-# opkg install avahi-daemon  # install the mDNS daemon
-# opkg install fprobe        # install fprobe netflow exporter
-
-# === Enable SNMP daemon =======================
-# Enables responses on IPv4 & IPv6 with same read-only community string
-# Supply values for COMMUNITYSTRING and uncomment eleven lines.
-echo 'Configuring and starting snmpd'
-uci set snmpd.@agent[0].agentaddress='UDP:161,UDP6:161'
-uci set snmpd.@com2sec[0].community=$SNMP_COMMUNITYSTRING
-uci add snmpd com2sec6
-uci set snmpd.@com2sec6[-1].secname=ro
-uci set snmpd.@com2sec6[-1].source=default
-uci set snmpd.@com2sec6[-1].community=$SNMP_COMMUNITYSTRING
-uci commit snmpd
-/etc/init.d/snmpd restart   # default snmpd config uses 'public' 
-/etc/init.d/snmpd enable  	# community string for SNMPv1 & SNMPv2c
-
 # === Set the Time Zone ========================
 # Set the time zone to non-default (other than UTC)
 # Full list of time zones is at:
 # https://github.com/openwrt/luci/blob/master/modules/luci-lua-runtime/luasrc/sys/zoneinfo/tzdata.lua
 #
-echo 'Setting timezone to' $TIMEZONE
+echo "*** Setting timezone to $TIMEZONE"
 uci set system.@system[0].timezone="$TIMEZONE"
-echo 'Setting zone name to' $ZONENAME 
+echo "*** Setting zone name to $ZONENAME"
 uci set system.@system[0].zonename="$ZONENAME"
 uci commit system
+
+# === Update the software packages =============
+# Download and update all the interesting packages
+# Some of these are pre-installed, but there is no harm in
+# updating/installing them a second time.
+echo '*** Updating software packages'
+opkg -V0 update                # retrieve updated packages
+opkg -V0 install luci          # install the web GUI
+opkg -V0 install umdns         # install mDNS responder
+opkg -V0 install luci-app-sqm  # install the SQM modules to get fq_codel etc
+opkg -V0 install travelmate	   # install the travelmate package to be a repeater
+opkg -V0 install luci-app-travelmate # and its LuCI GUI
+# opkg -V0 install netperf	   # install the netperf module for speed testing
+# opkg -V0 install ppp-mod-pppoe # install PPPoE module
+# opkg -V0 install avahi-daemon  # install the mDNS daemon
+# opkg -V0 install fprobe        # install fprobe netflow exporter
+# opkg -V0 install snmpd         # install snmpd 
+echo '*** Package update complete'
 
 # === Display Router Config ===================
 # 
@@ -127,19 +122,23 @@ echo ""
 echo "Print the following label and tape it to the router..."
 echo ""
 echo "================================================="
-echo " Configured: $today"
-echo "     Device: $device" 
+echo "     Device: $device"
 echo "    OpenWrt: $openwrtversion" 
+echo " Connect to: http://$HOSTNAME.local" 
+echo "         or: ssh root@$HOSTNAME.local"
 echo "        LAN: $LANIPADDRESS"
 echo "       User: root"
 echo "   Login PW: $NEWPASSWD"
 echo "  WiFi SSID: $WIFISSID"
 echo "    WiFi PW: $WIFIPASSWD"
+echo " Configured: $today"
 echo "================================================="
 echo ""
-
+echo "Power Brick Label: $device"
+echo ""
 echo "Rebooting the router now for these changes to take effect..."
 echo "  You should now make a new connection to $LANIPADDRESS."
+echo ""
 
 reboot
 
@@ -173,6 +172,20 @@ reboot
 # sed -i '$ i\
 # fprobe -i ge00 -f ip -d 15 -e 60 NEWIPPORT' /etc/rc.local
 # sed -i s#NEWIPPORT#$NETFLOWCOLLECTORADRS:$NETFLOWCOLLECTORPORT#g /etc/rc.local
+
+# === Enable SNMP daemon =======================
+# Enables responses on IPv4 & IPv6 with same read-only community string
+# Supply values for COMMUNITYSTRING and uncomment eleven lines.
+# echo '*** Configuring and starting snmpd ***'
+# uci set snmpd.@agent[0].agentaddress='UDP:161,UDP6:161'
+# uci set snmpd.@com2sec[0].community=$SNMP_COMMUNITYSTRING
+# uci add snmpd com2sec6
+# uci set snmpd.@com2sec6[-1].secname=ro
+# uci set snmpd.@com2sec6[-1].source=default
+# uci set snmpd.@com2sec6[-1].community=$SNMP_COMMUNITYSTRING
+# uci commit snmpd
+# /etc/init.d/snmpd restart   # default snmpd config uses 'public' 
+# /etc/init.d/snmpd enable  	# community string for SNMPv1 & SNMPv2c
 
 # ==============================
 # Set Smart Queue Management (SQM) values for your own network

@@ -23,8 +23,9 @@ time you get it out.
 
 ## Usage
 
-When you retire a router from service, run the script.
-It is available at [config-spare-router.sh](./README.md#config-spare-router-sh)
+When you retire a router from service, run this script.
+It is available at
+[config-spare-router.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-spare-router.sh)
 To use it:
 
 * Connect via Ethernet to a LAN port

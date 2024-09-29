@@ -14,7 +14,7 @@ These scripts work equally well for both [LEDE](https://lede-project.org) and [O
 * [config-openwrt.sh](#config-openwrtsh) - a script to configure the
   OpenWrt router consistently after flashing factory firmware.
 
-* [config-spare-router.sh](#config-spare-routersh) - Configure a
+* [config-spare-router.sh](#config-spare-router-sh) - Configure a
   "spare router" to known settings so it's easy to use in a new setting.
 
 * [betterspeedtest.sh](#betterspeedtestsh) &

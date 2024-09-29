@@ -5,7 +5,7 @@ they retire one for a newer device.
 These are perfectly functioning devices that are perhaps older or missing a certain function.
 
 They could be easily re-used and passed along to friends, family or neighbors.
-BUT...
+BUT... you have to solve a couple problems:
 
 1. The router retains all your personal info:
   passwords, certificates, idiosyncratic packages. etc.
@@ -23,17 +23,21 @@ time you get it out.
 
 ## Usage
 
-When you retire a router from service, run this script. To do this:
+When you retire a router from service, run the script.
+It is available at [config-spare-router.sh](./README.md#config-spare-router-sh)
+To use it:
 
 * Connect via Ethernet to a LAN port
-* Use the LuCI GUI to upgrade the firmware to the latest version.
-* When the router starts up again, reset settings to
+* Use the LuCI GUI to reset settings to
   factory default (**System -> Backup/Flash firmware**)
-* Connect to the router via ssh (you'll need an Ethernet connection)
-* Run the script (`cd /tmp; cat > config.sh & paste; ^D; sh config.sh`)
-* Print the results from the script to make a label. Tape it to the router
-* _Pro tip:_ Snip the model number from the "Power Brick Label:" part of the results
+* Use the [Firmware Selector](https://firmware-selector.openwrt.org/)
+  to find and flash the latest firmware
+* SSH into the router using the Ethernet connection
+* Run the attached script (see the instructions within it)
+* The script prints a label: cut it out and tape it to the router
+* _Pro tip:_ Snip the model number from the paper 
   and tape it directly to the power brick.
+  (Use the text from the "Power Brick Label" section.)
 * _Pro tip:_ Place the router and its power brick in a ziploc bag
   to keep them together.
 
@@ -67,7 +71,7 @@ Remember to change the following:
 * Root password (**System -> Administration**)
 * Wifi credentials (**Network -> Wireless**) 
 * Enable other Wifi radios (**Network -> Wireless**) 
-* Change the LAN interace as needed (**Network -> Interfaces**)
+* Change the LAN interace IP address and other settings as needed (**Network -> Interfaces**)
 * (Optional) Configure SQM (**Network -> SQM QoS**)
 * (Optional) Change the hostname (**System -> System**)
 * (Optional) Install other packages as needed
@@ -88,7 +92,7 @@ was not a consideration.
 * **LAN Address:** The LAN IP address is set to `172.30.42.1`. 
   This is a
   [valid private IP address range](https://en.wikipedia.org/wiki/Private_network)
-  (like `10...` and `192.168...`) but it is less commonly used.
+  (like `10...` and `192.168...` subnets) but it is less commonly used.
   This means that you can bring the router into virtually any
   network environment without concern for IP address conflicts,
   then use the LuCI GUI to configure the LAN.
@@ -112,12 +116,13 @@ was not a consideration.
     (e.g., connect using `ssh root@sparerouter`)
   * **luci-app-sqm** All OpenWrt routers should have the SQM package installed
     to minimize bufferbloat
-  * **travelmate**	and
+  * **travelmate**	_and_
   * **luci-app-travelmate** This package allows a router to
-    act as a Wifi repeater.
-    It also allows you to connect wirelessly to an "upstream router" for 
-    additional downloads without requiring an Ethernet cable for the WAN port.
-
+    act as a Wifi repeater by making a wireless "uplink"
+    to an existing network
+    Even if there's no Ethernet connection for the spare routers's WAN port,
+    the wireless uplink lets you download additional packages.
+    
 ## Modifications
 
 This script provides a stable platform for re-deploying old routers.
@@ -127,5 +132,5 @@ would improve the script. Enjoy!
 ## Old information
 
 The script also has a large number of lines that are commented out.
-These were steps for other packages that are not essential for the "Spare Router".
+These were steps for other packages that are not essential for a "Spare Router".
 Feel free to experiment with these sections in your own copy of the script.

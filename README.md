@@ -14,7 +14,7 @@ These scripts work equally well for both [LEDE](https://lede-project.org) and [O
 * [config-openwrt.sh](#config-openwrtsh) - a script to configure the
   OpenWrt router consistently after flashing factory firmware.
 
-* [config-spare-router.sh](#config-spare-router-sh) - Configure a
+* [config-spare-router.sh](#config-spare-routersh) - Configure a
   "spare router" to known settings so it's easy to use in a new setting.
 
 * [betterspeedtest.sh](#betterspeedtestsh) &
@@ -94,6 +94,7 @@ When you're taking a router out of service,
 reset it, then run this script.
 Print the label below and tape it to the router.
 It'll be easy to start using it again.
+For more details, read [Why a "spare router"?](./Why a Spare Router%3F.md)
 
 ```
 =================================================

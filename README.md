@@ -94,7 +94,8 @@ When you're taking a router out of service,
 reset it, then run this script.
 Print the label below and tape it to the router.
 It'll be easy to start using it again.
-For more details, read [Why a "spare router"?](./Why a Spare Router%3F.md)
+For more details, read
+[Why a "spare router"?](./Why%20a%20Spare%20Router%3F.md)
 
 ```
 =================================================

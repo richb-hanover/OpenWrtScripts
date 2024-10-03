@@ -166,7 +166,7 @@ Here's why that's important: If the data transfers do increase the latency/lag m
 
 The betterspeedtest.sh script measures latency during file transfers. To invoke it:
 
-    sh betterspeedtest.sh [ -4 | -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-streams ]
+    sh betterspeedtest.sh -Z passphrase [ -4 | -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-streams ]
 
 Options, if present, are:
 
@@ -178,6 +178,8 @@ and netperf-eu (Denmark)
 * -p | --ping: Host to ping to measure latency (default - gstatic.com)
 * -i | --idle: Don't send traffic, only measure idle latency
 * -n | --number: Number of simultaneous sessions (default - 5 sessions)
+* -Z passphrase: Required to use the default netperf.bufferbloat.net server.
+  Visit the site to get today's value.
 
 The output shows separate (one-way) download and upload speed, along with a summary of latencies, including min, max, average, median, and 10th and 90th percentiles so you can get a sense of the distribution. The tool also displays the percent packet loss. The example below shows two measurements, bad and good. 
 
@@ -231,7 +233,7 @@ and lets you measure both the total bandwidth and the latency of the link during
 
 To invoke the script:
 
-    sh netperfrunner.sh [ -4 | -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [-n simultaneous-streams ]
+    sh netperfrunner.sh -Z passphrase [ -4 | -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [-n simultaneous-streams ]
 
 Options, if present, are:
 
@@ -245,6 +247,8 @@ flent-fremont (also California)
 * -t | --time: Duration for how long each direction's test should run - (default - 60 seconds)
 * -p | --ping: Host to ping to measure latency (default - gstatic.com)
 * -n | --number: Number of simultaneous sessions (default - 4 sessions)
+* -Z passphrase: Required for netperf.bufferbloat.net
+  See `betterspeedtest.sh`
 
 The output of the script looks like this:
 

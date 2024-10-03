@@ -17,8 +17,9 @@
 # -p | --ping:   Host to ping to measure latency (default - gstatic.com)
 # -i | --idle:   Don't send traffic, only measure idle latency
 # -n | --number: Number of simultaneous sessions (default - 5 sessions)
+# -Z             Required passphrase - see http://netperf.bufferbloat.net for today's value
 
-# Copyright (c) 2014-2022 - Rich Brown rich.brown@blueberryhillsoftware.com
+# Copyright (c) 2014-2024 - Rich Brown rich.brown@blueberryhillsoftware.com
 # GPLv2
 
   # Process the ping times from the passed-in file, and summarize the results
@@ -69,7 +70,6 @@ sed 's/^.*time=\([^ ]*\) ms/\1/'| \
 }
 
 # Print a line of dots as a progress indicator.
-
 print_dots() {
   while : ; do
     printf "."
@@ -78,7 +78,6 @@ print_dots() {
 }
 
 # Stop the current print_dots() process
-
 kill_dots() {
   # echo "Pings: $ping_pid Dots: $dots_pid"
   kill -9 "$dots_pid"
@@ -87,7 +86,6 @@ kill_dots() {
 }
 
 # Stop the current ping process
-
 kill_pings() {
   # echo "Pings: $ping_pid Dots: $dots_pid"
   kill -9 "$ping_pid"
@@ -102,6 +100,7 @@ clean_up() {
   kill_dots
   rm "$PINGFILE"
   rm "$SPEEDFILE"
+  rm "$ERRFILE"
 }
 
 # Stop the current pings and dots, and exit
@@ -113,6 +112,14 @@ catch_interrupt() {
   summarize_pings "$PINGFILE"
   rm "$PINGFILE"
   rm "$SPEEDFILE"
+  exit 1
+}
+
+# Display "no passphrase" message and exit
+no_passphrase() {
+  echo ""
+  echo "Missing passphrase - see netperf.bufferbloat.net" 
+  echo ""
   exit 1
 }
 
@@ -150,6 +157,7 @@ measure_direction() {
 
   # Create temp file
   SPEEDFILE=$(mktemp /tmp/netperfUL.XXXXXX) || exit 1
+  ERRFILE=$(mktemp /tmp/netperfErr.XXXXXX) || exit 1
   DIRECTION=$1
   
   # start off the ping process
@@ -166,10 +174,10 @@ measure_direction() {
   # netperf writes the sole output value (in Mbps) to stdout when completed
   for i in $( seq "$MAXSESSIONS" )
   do
-    netperf "$TESTPROTO" -H "$TESTHOST" -t "$dir" -l "$TESTDUR" -v 0 -P 0 >> "$SPEEDFILE" &
+    netperf "$TESTPROTO" -H "$TESTHOST" -t "$dir" -l "$TESTDUR" -v 0 -P 0 $PASSPHRASEOPTION >> "$SPEEDFILE" 2>> $ERRFILE &
     # echo "Starting PID $! params: $TESTPROTO -H $TESTHOST -t $dir -l $TESTDUR -v 0 -P 0 >> $SPEEDFILE"
-  done
-  
+  done  
+
   # Wait until each of the background netperf processes completes 
   # echo "Process is $$"
   # echo `pgrep -P $$ netperf `
@@ -180,7 +188,14 @@ measure_direction() {
     wait "$i"
   done
 
-  # Print TCP Download speed
+  # Check the length of the error file. If it's > 0, then there were errors
+  file_size=$(wc -c < "$ERRFILE")
+  if [ $file_size -gt 0 ]; then
+    clean_up                    # stop the machinery
+    no_passphrase               # print the error and exit
+  fi 
+
+  # Summarize the speed records and print them
   echo ""
   awk -v dir="$1" '{s+=$1} END {printf " %s: %1.2f Mbps", dir, s}' < "$SPEEDFILE" 
 
@@ -193,7 +208,7 @@ measure_direction() {
 
 # ------- Start of the main routine --------
 
-# Usage: sh betterspeedtest.sh [ -4 -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-sessions ]
+# Usage: sh betterspeedtest.sh -Z passphrase [ -4 -6 ] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-sessions ]
 
 # “H” and “host” DNS or IP address of the netperf server host (default: netperf.bufferbloat.net)
 # “t” and “time” Time to run the test in each direction (default: 60 seconds)
@@ -201,6 +216,7 @@ measure_direction() {
 # "i" and "idle" Don't send up/down traffic - just measure idle link latency
 # "n" and "number" Number of simultaneous upload or download sessions (default: 5 sessions;
 #       5 sessions chosen empirically because total didn't increase much after that number)
+# "Z"            Required passphrase - see netperf.bufferbloat.net
 
 # set an initial values for defaults
 TESTHOST="netperf.bufferbloat.net"
@@ -244,8 +260,13 @@ do
         esac ;;
       -i|--idle)
         IDLETEST=true ; shift 1 ;;
+      -Z)
+          case "$2" in
+              "") no_passphrase ; exit 1 ;;
+              *) PASSPHRASEOPTION="-Z $2" ; shift 2 ;;
+          esac ;;
       --) shift ; break ;;
-        *) echo "Usage: sh betterspeedtest.sh [-4 -6] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -n simultaneous-sessions ] [ --idle ]" ; exit 1 ;;
+        *) echo "Usage: sh betterspeedtest.sh -Z passphrase [-4 -6] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -n simultaneous-sessions ] [ --idle ]" ; exit 1 ;;
     esac
 done
 

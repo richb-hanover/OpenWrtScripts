@@ -12,7 +12,7 @@
 # a) total bandwidth available 
 # b) the distribution of ping latency
  
-# Usage: sh netperfrunner.sh [ -4 -6 ] [ -H netperf-server ] [ -t duration ] [ -t host-to-ping ] [ -n simultaneous-streams ]
+# Usage: sh netperfrunner.sh -Z passphrase [ -4 -6 ] [ -H netperf-server ] [ -t duration ] [ -t host-to-ping ] [ -n simultaneous-streams ]
 
 # Options: If options are present:
 #
@@ -23,8 +23,9 @@
 # -t | --time:   Duration for how long each direction's test should run - (default - 60 seconds)
 # -p | --ping:   Host to ping to measure latency (default - gstatic.com)
 # -n | --number: Number of simultaneous sessions (default - 5 sessions)
+# -Z passphrase: Passphrase required for netperf.bufferbloat.net
 
-# Copyright (c) 2014-2022 - Rich Brown rich.brown@blueberryhillsoftware.com
+# Copyright (c) 2014-2024 - Rich Brown rich.brown@blueberryhillsoftware.com
 # GPLv2
 
   # Process the ping times from the passed-in file, and summarize the results
@@ -74,6 +75,48 @@ sed 's/^.*time=\([^ ]*\) ms/\1/'| \
      }'
 }
 
+# Print a line of dots as a progress indicator.
+print_dots() {
+  while : ; do
+    printf "."
+    sleep 1
+  done
+}
+
+# Stop the current print_dots() process
+kill_dots() {
+  # echo "Pings: $ping_pid Dots: $dots_pid"
+  kill -9 "$dots_pid"
+  wait "$dots_pid" 2>/dev/null
+  dots_pid=0
+}
+
+# Stop the current ping process
+kill_pings() {
+  # echo "Pings: $ping_pid Dots: $dots_pid"
+  kill -9 "$ping_pid"
+  wait "$ping_pid" 2>/dev/null
+  ping_pid=0
+}
+
+# Clean up all the debris from the testing
+clean_up() {
+  kill_pings
+  kill_dots
+  rm "$PINGFILE"
+  rm "$ULFILE"
+  rm "$DLFILE"
+  rm "$ERRFILE"
+}
+
+# Display "no passphrase" message and exit
+no_passphrase() {
+  echo ""
+  echo "Missing passphrase - see netperf.bufferbloat.net" 
+  echo ""
+  exit 1
+}
+
 # ------- Start of the main routine --------
 
 # Usage: sh betterspeedtest.sh [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ]
@@ -100,6 +143,8 @@ TESTPROTO=-4
 ULFILE=`mktemp /tmp/netperfUL.XXXXXX` || exit 1
 DLFILE=`mktemp /tmp/netperfDL.XXXXXX` || exit 1
 PINGFILE=`mktemp /tmp/measurepings.XXXXXX` || exit 1
+ERRFILE=$(mktemp /tmp/netperfErr.XXXXXX) || exit 1
+
 # echo $ULFILE $DLFILE $PINGFILE
 
 # read the options
@@ -129,8 +174,13 @@ do
         		"") echo "Missing number of simultaneous sessions" ; exit 1 ;;
         		*) MAXSESSIONS=$2 ; shift 2 ;;
         	esac ;;
+        -Z)
+          case "$2" in
+              "") no_passphrase ; exit 1 ;;
+              *) PASSPHRASEOPTION="-Z $2" ; shift 2 ;;
+          esac ;;
         --) shift ; break ;;
-        *) echo "Usage: sh Netperfrunner.sh [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -n simultaneous-streams ]" ; exit 1 ;;
+        *) echo "Usage: sh Netperfrunner.sh -Z passphrase [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -n simultaneous-streams ]" ; exit 1 ;;
     esac
 done
 
@@ -149,28 +199,45 @@ echo "$DATE Testing $TESTHOST ($PROTO) with $MAXSESSIONS streams down and up whi
 # echo "This test is part of the CeroWrt project. To learn more, visit:"
 # echo "  http://bufferbloat.net/projects/cerowrt/"
 
-# Start Ping
-if [ $TESTPROTO -eq "-4" ]
-then
-	"${PING4}" $PINGHOST > $PINGFILE &
-else
-	"${PING6}" $PINGHOST > $PINGFILE &
-fi
-ping_pid=$!
-# echo "Ping PID: $ping_pid"
+# ------------ start_pings() ----------------
+# Start printing dots, then start a ping process, saving the results to a PINGFILE
+
+start_pings() {
+
+  # Create temp file
+  PINGFILE=$(mktemp /tmp/measurepings.XXXXXX) || exit 1
+
+  # Start dots
+  print_dots &
+  dots_pid=$!
+  # echo "Dots PID: $dots_pid"
+
+  # Start Ping
+  if [ "$TESTPROTO" -eq "-4" ]
+  then
+    "$PING4"  "$PINGHOST" > "$PINGFILE" &
+  else
+    "$PING6"  "$PINGHOST" > "$PINGFILE" &
+  fi
+  ping_pid=$!
+  # echo "Ping PID: $ping_pid"
+
+}
+
+start_pings
 
 # Start $MAXSESSIONS upload datastreams from netperf client to the netperf server
 # netperf writes the sole output value (in Mbps) to stdout when completed
 for i in $( seq $MAXSESSIONS )
 do
-	netperf $TESTPROTO -H $TESTHOST -t TCP_STREAM -l $TESTDUR -v 0 -P 0 >> $ULFILE &
+	netperf $TESTPROTO -H $TESTHOST -t TCP_STREAM -l $TESTDUR -v 0 -P 0 $PASSPHRASEOPTION >> $ULFILE 2>> $ERRFILE&
 	# echo "Starting upload #$i $!"
 done
 
 # Start $MAXSESSIONS download datastreams from netperf server to the client
 for i in $( seq $MAXSESSIONS )
 do
-	netperf $TESTPROTO -H $TESTHOST -t TCP_MAERTS -l $TESTDUR -v 0 -P 0 >> $DLFILE &
+	netperf $TESTPROTO -H $TESTHOST -t TCP_MAERTS -l $TESTDUR -v 0 -P 0 $PASSPHRASEOPTION >> $DLFILE 2>> $ERRFILE&
 	# echo "Starting download #$i $!"
 done
 
@@ -184,17 +251,22 @@ do
 	wait $i
 done
 
-# Stop the pings after the netperf's are all done
-kill -9 $ping_pid
-wait $ping_pid 2>/dev/null
+# Check the length of the error file. If it's > 0, then there were errors
+  file_size=$(wc -c < "$ERRFILE")
+  if [ $file_size -gt 0 ]; then
+    clean_up                    # stop the machinery
+    no_passphrase               # print the error and exit
+  fi 
+
+# # Stop the pings after the netperf's are all done
+# kill -9 $ping_pid
+# wait $ping_pid 2>/dev/null
 
 # sum up all the values (one line per netperf test) from $DLFILE and $ULFILE
 # then summarize the ping stat's
+echo ""
 echo " Download: " `awk '{s+=$1} END {print s}' $DLFILE` Mbps
 echo "   Upload: " `awk '{s+=$1} END {print s}' $ULFILE` Mbps
 summarize_pings $PINGFILE
 
-# Clean up
-rm $PINGFILE
-rm $DLFILE
-rm $ULFILE
+clean_up

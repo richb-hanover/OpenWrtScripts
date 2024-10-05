@@ -118,7 +118,7 @@ catch_interrupt() {
 # Display "no passphrase" message and exit
 no_passphrase() {
   echo ""
-  echo "Missing passphrase - see netperf.bufferbloat.net" 
+  echo "Missing passphrase - see https://$TESTHOST" 
   echo ""
   exit 1
 }

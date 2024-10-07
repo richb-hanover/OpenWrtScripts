@@ -5,7 +5,7 @@
 # Output the measured transfer rates and the resulting ping latency
 # It's better than 'speedtest.net' because it measures latency *while* measuring the speed.
 
-# Usage: sh betterspeedtest.sh [-4 -6] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-streams ]
+# Usage: sh betterspeedtest.sh -Z passphrase [-4 -6] [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ] [ -i ] [ -n simultaneous-streams ]
 
 # Options: If options are present:
 #
@@ -17,7 +17,7 @@
 # -p | --ping:   Host to ping to measure latency (default - gstatic.com)
 # -i | --idle:   Don't send traffic, only measure idle latency
 # -n | --number: Number of simultaneous sessions (default - 5 sessions)
-# -Z             Required passphrase - see http://netperf.bufferbloat.net for today's value
+# -Z             Required passphrase - see https://netperf.bufferbloat.net for today's value
 
 # Copyright (c) 2014-2024 - Rich Brown rich.brown@blueberryhillsoftware.com
 # GPLv2
@@ -72,8 +72,8 @@ sed 's/^.*time=\([^ ]*\) ms/\1/'| \
 # Print a line of dots as a progress indicator.
 print_dots() {
   while : ; do
-    printf "."
     sleep 1
+    printf "."
   done
 }
 
@@ -118,7 +118,7 @@ catch_interrupt() {
 # Display "no passphrase" message and exit
 no_passphrase() {
   echo ""
-  echo "Missing passphrase - see https://$TESTHOST" 
+  echo "Missing/incorrect passphrase - see https://$TESTHOST" 
   echo ""
   exit 1
 }

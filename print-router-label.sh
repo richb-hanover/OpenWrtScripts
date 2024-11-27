@@ -9,6 +9,10 @@
 # you) can access it. It is pretty secure because if someone
 # can read the label, they can factory-reset the router
 # (or steal your silverware).
+# 
+# Pro-tip: Snip out the power brick label, and tape it to the
+# power brick so the router and brick don't get separated.
+# 
 # Here's an example label:
 
 # === Printed with: print-router-label.sh ============
@@ -23,6 +27,8 @@
 #     Wifi PW: -open-
 #  Configured: 2024-Nov-27
 # === See: github.com/richb-hanover/OpenWrtScripts ===
+#
+# Label for Power Brick: Linksys E8450 (UBI)
 
 # Usage: sh print-router-label.sh root-password WifiSSID WifiPassword
 
@@ -54,7 +60,7 @@ echo "    Wifi PW: $WIFIPASSWD"
 echo " Configured: $TODAY"
 echo "=== See: github.com/richb-hanover/OpenWrtScripts ==="
 echo ""
-echo "Power Brick Label: $DEVICE"
+echo "Label for Power Brick: $DEVICE"
 echo ""
 }
 

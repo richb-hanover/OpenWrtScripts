@@ -112,30 +112,34 @@ opkg -V0 install luci-app-travelmate # and its LuCI GUI
 # opkg -V0 install snmpd         # install snmpd 
 echo '*** Package update complete'
 
-# === Display Router Config ===================
+# === Print Router Config Label ===================
 # 
-today=$(date +"%Y-%b-%d")
-device=$(cat /tmp/sysinfo/model)
-openwrtversion=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"')
 
-echo ""
-echo "Print the following label and tape it to the router..."
-echo ""
-echo "================================================="
-echo "     Device: $device"
-echo "    OpenWrt: $openwrtversion" 
-echo " Connect to: http://$HOSTNAME.local" 
-echo "         or: ssh root@$HOSTNAME.local"
-echo "        LAN: $LANIPADDRESS"
-echo "       User: root"
-echo "   Login PW: $NEWPASSWD"
-echo "  WiFi SSID: $WIFISSID"
-echo "    WiFi PW: $WIFIPASSWD"
-echo " Configured: $today"
-echo "================================================="
-echo ""
-echo "Power Brick Label: $device"
-echo ""
+sh ./print-router-label.sh "$NEWPASSWD" "$WIFISSID" "$WIFIPASSWD"
+
+# today=$(date +"%Y-%b-%d")
+# device=$(cat /tmp/sysinfo/model)
+# openwrtversion=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"')
+
+# echo ""
+# echo "Print the following label and tape it to the router..."
+# echo ""
+# echo "====================================================="
+# echo "     Device: $device"
+# echo "    OpenWrt: $openwrtversion" 
+# echo " Connect to: http://$HOSTNAME.local" 
+# echo "         or: ssh root@$HOSTNAME.local"
+# echo "        LAN: $LANIPADDRESS"
+# echo "       User: root"
+# echo "   Login PW: $NEWPASSWD"
+# echo "  WiFi SSID: $WIFISSID"
+# echo "    WiFi PW: $WIFIPASSWD"
+# echo " Configured: $today"
+# echo "==== See: github.com/richb-hanover/OpenWrtScripts ==="
+# echo ""
+# echo "Power Brick Label: $device"
+# echo ""
+
 echo "Rebooting the router now for these changes to take effect..."
 echo "  You should now make a new connection to $LANIPADDRESS."
 echo ""

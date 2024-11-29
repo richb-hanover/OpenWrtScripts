@@ -1,47 +1,126 @@
 #!/bin/sh
-# Conigure a "spare router" in a known-good state.
+# Configure a "spare router" to a known-good state.
 
 # This script configures the factory default settings of OpenWrt
 #   to make it easy to swap it in when a new router is needed.
-# It also displays important configuration information when complete.
-#   You can print out those lines and tape them to the router so
-#   the next person will know how to access the router in the future.
-#   The format is:
+# It also creates a label showing the configuration and credentials.
+#   You can print the label and tape it to the router so
+#   the next person will know how to access the router.
+#   The label format is:
 #
-# Configured: YYYY-MMM-DD
-#     Device: Belkin RT3200
-#    OpenWrt: 22.03.5 r20134-5f15225c1e  
-#        LAN: 192.168.253.1
-#       User: root
-#   Login PW: SpareRouter
-#  WiFi SSID: SpareRouter
-#    WiFi PW: none
+# ======= Printed with: print-router-label.sh =======
+#      Device: Linksys E8450 (UBI)
+#     OpenWrt: OpenWrt 23.05.5 r24106-10cc5fcd00
+#  Connect to: http://Belkin-RT3200.local
+#          or: ssh root@Belkin-RT3200.local
+#         LAN: 192.168.253.1
+#        User: root
+#    Login PW: root-password
+#   Wifi SSID: My Wifi SSID
+#     Wifi PW: abcd9876
+#  Configured: 2024-Nov-28
+# === See github.com/richb-hanover/OpenWrtScripts ===
+#
+# Label for Power Brick: Linksys E8450 (UBI)
 
-# The default settings of the script are generic, but the router will work.
+# ***** To run this script *****
+#
+# 1. Connect your laptop on a wired LAN port (Ethernet):
+#    some of these changes can reset the wireless network.
+# 2. Connect the router's WAN port to the internet: this
+#    script needs to install certain packages. (Perhaps
+#    plug its WAN port into your new router's LAN port 
+#    while running this script.)
+# 3. Flash the router with factory firmware.
+#    Do NOT keep the settings.
+# 4. SSH in and execute the statements below. 
+# 
+#    ssh root@192.168.1.1    # the default OpenWrt LAN address
+#    cd /tmp
+#    cat > config.sh 
+#    [paste in the entire contents of this file, then hit ^D]
+#    sh config.sh
+#    Presto! (The router reboots when the script completes.)
+#
+# The script sets generic settings and credentials.
 # You could make a copy of this script, customize it to your needs,
 # then use the "To run this script" procedure (below).
 #
-# ***** To run this script *****
-#
-# Flash the router with factory firmware. Then SSH in and execute these statements. 
-# You should do this over a wired connection because some of these changes
-# can reset the wireless network.
-# 
-# ssh root@192.168.1.1
-# cd /tmp
-# cat > config.sh 
-# [paste in the contents of this file, then hit ^D]
-# sh config.sh
-# Presto! (You should reboot the router when this completes.)
+
+# === print_router_label() ===
+# This function is copy/pasted from "print-router-label.sh"
+# to keep the "config-spare-router.sh" script a single file.
+# Maintenance hassle: Changes to the printing must be updated
+# in both places
+print_router_label() {
+	local ROOTPASSWD="${1:-"?"}" 
+	TODAY=$(date +"%Y-%b-%d")
+	DEVICE=$(cat /tmp/sysinfo/model)
+	OPENWRTVERSION=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"' | tr -d "'")
+	HOSTNAME=$(uci get system.@system[0].hostname)
+	LANIPADDRESS=$(uci get network.lan.ipaddr)
+
+	# Create temporary file for both SSID and password
+	TMPFILE=$(mktemp /tmp/wifi_creds.XXXXXX)
+
+	# Get wifi credentials
+	uci show wireless |\
+	egrep =wifi-iface$ |\
+	cut -d= -f1 |\
+	while read s;
+	    do uci -q get $s.disabled |\
+	    grep -q 1 && continue;
+	    id=$(uci -q get $s.ssid);
+	    key=$(uci -q get $s.key);
+	    # Write both SSID and password to temporary file
+	    echo "$id:$key" > "$TMPFILE"
+	    break
+	done
+
+	# Read both values from temporary file
+	if [ -f "$TMPFILE" ]; then
+	    WIFISSID=$(cut -d: -f1 "$TMPFILE")
+	    WIFIPASSWD=$(cut -d: -f2 "$TMPFILE")
+	    # Check if password is empty and replace with "<no password>"
+	    if [ -z "$WIFIPASSWD" ]; then
+	        WIFIPASSWD="<no password>"
+	    fi
+	else
+	    WIFISSID="unknown"
+	    WIFIPASSWD="unknown"
+	fi
+
+	# Clean up temporary file
+	rm -f "$TMPFILE"
+
+	echo ""
+	echo "Print the following label and tape it to the router..."
+	echo ""
+	echo "======= Printed with: print-router-label.sh ======="
+	echo "     Device: $DEVICE"
+	echo "    OpenWrt: $OPENWRTVERSION" 
+	echo " Connect to: http://$HOSTNAME.local" 
+	echo "         or: ssh root@$HOSTNAME.local"
+	echo "        LAN: $LANIPADDRESS"
+	echo "       User: root"
+	echo "   Login PW: $ROOTPASSWD"
+	echo "  Wifi SSID: $WIFISSID"
+	echo "    Wifi PW: $WIFIPASSWD"
+	echo " Configured: $TODAY"
+	echo "=== See github.com/richb-hanover/OpenWrtScripts ==="
+	echo ""
+	echo "Label for Power Brick: $DEVICE"
+	echo ""
+}
 
 # === CONFIGURATION PARAMETERS ===
-# Set the variables in this section to be used for configuration
+# Set the variables to be used for configuration
 
 HOSTNAME="SpareRouter"
-NEWPASSWD="SpareRouter"
-TIMEZONE='EST5EDT,M3.2.0,M11.1.0' 	# see link to other time zones below
+ROOTPASSWD="SpareRouter"
+TIMEZONE='EST5EDT,M3.2.0,M11.1.0' # see link below for other time zones
 ZONENAME='America/New York'			
-LANIPADDRESS="172.30.42.1"
+LANIPADDRESS="172.30.42.1"        # 172.30.42.1 minimizes chance of conflict
 LANSUBNET="255.255.255.0"
 SNMP_COMMUNITYSTRING=public
 WIFISSID="SpareRouter"
@@ -53,15 +132,15 @@ ENCRMODE='none'
 # 
 echo '*** Updating root password'
 passwd <<EOF
-$NEWPASSWD
-$NEWPASSWD
+$ROOTPASSWD
+$ROOTPASSWD
 EOF
 
 # === Set the hostname ========================
-# Displayed in LuCI GUI also
+# Also displayed in LuCI GUI. Used for:
 # ssh root@$HOSTNAME.local and http://$HOSTNAME.local
 echo '*** Setting host name'
-uci set system.@system[0].hostname=$HOSTNAME
+uci set system.@system[0].hostname="$HOSTNAME"
 uci commit system
 
 # === Update the LAN address ==================
@@ -73,12 +152,13 @@ sed -i s#192.168.1.1#$LANIPADDRESS#g /etc/config/network
 # sleep 5
 
 # === Enable Wifi on the first radio with configured parameters
-# Only one radio opened up for access
+# Open one radio for access
 # Use its default channel
 #
 echo "*** Setting Wifi Parameters"
-uci set wireless.@wifi-iface[0].ssid=$WIFISSID
-uci set wireless.@wifi-iface[0].encryption=$ENCRMODE
+uci set wireless.@wifi-iface[0].ssid="$WIFISSID"
+uci set wireless.@wifi-iface[0].key="$WIFIPASSWD"
+uci set wireless.@wifi-iface[0].encryption="$ENCRMODE"
 uci set wireless.@wifi-iface[0].disabled='0'
 uci set wireless.@wifi-device[0].disabled='0'
 uci commit wireless
@@ -105,41 +185,14 @@ opkg -V0 install umdns         # install mDNS responder
 opkg -V0 install luci-app-sqm  # install the SQM modules to get fq_codel etc
 opkg -V0 install travelmate	   # install the travelmate package to be a repeater
 opkg -V0 install luci-app-travelmate # and its LuCI GUI
-# opkg -V0 install netperf	   # install the netperf module for speed testing
-# opkg -V0 install ppp-mod-pppoe # install PPPoE module
-# opkg -V0 install avahi-daemon  # install the mDNS daemon
-# opkg -V0 install fprobe        # install fprobe netflow exporter
-# opkg -V0 install snmpd         # install snmpd 
-echo '*** Package update complete'
 
-# === Print Router Config Label ===================
-# 
+echo '*** SpareRouter configuration complete'
 
-sh ./print-router-label.sh "$NEWPASSWD" "$WIFISSID" "$WIFIPASSWD"
+# === Print the configuration label ===
 
-# today=$(date +"%Y-%b-%d")
-# device=$(cat /tmp/sysinfo/model)
-# openwrtversion=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"')
+print_router_label "$ROOTPASSWD" 
 
-# echo ""
-# echo "Print the following label and tape it to the router..."
-# echo ""
-# echo "====================================================="
-# echo "     Device: $device"
-# echo "    OpenWrt: $openwrtversion" 
-# echo " Connect to: http://$HOSTNAME.local" 
-# echo "         or: ssh root@$HOSTNAME.local"
-# echo "        LAN: $LANIPADDRESS"
-# echo "       User: root"
-# echo "   Login PW: $NEWPASSWD"
-# echo "  WiFi SSID: $WIFISSID"
-# echo "    WiFi PW: $WIFIPASSWD"
-# echo " Configured: $today"
-# echo "==== See: github.com/richb-hanover/OpenWrtScripts ==="
-# echo ""
-# echo "Power Brick Label: $device"
-# echo ""
-
+# === Everything is done - reboot ===
 echo "Rebooting the router now for these changes to take effect..."
 echo "  You should now make a new connection to $LANIPADDRESS."
 echo ""
@@ -159,6 +212,12 @@ reboot
 # - Set the radio channels
 # - Set wireless SSID names
 # - Set the wireless security credentials
+
+# opkg -V0 install netperf	   # install the netperf module for speed testing
+# opkg -V0 install ppp-mod-pppoe # install PPPoE module
+# opkg -V0 install avahi-daemon  # install the mDNS daemon
+# opkg -V0 install fprobe        # install fprobe netflow exporter
+# opkg -V0 install snmpd         # install snmpd 
 
 # === Enable NetFlow export ====================
 # NetFlow export

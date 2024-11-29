@@ -2,66 +2,101 @@
 
 # Print Router Label
 
-# This script retrieves values from an OpenWrt router to print a
-# concise label that contains important config info.
-# This label can be taped to the side of the router 
-# so the next person to encounter the router (which may be
-# you) can access it. It is pretty secure because if someone
-# can read the label, they can factory-reset the router
-# (or steal your silverware).
+# Usage: sh print-router-label.sh root-password
+
+# This script retrieves values from an OpenWrt router to create a
+# label that contains the LAN address and credentials.
+# Tape this label to the side of the router so the next person
+# to encounter the router (which may be you) can access it. 
+
+# This process is reasonably secure - if the bad guy
+# can read the label, they can also factory-reset the router
+# (or steal your TV or your silverware).
 # 
 # Pro-tip: Snip out the power brick label, and tape it to the
 # power brick so the router and brick don't get separated.
 # 
-# Here's an example label:
+# If no root-password is supplied, the script prints "?".
+# You can then write the password on the label.
+# If the Wifi is open, its password is printed as "<no password>"
+#
+# Here's a sample label created from the Usage above:
 
-# === Printed with: print-router-label.sh ============
+# ======= Printed with: print-router-label.sh =======
 #      Device: Linksys E8450 (UBI)
-#     OpenWrt: 'OpenWrt 23.05.5 r24106-10cc5fcd00'
+#     OpenWrt: OpenWrt 23.05.5 r24106-10cc5fcd00
 #  Connect to: http://Belkin-RT3200.local
 #          or: ssh root@Belkin-RT3200.local
 #         LAN: 192.168.253.1
 #        User: root
-#    Login PW: abcdef
-#   Wifi SSID: OpenWrt
-#     Wifi PW: -open-
-#  Configured: 2024-Nov-27
-# === See: github.com/richb-hanover/OpenWrtScripts ===
+#    Login PW: root-password
+#   Wifi SSID: My Wifi SSID
+#     Wifi PW: <no password>
+#  Configured: 2024-Nov-28
+# === See github.com/richb-hanover/OpenWrtScripts ===
 #
 # Label for Power Brick: Linksys E8450 (UBI)
-
-# Usage: sh print-router-label.sh root-password WifiSSID WifiPassword
+#
 
 print_router_label() {
+	local ROOTPASSWD="${1:-"?"}" 
+	TODAY=$(date +"%Y-%b-%d")
+	DEVICE=$(cat /tmp/sysinfo/model)
+	OPENWRTVERSION=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"' | tr -d "'")
+	HOSTNAME=$(uci get system.@system[0].hostname)
+	LANIPADDRESS=$(uci get network.lan.ipaddr)
 
-local ROOTPASSWD="${1:-"?"}" 
-local WIFISSID="${2:-"?"}" 
-local WIFIPASSWD="${3:-"?"}" 
+	# Create temporary file for both SSID and password
+	TMPFILE=$(mktemp /tmp/wifi_creds.XXXXXX)
 
-TODAY=$(date +"%Y-%b-%d")
-DEVICE=$(cat /tmp/sysinfo/model)
-OPENWRTVERSION=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"')
-HOSTNAME=$(uci get system.@system[0].hostname)
-LANIPADDRESS=$(uci get network.lan.ipaddr)
+	# Get wifi credentials
+	uci show wireless |\
+	egrep =wifi-iface$ |\
+	cut -d= -f1 |\
+	while read s;
+	    do uci -q get $s.disabled |\
+	    grep -q 1 && continue;
+	    id=$(uci -q get $s.ssid);
+	    key=$(uci -q get $s.key);
+	    # Write both SSID and password to temporary file
+	    echo "$id:$key" > "$TMPFILE"
+	    break
+	done
 
-echo ""
-echo "Print the following label and tape it to the router..."
-echo ""
-echo "=== Printed with: print-router-label.sh ============"
-echo "     Device: $DEVICE"
-echo "    OpenWrt: $OPENWRTVERSION" 
-echo " Connect to: http://$HOSTNAME.local" 
-echo "         or: ssh root@$HOSTNAME.local"
-echo "        LAN: $LANIPADDRESS"
-echo "       User: root"
-echo "   Login PW: $ROOTPASSWD"
-echo "  Wifi SSID: $WIFISSID"
-echo "    Wifi PW: $WIFIPASSWD"
-echo " Configured: $TODAY"
-echo "=== See: github.com/richb-hanover/OpenWrtScripts ==="
-echo ""
-echo "Label for Power Brick: $DEVICE"
-echo ""
+	# Read both values from temporary file
+	if [ -f "$TMPFILE" ]; then
+	    WIFISSID=$(cut -d: -f1 "$TMPFILE")
+	    WIFIPASSWD=$(cut -d: -f2 "$TMPFILE")
+	    # Check if password is empty and replace with "<no password>"
+	    if [ -z "$WIFIPASSWD" ]; then
+	        WIFIPASSWD="<no password>"
+	    fi
+	else
+	    WIFISSID="unknown"
+	    WIFIPASSWD="unknown"
+	fi
+
+	# Clean up temporary file
+	rm -f "$TMPFILE"
+
+	echo ""
+	echo "Print the following label and tape it to the router..."
+	echo ""
+	echo "======= Printed with: print-router-label.sh ======="
+	echo "     Device: $DEVICE"
+	echo "    OpenWrt: $OPENWRTVERSION" 
+	echo " Connect to: http://$HOSTNAME.local" 
+	echo "         or: ssh root@$HOSTNAME.local"
+	echo "        LAN: $LANIPADDRESS"
+	echo "       User: root"
+	echo "   Login PW: $ROOTPASSWD"
+	echo "  Wifi SSID: $WIFISSID"
+	echo "    Wifi PW: $WIFIPASSWD"
+	echo " Configured: $TODAY"
+	echo "=== See github.com/richb-hanover/OpenWrtScripts ==="
+	echo ""
+	echo "Label for Power Brick: $DEVICE"
+	echo ""
 }
 
-print_router_label "$1" "$2" "$3"
+print_router_label "$1"

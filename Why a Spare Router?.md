@@ -29,7 +29,9 @@ It is available at
 [config-spare-router.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-spare-router.sh)
 To use it:
 
-* Connect via Ethernet to a LAN port
+* Connect your laptop via Ethernet to a LAN port
+* Connect the router's WAN Ethernet to the Internet
+  (perhaps the LAN port of the new router).
 * Use the LuCI GUI to reset settings to
   factory default (**System -> Backup/Flash firmware**)
 * Use the [Firmware Selector](https://firmware-selector.openwrt.org/)
@@ -37,6 +39,8 @@ To use it:
 * SSH into the router using the Ethernet connection
 * Run the attached script (see the instructions within it)
 * The script prints a label: cut it out and tape it to the router
+* _Pro tip:_ Printing the label in 12-point type produces a 
+  "business card" size label.
 * _Pro tip:_ Snip the model number from the paper
   and tape it directly to the power brick.
   (Use the text from the "Power Brick Label" section.)
@@ -58,7 +62,7 @@ suitable for printing and taping to the router.
 #    Login PW: SpareRouter
 #   Wifi SSID: SpareRouter
 #     Wifi PW: <no password>
-#  Configured: 2024-Nov-28
+#  Configured: 2024-11-28
 # === See github.com/richb-hanover/OpenWrtScripts ===
 #
 # Label for Power Brick: Linksys E8450 (UBI)

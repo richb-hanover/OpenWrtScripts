@@ -15,6 +15,9 @@
 # 
 # Pro-tip: Snip out the power brick label, and tape it to the
 # power brick so the router and brick don't get separated.
+#
+# Pro-tip: Printing the label in 12-point type produces a
+# "business card" size label. Small text, but readable.
 # 
 # If no root-password is supplied, the script prints "?".
 # You can then write the password on the label.
@@ -32,7 +35,7 @@
 #    Login PW: root-password
 #   Wifi SSID: My Wifi SSID
 #     Wifi PW: <no password>
-#  Configured: 2024-Nov-28
+#  Configured: 2024-11-28
 # === See github.com/richb-hanover/OpenWrtScripts ===
 #
 # Label for Power Brick: Linksys E8450 (UBI)
@@ -40,11 +43,12 @@
 
 print_router_label() {
 	local ROOTPASSWD="${1:-"?"}" 
-	TODAY=$(date +"%Y-%b-%d")
+	TODAY=$(date +"%Y-%m-%d")
 	DEVICE=$(cat /tmp/sysinfo/model)
 	OPENWRTVERSION=$(grep "DISTRIB_DESCRIPTION" /etc/openwrt_release | cut -d"=" -f2 | tr -d '"' | tr -d "'")
 	HOSTNAME=$(uci get system.@system[0].hostname)
 	LANIPADDRESS=$(uci get network.lan.ipaddr)
+	LOCALDNSTLD=$(uci get dhcp.@dnsmasq[0].domain) # top level domain for local names
 
 	# Create temporary file for both SSID and password
 	TMPFILE=$(mktemp /tmp/wifi_creds.XXXXXX)
@@ -85,8 +89,8 @@ print_router_label() {
 	echo "======= Printed with: print-router-label.sh ======="
 	echo "     Device: $DEVICE"
 	echo "    OpenWrt: $OPENWRTVERSION" 
-	echo " Connect to: http://$HOSTNAME.local" 
-	echo "         or: ssh root@$HOSTNAME.local"
+	echo " Connect to: http://$HOSTNAME.$LOCALDNSTLD" 
+	echo "         or: ssh root@$HOSTNAME.$LOCALDNSTLD"
 	echo "        LAN: $LANIPADDRESS"
 	echo "       User: root"
 	echo "   Login PW: $ROOTPASSWD"

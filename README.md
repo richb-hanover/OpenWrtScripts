@@ -42,6 +42,9 @@ cd /usr/lib
 git clone https://github.com/richb-hanover/OpenWrtScripts.git
 ```
 
+**NB:** Some of these scripts have instructions for running the script
+from `/tmp`
+
 ## [getstats.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/getstats.sh)
 
 The `getstats.sh` script helps diagnose problems with OpenWrt.
@@ -117,7 +120,7 @@ to encounter the router (which may be you) can access it.
 
 This process is reasonably secure - if the bad guy
 can read the label, they can also factory-reset the router
-(or steal TV or your silverware). Here's a sample label:
+(or steal your TV or your silverware). Here's a sample label:
 
 ```text
 ======= Printed with: print-router-label.sh =======
@@ -130,7 +133,7 @@ can read the label, they can also factory-reset the router
    Login PW: abcd9876
   Wifi SSID: My Wifi SSID
     Wifi PW: <no password>
- Configured: 2024-Nov-28
+ Configured: 2024-11-28
 === See github.com/richb-hanover/OpenWrtScripts ===
 
 Label for Power Brick: Linksys E8450 (UBI)
@@ -287,7 +290,7 @@ root@openwrt# sh betterspeedtest.sh                       root@openwrt# sh bette
 
 The `netperfrunner.sh` script runs several netperf commands simultaneously.
 This mimics the stress test of
-[netperf-wrapper](https://github.com/tohojo/netperf-wrapper)
+[Flent](https://github.com/tohojo/flent)
 [Github] but without the nice GUI result.
 
 When you start this script, it concurrently uploads and downloads several

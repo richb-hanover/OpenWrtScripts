@@ -37,12 +37,13 @@ It is available at
   factory default (**System -> Backup/Flash firmware**)
 * Use the [Firmware Selector](https://firmware-selector.openwrt.org/)
   to find and flash the latest firmware
-* SSH into the router using the Ethernet connection
-* Run the attached script (see the instructions within it)
-* The script prints a label: cut it out and tape it to the router
+* SSH into the router using the Ethernet connection - `ssh root@192.168.1.1` -
+  no password required, but you may need to update the fingerprint
+* Run the [config-spare-router.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/main/config-spare-router.sh) script. See the instructions within the script for pasting it into _/tmp/config.sh_ and running it.
+* When it completes, the script prints a label: cut it out and tape it to the router
 * _Pro tip:_ Printing the label in 12-point type produces a 
   "business card" size label.
-* _Pro tip:_ Snip text from the "Label for Power Brick" line from the paper
+* _Pro tip:_ Snip text from the "Label for Power Brick" line of the printed paper
   and tape it directly to the power brick.
 * _Pro tip:_ Place the router and its power brick in a Ziploc bag
   to keep them together.

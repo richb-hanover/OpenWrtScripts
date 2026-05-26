@@ -1,23 +1,24 @@
 # Why a "Spare Router" Configuration?
 
-Many people who use OpenWrt wind up with unused routers when
-they retire one for a newer device.
+Many people who use OpenWrt deploy a new router and
+retire an old (now unused) router.
 These are perfectly functioning devices that are perhaps older
-or missing a certain function.
+or not quite as powerful.
 
-They could be easily re-used and passed along to friends, family or neighbors.
+They could be easily re-used and passed along to friends, family or neighbors,
+or donated to your favorite thrift store.
 BUT... you have to solve a couple problems:
 
-1. The router retains all your personal info:
+1. The old router retains all your personal info:
   passwords, certificates, idiosyncratic packages. etc.
-2. You can't remember how it was configured, so you
-  can't even connect to it.
+2. You can't remember how it was configured,
+  so it's a hassle even to connect to it.
 
 **The remedy:** A "spare router" configuration script that
 you can use when you take a router out of service.
 It leaves the router with current OpenWrt firmware
 configured for Wifi access, and
-a known useful set of package to make it easy to reuse.
+a useful set of packages to make it easy to reuse.
 The script also prints a label that you can attach to
 the router so that you can get started quickly the next
 time you get it out.
@@ -25,11 +26,11 @@ time you get it out.
 ## Usage
 
 When you retire a router from service, run this script.
+The script requires the router to have an Ethernet WAN connection.
 It is available at
 [config-spare-router.sh](https://github.com/richb-hanover/OpenWrtScripts/blob/master/config-spare-router.sh)
-To use it:
 
-* Connect your laptop via Ethernet to a LAN port
+* Connect your laptop via Wi-Fi or via Ethernet to a LAN port
 * Connect the router's WAN Ethernet to the Internet
   (perhaps the LAN port of the new router).
 * Use the LuCI GUI to reset settings to
@@ -41,15 +42,17 @@ To use it:
 * The script prints a label: cut it out and tape it to the router
 * _Pro tip:_ Printing the label in 12-point type produces a 
   "business card" size label.
-* _Pro tip:_ Snip the model number from the paper
+* _Pro tip:_ Snip text from the "Label for Power Brick" line from the paper
   and tape it directly to the power brick.
-  (Use the text from the "Power Brick Label" section.)
 * _Pro tip:_ Place the router and its power brick in a Ziploc bag
   to keep them together.
 
-The `config-spare-router.sh` script may be run multiple times without bad effect.
-When the script completes, it displays configuration similar to this,
+You may run the `config-spare-router.sh` script multiple times without bad effect.
+When the script completes, it displays the configuration similar to this,
 suitable for printing and taping to the router.
+
+_**NB:** This label is reasonably secure. If the bad guy can read the label,
+they can also push buttons to factory-reset it (or steal your silverware or your TV)._
 
 ```text
 # ======= Printed with: print-router-label.sh =======
@@ -71,6 +74,7 @@ suitable for printing and taping to the router.
 ## When you (re)deploy the router
 
 The default settings are (intentionally) insecure.
+Power up the router and connect to the Wi-Fi SSID "SpareRouter" (no password).
 Remember to change the following:
 
 * Root password (**System -> Administration**)
@@ -82,8 +86,9 @@ Remember to change the following:
 * (Optional) Install other packages as needed
 * (Optional) Travelmate (**Services -> Travelmate**)
   Click the **Interface Wizard** button one time
-* (Optional) Re-run the `print-router-label.sh` to create
-  a new label and tape it to the router, so you don't
+* (Optional) Re-run the `print-router-label.sh` script to create
+  a new label with the current credentials.
+  Tape it to the router, so you don't
   have to fuss the next time you work on it.
 
 ## Rationale for the configuration choices
@@ -113,7 +118,7 @@ was not a consideration.
   No other radios are enabled.
   As with the root password, there is no need for a strong password,
   because you will be changing it immediately.
-* **Time Zone:** As a convenience, the time zone is set to `Americas/New York`.
+* **Time Zone:** For (my) convenience, the time zone is set to `Americas/New York`.
   You can use the LuCI GUI to re-configure as needed.
 * **Software packages:** The script installs a minimal set of useful
   packages that are required to bootstrap a new router.
@@ -127,9 +132,10 @@ was not a consideration.
   * **travelmate** _and_
   * **luci-app-travelmate** This packages allow a router to
     act as a Wifi repeater by making a wireless "uplink"
-    to an existing network
-    Even if there's no Ethernet connection for the spare routers's WAN port,
-    you can use the wireless uplink to download additional packages.
+    to an existing Wi-Fi network.
+    Even if there's no Ethernet available for the spare routers's WAN port,
+    you can use the wireless uplink to make the connection
+    and download additional packages.
 
 ## Modifications
 
